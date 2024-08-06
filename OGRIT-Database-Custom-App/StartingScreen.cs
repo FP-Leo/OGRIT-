@@ -25,11 +25,7 @@ namespace OGRIT_Database_Custom_App
 
         private void ContinueButton_Click(object sender, EventArgs e)
         {
-            if (_parent != null)
-            {
-                _parent.startingScreen.Hide();
-                _parent.logInScreen.Show();
-            }
+            _parent?.DestroyStartingScreen();
         }
     }
 }

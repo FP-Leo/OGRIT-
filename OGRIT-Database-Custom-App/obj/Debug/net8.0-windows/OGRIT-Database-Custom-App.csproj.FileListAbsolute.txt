@@ -51,3 +51,5 @@ C:\Users\leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debu
 C:\Users\leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.LogInScreen.resources
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.Properties.Resources.resources
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.RoundTextbox.resources
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.TestForm.resources
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.TestForm2.resources

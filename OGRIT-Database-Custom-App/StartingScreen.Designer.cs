@@ -58,7 +58,7 @@
             // 
             // logoBox
             // 
-            logoBox.Anchor = AnchorStyles.None;
+            logoBox.Anchor = AnchorStyles.Bottom;
             logoBox.Image = Properties.Resources.OGRIT_Logo;
             logoBox.Location = new Point(3, 3);
             logoBox.Name = "logoBox";
@@ -94,6 +94,7 @@
             // continueButton
             // 
             continueButton.Anchor = AnchorStyles.Top;
+            continueButton.AutoSize = true;
             continueButton.BackColor = Color.FromArgb(40, 40, 40);
             continueButton.BackgroundColor = Color.FromArgb(40, 40, 40);
             continueButton.BorderColor = Color.PaleVioletRed;
@@ -104,6 +105,8 @@
             continueButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             continueButton.ForeColor = Color.LightGray;
             continueButton.Location = new Point(331, 227);
+            continueButton.MaximumSize = new Size(250, 90);
+            continueButton.MinimumSize = new Size(130, 60);
             continueButton.Name = "continueButton";
             continueButton.Size = new Size(137, 65);
             continueButton.TabIndex = 11;

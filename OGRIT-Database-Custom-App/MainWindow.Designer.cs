@@ -48,16 +48,21 @@
             ClientSize = new Size(800, 450);
             Controls.Add(startingScreen);
             MinimumSize = new Size(800, 450);
-            Name = "MainWindow";
+            Name = "OGRIT";
             Text = "Form1";
-            //InitializeLogInScreen();
             ResumeLayout(false);
+        }
+
+        public void DestroyStartingScreen()
+        {
+            Controls.Remove(startingScreen);
+            startingScreen = null;
+            InitializeLogInScreen();
         }
 
         public void InitializeLogInScreen()
         {
             logInScreen = new LogInScreen(this);
-            SuspendLayout();
             // 
             // logInScreen
             // 
@@ -66,7 +71,7 @@
             logInScreen.Name = "LogInScreen";
             logInScreen.Size = new Size(800, 450);
             logInScreen.TabIndex = 0;
-            logInScreen.Visible = false;
+            logInScreen.Visible = true;
             // 
             // MainWindow
             // 
