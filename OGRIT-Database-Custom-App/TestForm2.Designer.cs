@@ -37,8 +37,11 @@
             serverTB = new TextBox();
             dbInstanceLabel = new Label();
             dbTB = new TextBox();
+            portLabel = new Label();
+            portTB = new TextBox();
             loginCB = new ComboBox();
             connectButton = new RoundButton();
+            authTypeLB = new Label();
             outsideTablePanel.SuspendLayout();
             logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)miniLogoBox).BeginInit();
@@ -94,27 +97,32 @@
             // insideTablePanel
             // 
             insideTablePanel.ColumnCount = 1;
-            insideTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            insideTablePanel.ColumnStyles.Add(new ColumnStyle());
             insideTablePanel.Controls.Add(serverIPLabel, 0, 1);
             insideTablePanel.Controls.Add(serverTB, 0, 2);
             insideTablePanel.Controls.Add(dbInstanceLabel, 0, 3);
             insideTablePanel.Controls.Add(dbTB, 0, 4);
-            insideTablePanel.Controls.Add(loginCB, 0, 5);
-            insideTablePanel.Controls.Add(connectButton, 0, 6);
+            insideTablePanel.Controls.Add(portLabel, 0, 5);
+            insideTablePanel.Controls.Add(portTB, 0, 6);
+            insideTablePanel.Controls.Add(loginCB, 0, 8);
+            insideTablePanel.Controls.Add(connectButton, 0, 9);
+            insideTablePanel.Controls.Add(authTypeLB, 0, 7);
             insideTablePanel.Dock = DockStyle.Fill;
             insideTablePanel.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
             insideTablePanel.Location = new Point(0, 0);
             insideTablePanel.MaximumSize = new Size(350, 550);
             insideTablePanel.Name = "insideTablePanel";
-            insideTablePanel.RowCount = 8;
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 17.3914928F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10.8702259F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10.8702259F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10.8702259F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10.8702259F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10.8702259F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10.8658781F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 17.3914928F));
+            insideTablePanel.RowCount = 10;
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 13F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 17F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
             insideTablePanel.Size = new Size(337, 550);
             insideTablePanel.TabIndex = 1;
             // 
@@ -123,7 +131,7 @@
             serverIPLabel.Anchor = AnchorStyles.Left;
             serverIPLabel.AutoSize = true;
             serverIPLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            serverIPLabel.Location = new Point(3, 114);
+            serverIPLabel.Location = new Point(3, 80);
             serverIPLabel.Name = "serverIPLabel";
             serverIPLabel.Size = new Size(135, 20);
             serverIPLabel.TabIndex = 9;
@@ -132,7 +140,7 @@
             // serverTB
             // 
             serverTB.Anchor = AnchorStyles.Left;
-            serverTB.Location = new Point(5, 170);
+            serverTB.Location = new Point(5, 126);
             serverTB.Margin = new Padding(5, 3, 5, 3);
             serverTB.Name = "serverTB";
             serverTB.PlaceholderText = "Value";
@@ -144,7 +152,7 @@
             dbInstanceLabel.Anchor = AnchorStyles.Left;
             dbInstanceLabel.AutoSize = true;
             dbInstanceLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dbInstanceLabel.Location = new Point(3, 232);
+            dbInstanceLabel.Location = new Point(3, 180);
             dbInstanceLabel.Name = "dbInstanceLabel";
             dbInstanceLabel.Size = new Size(110, 20);
             dbInstanceLabel.TabIndex = 11;
@@ -153,19 +161,40 @@
             // dbTB
             // 
             dbTB.Anchor = AnchorStyles.Left;
-            dbTB.Location = new Point(5, 288);
+            dbTB.Location = new Point(5, 226);
             dbTB.Margin = new Padding(5, 3, 5, 3);
             dbTB.Name = "dbTB";
             dbTB.PlaceholderText = "Value";
             dbTB.Size = new Size(327, 27);
             dbTB.TabIndex = 4;
             // 
+            // portLabel
+            // 
+            portLabel.Anchor = AnchorStyles.Left;
+            portLabel.AutoSize = true;
+            portLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            portLabel.Location = new Point(3, 280);
+            portLabel.Name = "portLabel";
+            portLabel.Size = new Size(37, 20);
+            portLabel.TabIndex = 17;
+            portLabel.Text = "Port";
+            // 
+            // portTB
+            // 
+            portTB.Anchor = AnchorStyles.Left;
+            portTB.Location = new Point(5, 326);
+            portTB.Margin = new Padding(5, 3, 5, 3);
+            portTB.Name = "portTB";
+            portTB.PlaceholderText = "1433";
+            portTB.Size = new Size(327, 27);
+            portTB.TabIndex = 5;
+            // 
             // loginCB
             // 
             loginCB.Dock = DockStyle.Fill;
             loginCB.DropDownStyle = ComboBoxStyle.DropDownList;
             loginCB.FormattingEnabled = true;
-            loginCB.Location = new Point(3, 334);
+            loginCB.Location = new Point(3, 418);
             loginCB.Name = "loginCB";
             loginCB.Size = new Size(331, 28);
             loginCB.TabIndex = 15;
@@ -182,13 +211,24 @@
             connectButton.FlatStyle = FlatStyle.Flat;
             connectButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             connectButton.ForeColor = Color.LightGray;
-            connectButton.Location = new Point(3, 393);
+            connectButton.Location = new Point(3, 504);
             connectButton.Name = "connectButton";
-            connectButton.Size = new Size(331, 53);
+            connectButton.Size = new Size(331, 43);
             connectButton.TabIndex = 14;
             connectButton.Text = "Connect";
             connectButton.TextColor = Color.LightGray;
             connectButton.UseVisualStyleBackColor = false;
+            // 
+            // authTypeLB
+            // 
+            authTypeLB.Anchor = AnchorStyles.Left;
+            authTypeLB.AutoSize = true;
+            authTypeLB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            authTypeLB.Location = new Point(3, 380);
+            authTypeLB.Name = "authTypeLB";
+            authTypeLB.Size = new Size(146, 20);
+            authTypeLB.TabIndex = 18;
+            authTypeLB.Text = "Authentication Type";
             // 
             // TestForm2
             // 
@@ -217,7 +257,11 @@
         private TextBox serverTB;
         private Label dbInstanceLabel;
         private TextBox dbTB;
+        private Label portLabel;  // Yeni etiket
+        private TextBox portTB;   // Yeni metin kutusu
         private ComboBox loginCB;
         private RoundButton connectButton;
+        private Label loginTypeLB;
+        private Label authTypeLB;
     }
 }
