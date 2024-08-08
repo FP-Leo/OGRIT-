@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -16,52 +17,19 @@ namespace OGRIT_Database_Custom_App
             InitializeComponent();
             _parent = parent;
         }
-
         private void LoginButton_Click(object sender, EventArgs e)
         {
             if (_parent == null)
             {
                 return;
             }
-            string serverIP = serverTB.Text;
-            string dbi = dbTB.Text;
-            string username = usernameTB.Text;
-            string password = passwordTB.Text;
 
-            string errorMessage = "Error List:";
-            bool validState = true;
+            string? connectionString = GetConnectionString();
 
-            if (string.IsNullOrEmpty(serverIP))
-            {
-                errorMessage += "Server IP missing\n\r";
-                validState = false;
-            }
-
-            if (string.IsNullOrEmpty(dbi))
-            {
-                errorMessage += "Database Instance missing\n\r";
-                validState = false;
-            }
-
-            if (string.IsNullOrEmpty(username))
-            {
-                errorMessage += "Username missing\n\r";
-                validState = false;
-            }
-
-            if (string.IsNullOrEmpty(password))
-            {
-                errorMessage += "Password missing\n\r";
-                validState = false;
-            }
-
-            if (!validState)
-            {
-                MessageBox.Show(errorMessage);
+            if (connectionString == null) {
                 return;
             }
 
-            string connectionString = $"Data Source={serverIP};Initial Catalog={dbi};User ID={username};Password={password};";
             try
             {
                 var connection = new SqlConnection(connectionString);
@@ -85,15 +53,86 @@ namespace OGRIT_Database_Custom_App
             }
         }
 
-        private void LoginCB_SelectedIndexChanged(object sender, EventArgs e)
+        private string? GetConnectionString()
         {
-            if (loginCB.SelectedIndex == selected)
+            bool validState = true;
+            string errorMessage = "\tError List\n\r\n\r";
+            int err = 1;
+
+            string serverIP = serverTB.Text;
+
+            string dbi = dbTB.Text;
+            string username = usernameTB.Text;
+            string password = passwordTB.Text;
+
+            string connectionString = "";
+
+            if (string.IsNullOrEmpty(serverIP))
+            {
+                errorMessage += $"{err++}. Server IP missing\n\r";
+                validState = false;
+            }
+
+            int port = 1433;
+            if (portTB.Text != "")
+            {
+                try
+                {
+                    port = Convert.ToInt32(portTB.Text);
+                }
+                catch 
+                {
+                    errorMessage += $"{err++}. Invalid Port\n\r";
+                    validState = false;
+                }
+            }
+
+            if (string.IsNullOrEmpty(dbi))
+            {
+                errorMessage += $"{err++}. Database Instance missing\n\r";
+                validState = false;
+            }
+
+            connectionString += $"Data Source={serverIP},{port};Initial Catalog={dbi};";
+
+            if (selected == 1)
+            {
+                if (string.IsNullOrEmpty(username))
+                {
+                    errorMessage += $"{err++}. Username missing\n\r";
+                    validState = false;
+                }
+
+                if (string.IsNullOrEmpty(password))
+                {
+                    errorMessage += $"{err++}. Password missing\n\r";
+                    validState = false;
+                }
+                connectionString += $"User ID={username};Password={password};";
+            }
+            else
+            {
+                connectionString += "Integrated Security=True;";
+            }
+
+            if (!validState)
+            {
+                MessageBox.Show(errorMessage);
+                connectionString = null;
+            }
+
+            return connectionString;
+        }
+
+        private void AuthCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (authCB.SelectedIndex == selected)
                 return;
 
-            selected = loginCB.SelectedIndex;
+            selected = authCB.SelectedIndex;
 
-            //MessageBox.Show("Selected = " + selected);
             DrawInnerPannel();
+
         }
         private void LogInScreen_Load(object sender, EventArgs e)
         {
@@ -106,6 +145,7 @@ namespace OGRIT_Database_Custom_App
             {
                 Controls.Remove(insideTablePanel);
                 insideTablePanel.Dispose();
+                insideTablePanel = null;
             }
 
             insideTablePanel = new TableLayoutPanel();
@@ -121,8 +161,8 @@ namespace OGRIT_Database_Custom_App
             portLabel = new Label();
             portTB = new TextBox();
             dbTB = new TextBox();
-            loginCB = new ComboBox();
-            loginLB = new Label();
+            authCB = new ComboBox();
+            authLabel = new Label();
             // 
             // insideTablePanel
             // 
@@ -133,23 +173,7 @@ namespace OGRIT_Database_Custom_App
             //insideTablePanel.MinimumSize = new Size(337, 550);
             insideTablePanel.Location = new Point(346, 3);
             insideTablePanel.Name = "insideTablePanel";
-            // 
-            // loginCB
-            // 
-            loginCB.Dock = DockStyle.Fill;
-            loginCB.DropDownStyle = ComboBoxStyle.DropDownList;
-            loginCB.FormattingEnabled = true;
-            loginCB.Location = new Point(3, 399);
-            loginCB.Name = "loginCB";
-            loginCB.Size = new Size(331, 28);
-            loginCB.TabIndex = 15;
-            loginCB.BindingContext = this.BindingContext;
 
-            var cbOptions = new List<string> { "Windows Authentication", "SQL Server Authentication" };
-            loginCB.DataSource = cbOptions;
-
-            loginCB.SelectedIndex = selected;
-            loginCB.SelectedIndexChanged += LoginCB_SelectedIndexChanged;
             float outsideRowSize = 11.2068968F;
             float innerRowSize = 8.620689F;
             insideTablePanel.RowCount = 11;
@@ -175,12 +199,12 @@ namespace OGRIT_Database_Custom_App
 
             insideTablePanel.Controls.Add(serverIPLabel, 0, 1);
             insideTablePanel.Controls.Add(serverTB, 0, 2);
-            insideTablePanel.Controls.Add(dbInstanceLabel, 0, 3);
-            insideTablePanel.Controls.Add(dbTB, 0, 4);
-            insideTablePanel.Controls.Add(portLabel, 0, 5);
-            insideTablePanel.Controls.Add(portTB, 0, 6);
-            insideTablePanel.Controls.Add(loginLB, 0, 7);
-            insideTablePanel.Controls.Add(loginCB, 0, 8);
+            insideTablePanel.Controls.Add(portLabel, 0, 3);
+            insideTablePanel.Controls.Add(portTB, 0, 4);
+            insideTablePanel.Controls.Add(dbInstanceLabel, 0, 5);
+            insideTablePanel.Controls.Add(dbTB, 0, 6);
+            insideTablePanel.Controls.Add(authLabel, 0, 7);
+            insideTablePanel.Controls.Add(authCB, 0, 8);
             insideTablePanel.Controls.Add(connectButton, 0, insideTablePanel.RowCount - 2);
 
             // 
@@ -217,16 +241,33 @@ namespace OGRIT_Database_Custom_App
             serverIPLabel.Text = "Server Name or IP";
 
             // 
-            // loginLB
+            // authLabel
             // 
-            loginLB.Anchor = AnchorStyles.Left;
-            loginLB.AutoSize = true;
-            loginLB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            loginLB.Location = new Point(3, 280); // `portTB`'nin altına yerleştirildi
-            loginLB.Name = "loginLB";
-            loginLB.Size = new Size(146, 20);
-            loginLB.TabIndex = 18;
-            loginLB.Text = "Authentication Type";
+            authLabel.Anchor = AnchorStyles.Left;
+            authLabel.AutoSize = true;
+            authLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            authLabel.Location = new Point(3, 280); 
+            authLabel.Name = "authLabel";
+            authLabel.Size = new Size(146, 20);
+            authLabel.TabIndex = 18;
+            authLabel.Text = "Authentication Type";
+            // 
+            // authCB
+            // 
+            authCB.Dock = DockStyle.Fill;
+            authCB.DropDownStyle = ComboBoxStyle.DropDownList;
+            authCB.FormattingEnabled = true;
+            authCB.Location = new Point(3, 399);
+            authCB.Name = "authCB";
+            authCB.Size = new Size(331, 28);
+            authCB.TabIndex = 4;
+            authCB.BindingContext = this.BindingContext;
+
+            var cbOptions = new List<string> { "Windows Authentication", "SQL Server Authentication" };
+            authCB.DataSource = cbOptions;
+
+            authCB.SelectedIndex = selected;
+            authCB.SelectedIndexChanged += AuthCB_SelectedIndexChanged;
             // 
             // connectButton
             // 
@@ -243,10 +284,11 @@ namespace OGRIT_Database_Custom_App
             connectButton.Location = new Point(3, 440);
             connectButton.Name = "connectButton";
             connectButton.Size = new Size(331, 41);
-            connectButton.TabIndex = 14;
+            connectButton.TabIndex = 7;
             connectButton.Text = "Connect";
             connectButton.TextColor = Color.LightGray;
             connectButton.UseVisualStyleBackColor = false;
+            connectButton.Click += LoginButton_Click;
             // 
             // dbTB
             // 
@@ -256,7 +298,7 @@ namespace OGRIT_Database_Custom_App
             dbTB.Name = "dbTB";
             dbTB.PlaceholderText = "Value";
             dbTB.Size = new Size(327, 27);
-            dbTB.TabIndex = 4;
+            dbTB.TabIndex = 3;
             // 
             // portTB
             // 
@@ -266,7 +308,7 @@ namespace OGRIT_Database_Custom_App
             portTB.Name = "portTB";
             portTB.PlaceholderText = "1433";
             portTB.Size = new Size(327, 27);
-            portTB.TabIndex = 5;
+            portTB.TabIndex = 1;
             // 
             // portLabel
             // 
@@ -310,7 +352,7 @@ namespace OGRIT_Database_Custom_App
             passwordTB.PasswordChar = '*';
             passwordTB.PlaceholderText = "Value";
             passwordTB.Size = new Size(327, 27);
-            passwordTB.TabIndex = 8;
+            passwordTB.TabIndex = 6;
             // 
             // usernameTB
             // 
@@ -320,7 +362,7 @@ namespace OGRIT_Database_Custom_App
             usernameTB.Name = "usernameTB";
             usernameTB.PlaceholderText = "Value";
             usernameTB.Size = new Size(327, 27);
-            usernameTB.TabIndex = 6;
+            usernameTB.TabIndex = 5;
 
             outsideTablePanel.Controls.Add(insideTablePanel, 1, 0);
             insideTablePanel.ResumeLayout(false);

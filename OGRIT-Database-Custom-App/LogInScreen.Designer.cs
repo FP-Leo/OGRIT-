@@ -96,13 +96,13 @@
         private TextBox dbTB;
         private Label serverIPLabel;
         private RoundButton connectButton;
-        private ComboBox loginCB;
+        private ComboBox authCB;
         private TextBox portTB;
         private Label portLabel;
         private Panel logoPanel;
         private PictureBox miniLogoBox;
         private TableLayoutPanel outsideTablePanel;
-        private Label loginLB;
+        private Label authLabel;
         
     }
 }

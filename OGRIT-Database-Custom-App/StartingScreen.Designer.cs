@@ -98,7 +98,7 @@
             continueButton.BackColor = Color.FromArgb(40, 40, 40);
             continueButton.BackgroundColor = Color.FromArgb(40, 40, 40);
             continueButton.BorderColor = Color.PaleVioletRed;
-            continueButton.BorderRadius = 7;
+            continueButton.BorderRadius = 9;
             continueButton.BorderSize = 0;
             continueButton.FlatAppearance.BorderSize = 0;
             continueButton.FlatStyle = FlatStyle.Flat;

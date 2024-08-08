@@ -7,16 +7,12 @@
       "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\loginscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\testform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\testform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\startingscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\startingscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\loginscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\loginscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\testform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\testform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\testform2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\testform2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\loginscreen.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,73 +26,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 309,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LogInScreen.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.Designer.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\LogInScreen.Designer.cs",
+              "ToolTip": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.Designer.cs",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\LogInScreen.Designer.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAuwGcAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T13:34:08.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestForm2.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\TestForm2.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\TestForm2.cs",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\TestForm2.cs [Design]",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\TestForm2.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T13:27:30.718Z",
+              "EditorCaption": " [Design]"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "LogInScreen.cs",
               "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.cs",
               "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\LogInScreen.cs",
-              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.cs",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\LogInScreen.cs",
-              "ViewState": "AQIAAHkAAAAAAAAAAAApwIMAAAA8AAAA",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.cs*",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\LogInScreen.cs*",
+              "ViewState": "AQIAADsAAAAAAAAAAAAcwEwAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T11:04:03.136Z",
-              "IsPinned": true,
+              "WhenOpened": "2024-08-08T13:11:05.212Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LogInScreen.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.Designer.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\LogInScreen.Designer.cs",
-              "ToolTip": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.Designer.cs",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\LogInScreen.Designer.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAtwBwAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T11:04:08.401Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LogInScreen.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\LogInScreen.cs",
-              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.cs [Design]",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\LogInScreen.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T11:03:37.805Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TestForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\TestForm.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\TestForm.cs",
-              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\TestForm.cs [Design]*",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\TestForm.cs [Design]*",
+              "Title": "StartingScreen.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\StartingScreen.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\StartingScreen.cs",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\StartingScreen.cs [Design]",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\StartingScreen.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:21:31.735Z",
+              "WhenOpened": "2024-08-08T12:26:57.257Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TestForm.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\TestForm.Designer.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\TestForm.Designer.cs",
-              "ToolTip": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\TestForm.Designer.cs*",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\TestForm.Designer.cs*",
-              "ViewState": "AQIAAGIAAAAAAAAAAAAtwF4AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T12:22:10.785Z",
-              "EditorCaption": ""
             }
           ]
         }
