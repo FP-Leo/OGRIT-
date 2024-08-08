@@ -28,29 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            startingScreen = new StartingScreen(this);
+            
             SuspendLayout();
-            // 
-            // startingScreen1
-            // 
-            startingScreen.Dock = DockStyle.Fill;
-            startingScreen.Location = new Point(0, 0);
-            startingScreen.MinimumSize = new Size(800, 450);
-            startingScreen.Name = "StartingScreen";
-            startingScreen.Size = new Size(800, 450);
-            startingScreen.TabIndex = 0;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(825, 450);
             Controls.Add(startingScreen);
-            MinimumSize = new Size(800, 450);
-            Name = "OGRIT";
-            Text = "Form1";
+            MinimumSize = new Size(845, 500);
+            Name = "MainWindow";
+            Text = "OGRIT DB APP";
             ResumeLayout(false);
+        }
+
+        public void SetUpStartingScreen()
+        {
+            startingScreen = new StartingScreen(this);
+            // 
+            // startingScreen
+            // 
+            startingScreen.Dock = DockStyle.Fill;
+            startingScreen.Location = new Point(0, 0);
+            startingScreen.MinimumSize = new Size(825, 450);
+            startingScreen.Name = "startingScreen1";
+            startingScreen.Size = new Size(825, 450);
+            startingScreen.TabIndex = 0;
         }
 
         public void DestroyStartingScreen()
@@ -80,7 +85,7 @@
 
         #endregion
 
-        public StartingScreen startingScreen;
         public LogInScreen logInScreen;
+        private StartingScreen startingScreen;
     }
 }

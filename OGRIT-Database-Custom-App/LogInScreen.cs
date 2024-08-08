@@ -139,6 +139,31 @@ namespace OGRIT_Database_Custom_App
             DrawInnerPannel();
         }
 
+        private static Label CustomLabel(string name, int tabIndex, string text)
+        {
+            return new Label
+            {
+                Anchor = AnchorStyles.Left,
+                AutoSize = true,
+                Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0),
+                Name = name,
+                TabIndex = tabIndex,
+                Text = text
+            };
+        }
+
+        private static TextBox CustomTextBox(string Name, string PlaceholderText, int TabIndex)
+        {
+            return new TextBox
+            {
+                Dock = DockStyle.Fill,
+                Margin = new Padding(5, 3, 5, 3),
+                Name = Name,
+                PlaceholderText = PlaceholderText,
+                TabIndex = TabIndex
+            };
+        }
+
         private void DrawInnerPannel()
         {
             if (insideTablePanel != null)
@@ -150,19 +175,25 @@ namespace OGRIT_Database_Custom_App
 
             insideTablePanel = new TableLayoutPanel();
             insideTablePanel.SuspendLayout();
-            passwordLabel = new Label();
-            usernameLabel = new Label();
-            dbInstanceLabel = new Label();
-            passwordTB = new TextBox();
-            usernameTB = new TextBox();
-            serverTB = new TextBox();
-            serverIPLabel = new Label();
-            connectButton = new RoundButton();
-            portLabel = new Label();
-            portTB = new TextBox();
-            dbTB = new TextBox();
+            // Label declaration;
+            serverIPLabel = CustomLabel("serverIPLabel", 9, "Server Name or IP");
+            dbInstanceLabel = CustomLabel("dbInstanceLabel", 11, "Instance Name");
+            portLabel = CustomLabel("portLabel", 17, "Port");
+            usernameLabel = CustomLabel("usernameLabel", 12, "Username");
+            passwordLabel = CustomLabel("passwordLabel", 13, "Password");
+            authLabel = CustomLabel("authLabel", 18, "Authentication Type");
+            // TextBox declaration;
+            serverTB = CustomTextBox("serverTB", "Value", 0);
+            portTB = CustomTextBox("portTB", "Value", 1);
+            dbTB = CustomTextBox("dbTB", "Value", 2);
+            usernameTB = CustomTextBox("usernameTB", "Value", 4);
+            passwordTB = CustomTextBox("passwordTB", "Value", 5);
+            passwordTB.PasswordChar = '*';
+            // ComboBox declaration;
             authCB = new ComboBox();
-            authLabel = new Label();
+            // Button declaration;
+            connectButton = new RoundButton();
+
             // 
             // insideTablePanel
             // 
@@ -174,6 +205,7 @@ namespace OGRIT_Database_Custom_App
             insideTablePanel.Location = new Point(346, 3);
             insideTablePanel.Name = "insideTablePanel";
 
+            // Changing sizes based on how many rows there are, first and last (outside) row are there for space.
             float outsideRowSize = 11.2068968F;
             float innerRowSize = 8.620689F;
             insideTablePanel.RowCount = 11;
@@ -197,6 +229,7 @@ namespace OGRIT_Database_Custom_App
             insideTablePanel.Size = new Size(337, 550);
             insideTablePanel.TabIndex = 0;
 
+            // Adding based on location;
             insideTablePanel.Controls.Add(serverIPLabel, 0, 1);
             insideTablePanel.Controls.Add(serverTB, 0, 2);
             insideTablePanel.Controls.Add(portLabel, 0, 3);
@@ -205,52 +238,9 @@ namespace OGRIT_Database_Custom_App
             insideTablePanel.Controls.Add(dbTB, 0, 6);
             insideTablePanel.Controls.Add(authLabel, 0, 7);
             insideTablePanel.Controls.Add(authCB, 0, 8);
+            // Button is the second to last one on both designes.
             insideTablePanel.Controls.Add(connectButton, 0, insideTablePanel.RowCount - 2);
 
-            // 
-            // dbInstanceLabel
-            // 
-            dbInstanceLabel.Anchor = AnchorStyles.Left;
-            dbInstanceLabel.AutoSize = true;
-            dbInstanceLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dbInstanceLabel.Location = new Point(3, 137);
-            dbInstanceLabel.Name = "dbInstanceLabel";
-            dbInstanceLabel.Size = new Size(110, 20);
-            dbInstanceLabel.TabIndex = 11;
-            dbInstanceLabel.Text = "Instance Name";
-            // 
-            // serverTB
-            // 
-            serverTB.Dock = DockStyle.Fill;
-            serverTB.Location = new Point(5, 87);
-            serverTB.Margin = new Padding(5, 3, 5, 3);
-            serverTB.Name = "serverTB";
-            serverTB.PlaceholderText = "Value";
-            serverTB.Size = new Size(327, 27);
-            serverTB.TabIndex = 0;
-            // 
-            // serverIPLabel
-            // 
-            serverIPLabel.Anchor = AnchorStyles.Left;
-            serverIPLabel.AutoSize = true;
-            serverIPLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            serverIPLabel.Location = new Point(3, 53);
-            serverIPLabel.Name = "serverIPLabel";
-            serverIPLabel.Size = new Size(135, 20);
-            serverIPLabel.TabIndex = 9;
-            serverIPLabel.Text = "Server Name or IP";
-
-            // 
-            // authLabel
-            // 
-            authLabel.Anchor = AnchorStyles.Left;
-            authLabel.AutoSize = true;
-            authLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            authLabel.Location = new Point(3, 280); 
-            authLabel.Name = "authLabel";
-            authLabel.Size = new Size(146, 20);
-            authLabel.TabIndex = 18;
-            authLabel.Text = "Authentication Type";
             // 
             // authCB
             // 
@@ -260,7 +250,7 @@ namespace OGRIT_Database_Custom_App
             authCB.Location = new Point(3, 399);
             authCB.Name = "authCB";
             authCB.Size = new Size(331, 28);
-            authCB.TabIndex = 4;
+            authCB.TabIndex = 3;
             authCB.BindingContext = this.BindingContext;
 
             var cbOptions = new List<string> { "Windows Authentication", "SQL Server Authentication" };
@@ -284,85 +274,11 @@ namespace OGRIT_Database_Custom_App
             connectButton.Location = new Point(3, 440);
             connectButton.Name = "connectButton";
             connectButton.Size = new Size(331, 41);
-            connectButton.TabIndex = 7;
+            connectButton.TabIndex = 6;
             connectButton.Text = "Connect";
             connectButton.TextColor = Color.LightGray;
             connectButton.UseVisualStyleBackColor = false;
             connectButton.Click += LoginButton_Click;
-            // 
-            // dbTB
-            // 
-            dbTB.Dock = DockStyle.Fill;
-            dbTB.Location = new Point(5, 171);
-            dbTB.Margin = new Padding(5, 3, 5, 3);
-            dbTB.Name = "dbTB";
-            dbTB.PlaceholderText = "Value";
-            dbTB.Size = new Size(327, 27);
-            dbTB.TabIndex = 3;
-            // 
-            // portTB
-            // 
-            portTB.Dock = DockStyle.Fill; // Alanı tam kaplaması için DockStyle.Fill kullanıldı
-            portTB.Location = new Point(5, 243); // `portLabel`'ın altında yerleştirildi
-            portTB.Margin = new Padding(5, 3, 5, 3);
-            portTB.Name = "portTB";
-            portTB.PlaceholderText = "1433";
-            portTB.Size = new Size(327, 27);
-            portTB.TabIndex = 1;
-            // 
-            // portLabel
-            // 
-            portLabel.Anchor = AnchorStyles.Left;
-            portLabel.AutoSize = true;
-            portLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            portLabel.Location = new Point(3, 208); // `dbTB`'nin hemen altında olacak şekilde ayarlandı
-            portLabel.Name = "portLabel";
-            portLabel.Size = new Size(37, 20);
-            portLabel.TabIndex = 17;
-            portLabel.Text = "Port";
-            // 
-            // passwordLabel
-            // 
-            passwordLabel.Anchor = AnchorStyles.Left;
-            passwordLabel.AutoSize = true;
-            passwordLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            passwordLabel.Location = new Point(3, 347);
-            passwordLabel.Name = "passwordLabel";
-            passwordLabel.Size = new Size(73, 20);
-            passwordLabel.TabIndex = 13;
-            passwordLabel.Text = "Password";
-            // 
-            // usernameLabel
-            // 
-            usernameLabel.Anchor = AnchorStyles.Left;
-            usernameLabel.AutoSize = true;
-            usernameLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            usernameLabel.Location = new Point(3, 263);
-            usernameLabel.Name = "usernameLabel";
-            usernameLabel.Size = new Size(78, 20);
-            usernameLabel.TabIndex = 12;
-            usernameLabel.Text = "Username";
-            // 
-            // passwordTB
-            // 
-            passwordTB.Dock = DockStyle.Fill;
-            passwordTB.Location = new Point(5, 381);
-            passwordTB.Margin = new Padding(5, 3, 5, 3);
-            passwordTB.Name = "passwordTB";
-            passwordTB.PasswordChar = '*';
-            passwordTB.PlaceholderText = "Value";
-            passwordTB.Size = new Size(327, 27);
-            passwordTB.TabIndex = 6;
-            // 
-            // usernameTB
-            // 
-            usernameTB.Dock = DockStyle.Fill;
-            usernameTB.Location = new Point(5, 297);
-            usernameTB.Margin = new Padding(5, 3, 5, 3);
-            usernameTB.Name = "usernameTB";
-            usernameTB.PlaceholderText = "Value";
-            usernameTB.Size = new Size(327, 27);
-            usernameTB.TabIndex = 5;
 
             outsideTablePanel.Controls.Add(insideTablePanel, 1, 0);
             insideTablePanel.ResumeLayout(false);
