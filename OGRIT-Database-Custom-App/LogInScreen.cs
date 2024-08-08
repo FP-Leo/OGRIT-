@@ -100,7 +100,8 @@ namespace OGRIT_Database_Custom_App
             DrawInnerPannel();
         }
 
-        private void DrawInnerPannel(){
+        private void DrawInnerPannel()
+        {
             if (insideTablePanel != null)
             {
                 Controls.Remove(insideTablePanel);
@@ -117,8 +118,11 @@ namespace OGRIT_Database_Custom_App
             serverTB = new TextBox();
             serverIPLabel = new Label();
             connectButton = new RoundButton();
+            portLabel = new Label();
+            portTB = new TextBox();
             dbTB = new TextBox();
             loginCB = new ComboBox();
+            loginLB = new Label();
             // 
             // insideTablePanel
             // 
@@ -129,13 +133,14 @@ namespace OGRIT_Database_Custom_App
             //insideTablePanel.MinimumSize = new Size(337, 550);
             insideTablePanel.Location = new Point(346, 3);
             insideTablePanel.Name = "insideTablePanel";
+
             // 
             // loginCB
             // 
             loginCB.Dock = DockStyle.Fill;
             loginCB.DropDownStyle = ComboBoxStyle.DropDownList;
             loginCB.FormattingEnabled = true;
-            loginCB.Location = new Point(3, 217);
+            loginCB.Location = new Point(3, 310); // `loginLB`'nin altına yerleştirildi
             loginCB.Name = "loginCB";
             loginCB.Size = new Size(330, 28);
             loginCB.TabIndex = 15;
@@ -154,10 +159,10 @@ namespace OGRIT_Database_Custom_App
                 innerRowSize = 13.69593F;
                 outsideRowSize = 7.261394F;
                 insideTablePanel.RowCount = 12;
-                insideTablePanel.Controls.Add(usernameLabel, 0, 6);
-                insideTablePanel.Controls.Add(usernameTB, 0, 7);
-                insideTablePanel.Controls.Add(passwordLabel, 0, 8);
-                insideTablePanel.Controls.Add(passwordTB, 0, 9);
+                insideTablePanel.Controls.Add(usernameLabel, 0, 8);
+                insideTablePanel.Controls.Add(usernameTB, 0, 9);
+                insideTablePanel.Controls.Add(passwordLabel, 0, 10);
+                insideTablePanel.Controls.Add(passwordTB, 0, 11); 
             }
             insideTablePanel.RowStyles.Clear();
             insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, outsideRowSize));
@@ -173,8 +178,11 @@ namespace OGRIT_Database_Custom_App
             insideTablePanel.Controls.Add(serverTB, 0, 2);
             insideTablePanel.Controls.Add(dbInstanceLabel, 0, 3);
             insideTablePanel.Controls.Add(dbTB, 0, 4);
-            insideTablePanel.Controls.Add(loginCB, 0, 5);
-            insideTablePanel.Controls.Add(connectButton, 0, insideTablePanel.RowCount - 2);
+            insideTablePanel.Controls.Add(portLabel, 0, 5);
+            insideTablePanel.Controls.Add(portTB, 0, 6);
+            insideTablePanel.Controls.Add(loginLB, 0, 7);
+            insideTablePanel.Controls.Add(loginCB, 0, 8);
+            insideTablePanel.Controls.Add(connectButton, 0, insideTablePanel.RowCount +1);
 
             // 
             // dbInstanceLabel
@@ -208,6 +216,18 @@ namespace OGRIT_Database_Custom_App
             serverIPLabel.Size = new Size(135, 20);
             serverIPLabel.TabIndex = 9;
             serverIPLabel.Text = "Server Name or IP";
+
+            // 
+            // loginLB
+            // 
+            loginLB.Anchor = AnchorStyles.Left;
+            loginLB.AutoSize = true;
+            loginLB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loginLB.Location = new Point(3, 280); // `portTB`'nin altına yerleştirildi
+            loginLB.Name = "loginLB";
+            loginLB.Size = new Size(146, 20);
+            loginLB.TabIndex = 18;
+            loginLB.Text = "Authentication Type";
             // 
             // connectButton
             // 
@@ -221,7 +241,7 @@ namespace OGRIT_Database_Custom_App
             connectButton.FlatStyle = FlatStyle.Flat;
             connectButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             connectButton.ForeColor = Color.LightGray;
-            connectButton.Location = new Point(3, 423);
+            connectButton.Location = new Point(3, 423); // `loginCB`'nin altına yerleştirildi
             connectButton.Name = "connectButton";
             connectButton.Size = new Size(331, 36);
             connectButton.TabIndex = 14;
@@ -239,6 +259,27 @@ namespace OGRIT_Database_Custom_App
             dbTB.PlaceholderText = "Value";
             dbTB.Size = new Size(327, 27);
             dbTB.TabIndex = 4;
+            // 
+            // portTB
+            // 
+            portTB.Dock = DockStyle.Fill; // Alanı tam kaplaması için DockStyle.Fill kullanıldı
+            portTB.Location = new Point(5, 243); // `portLabel`'ın altında yerleştirildi
+            portTB.Margin = new Padding(5, 3, 5, 3);
+            portTB.Name = "portTB";
+            portTB.PlaceholderText = "1433";
+            portTB.Size = new Size(327, 27);
+            portTB.TabIndex = 5;
+            // 
+            // portLabel
+            // 
+            portLabel.Anchor = AnchorStyles.Left;
+            portLabel.AutoSize = true;
+            portLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            portLabel.Location = new Point(3, 208); // `dbTB`'nin hemen altında olacak şekilde ayarlandı
+            portLabel.Name = "portLabel";
+            portLabel.Size = new Size(37, 20);
+            portLabel.TabIndex = 17;
+            portLabel.Text = "Port";
             // 
             // passwordLabel
             // 

@@ -41,7 +41,7 @@
             portTB = new TextBox();
             loginCB = new ComboBox();
             connectButton = new RoundButton();
-            authTypeLB = new Label();
+            loginLB = new Label();
             outsideTablePanel.SuspendLayout();
             logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)miniLogoBox).BeginInit();
@@ -106,7 +106,7 @@
             insideTablePanel.Controls.Add(portTB, 0, 6);
             insideTablePanel.Controls.Add(loginCB, 0, 8);
             insideTablePanel.Controls.Add(connectButton, 0, 9);
-            insideTablePanel.Controls.Add(authTypeLB, 0, 7);
+            insideTablePanel.Controls.Add(loginLB, 0, 7);
             insideTablePanel.Dock = DockStyle.Fill;
             insideTablePanel.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
             insideTablePanel.Location = new Point(0, 0);
@@ -219,16 +219,16 @@
             connectButton.TextColor = Color.LightGray;
             connectButton.UseVisualStyleBackColor = false;
             // 
-            // authTypeLB
+            // loginLB
             // 
-            authTypeLB.Anchor = AnchorStyles.Left;
-            authTypeLB.AutoSize = true;
-            authTypeLB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            authTypeLB.Location = new Point(3, 380);
-            authTypeLB.Name = "authTypeLB";
-            authTypeLB.Size = new Size(146, 20);
-            authTypeLB.TabIndex = 18;
-            authTypeLB.Text = "Authentication Type";
+            loginLB.Anchor = AnchorStyles.Left;
+            loginLB.AutoSize = true;
+            loginLB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loginLB.Location = new Point(3, 380);
+            loginLB.Name = "loginLB";
+            loginLB.Size = new Size(146, 20);
+            loginLB.TabIndex = 18;
+            loginLB.Text = "Authentication Type";
             // 
             // TestForm2
             // 
@@ -262,6 +262,6 @@
         private ComboBox loginCB;
         private RoundButton connectButton;
         private Label loginTypeLB;
-        private Label authTypeLB;
+        private Label loginLB;
     }
 }
