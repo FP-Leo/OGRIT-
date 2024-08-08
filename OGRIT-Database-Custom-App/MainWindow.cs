@@ -8,6 +8,7 @@ namespace OGRIT_Database_Custom_App
     {
         public MainWindow()
         {
+            SetUpStartingScreen();
             InitializeComponent();
         }
     }

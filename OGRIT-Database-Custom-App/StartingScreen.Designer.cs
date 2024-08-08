@@ -28,33 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
+            ssTableLayout = new TableLayoutPanel();
             logoBox = new PictureBox();
             appLabel = new Label();
             mottoLabel = new Label();
             continueButton = new RoundButton();
-            tableLayoutPanel1.SuspendLayout();
+            ssTableLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // ssTableLayout
             // 
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(logoBox, 0, 0);
-            tableLayoutPanel1.Controls.Add(appLabel, 0, 1);
-            tableLayoutPanel1.Controls.Add(mottoLabel, 0, 3);
-            tableLayoutPanel1.Controls.Add(continueButton, 0, 2);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.Size = new Size(800, 450);
-            tableLayoutPanel1.TabIndex = 5;
+            ssTableLayout.ColumnCount = 1;
+            ssTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            ssTableLayout.Controls.Add(logoBox, 0, 0);
+            ssTableLayout.Controls.Add(appLabel, 0, 1);
+            ssTableLayout.Controls.Add(mottoLabel, 0, 3);
+            ssTableLayout.Controls.Add(continueButton, 0, 2);
+            ssTableLayout.Dock = DockStyle.Fill;
+            ssTableLayout.Location = new Point(0, 0);
+            ssTableLayout.MinimumSize = new Size(800, 450);
+            ssTableLayout.Name = "ssTableLayout";
+            ssTableLayout.RowCount = 4;
+            ssTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
+            ssTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
+            ssTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            ssTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            ssTableLayout.Size = new Size(800, 450);
+            ssTableLayout.TabIndex = 5;
             // 
             // logoBox
             // 
@@ -98,7 +99,7 @@
             continueButton.BackColor = Color.FromArgb(40, 40, 40);
             continueButton.BackgroundColor = Color.FromArgb(40, 40, 40);
             continueButton.BorderColor = Color.PaleVioletRed;
-            continueButton.BorderRadius = 7;
+            continueButton.BorderRadius = 9;
             continueButton.BorderSize = 0;
             continueButton.FlatAppearance.BorderSize = 0;
             continueButton.FlatStyle = FlatStyle.Flat;
@@ -119,19 +120,19 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(ssTableLayout);
             MinimumSize = new Size(800, 450);
             Name = "StartingScreen";
             Size = new Size(800, 450);
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
+            ssTableLayout.ResumeLayout(false);
+            ssTableLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel ssTableLayout;
         private PictureBox logoBox;
         private Label appLabel;
         private Label mottoLabel;
