@@ -110,21 +110,22 @@ namespace OGRIT_Database_Custom_App
             insideTablePanel.Dock = DockStyle.Fill;
             insideTablePanel.Location = new Point(346, 3);
             insideTablePanel.Name = "insideTablePanel";
-            insideTablePanel.RowCount = 14;
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 11.138895F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 11.8208694F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.411003F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.251876F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.251648F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.75153446F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.729029F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.183679F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 5.68310976F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 9.092976F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.95635366F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.729029F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 63F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+            insideTablePanel.RowCount = 15;
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.023705F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.836474F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.956022F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.824421F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 5.99721861F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 5.58361769F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.39201927F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.76802158F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 5.94558525F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.520024F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.580021F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.39201927F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.909248F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 6.909248F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.36235666F));
             insideTablePanel.Size = new Size(337, 550);
             insideTablePanel.TabIndex = 0;
             // 
@@ -133,7 +134,7 @@ namespace OGRIT_Database_Custom_App
             loginTypeLB.Anchor = AnchorStyles.Left;
             loginTypeLB.AutoSize = true;
             loginTypeLB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            loginTypeLB.Location = new Point(3, 278);
+            loginTypeLB.Location = new Point(3, 255);
             loginTypeLB.Name = "loginTypeLB";
             loginTypeLB.Size = new Size(146, 20);
             loginTypeLB.TabIndex = 17;
@@ -144,7 +145,7 @@ namespace OGRIT_Database_Custom_App
             portLB.Anchor = AnchorStyles.Left;
             portLB.AutoSize = true;
             portLB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            portLB.Location = new Point(3, 211);
+            portLB.Location = new Point(3, 187);
             portLB.Name = "portLB";
             portLB.Size = new Size(37, 20);
             portLB.TabIndex = 16;
@@ -155,7 +156,7 @@ namespace OGRIT_Database_Custom_App
             serverIPLabel.Anchor = AnchorStyles.Left;
             serverIPLabel.AutoSize = true;
             serverIPLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            serverIPLabel.Location = new Point(3, 65);
+            serverIPLabel.Location = new Point(3, 46);
             serverIPLabel.Name = "serverIPLabel";
             serverIPLabel.Size = new Size(135, 20);
             serverIPLabel.TabIndex = 9;
@@ -164,7 +165,7 @@ namespace OGRIT_Database_Custom_App
             // serverTB
             // 
             serverTB.Dock = DockStyle.Fill;
-            serverTB.Location = new Point(5, 104);
+            serverTB.Location = new Point(5, 78);
             serverTB.Margin = new Padding(5, 3, 5, 3);
             serverTB.Name = "serverTB";
             serverTB.PlaceholderText = "Value";
@@ -174,7 +175,7 @@ namespace OGRIT_Database_Custom_App
             // dbTB
             // 
             dbTB.Dock = DockStyle.Fill;
-            dbTB.Location = new Point(5, 177);
+            dbTB.Location = new Point(5, 153);
             dbTB.Margin = new Padding(5, 3, 5, 3);
             dbTB.Name = "dbTB";
             dbTB.PlaceholderText = "Value";
@@ -183,20 +184,20 @@ namespace OGRIT_Database_Custom_App
             // 
             // portTB
             // 
-            portTB.Location = new Point(3, 239);
+            portTB.Location = new Point(3, 215);
             portTB.Name = "portTB";
             portTB.Size = new Size(331, 27);
             portTB.TabIndex = 0;
             // 
             // logintTypeTB
             // 
-            logintTypeTB.Anchor = AnchorStyles.Left;
             logintTypeTB.DataSource = resources.GetObject("logintTypeTB.DataSource");
+            logintTypeTB.Dock = DockStyle.Fill;
             logintTypeTB.DropDownStyle = ComboBoxStyle.DropDownList;
             logintTypeTB.FormattingEnabled = true;
-            logintTypeTB.Location = new Point(3, 309);
+            logintTypeTB.Location = new Point(3, 287);
             logintTypeTB.Name = "logintTypeTB";
-            logintTypeTB.Size = new Size(330, 28);
+            logintTypeTB.Size = new Size(331, 28);
             logintTypeTB.TabIndex = 15;
             // 
             // usernameLabel
@@ -204,7 +205,7 @@ namespace OGRIT_Database_Custom_App
             usernameLabel.Anchor = AnchorStyles.Left;
             usernameLabel.AutoSize = true;
             usernameLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            usernameLabel.Location = new Point(3, 341);
+            usernameLabel.Location = new Point(3, 326);
             usernameLabel.Name = "usernameLabel";
             usernameLabel.Size = new Size(78, 20);
             usernameLabel.TabIndex = 12;
@@ -213,7 +214,7 @@ namespace OGRIT_Database_Custom_App
             // usernameTB
             // 
             usernameTB.Dock = DockStyle.Fill;
-            usernameTB.Location = new Point(5, 374);
+            usernameTB.Location = new Point(5, 360);
             usernameTB.Margin = new Padding(5, 3, 5, 3);
             usernameTB.Name = "usernameTB";
             usernameTB.PlaceholderText = "Value";
@@ -225,7 +226,7 @@ namespace OGRIT_Database_Custom_App
             passwordLabel.Anchor = AnchorStyles.Left;
             passwordLabel.AutoSize = true;
             passwordLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            passwordLabel.Location = new Point(3, 413);
+            passwordLabel.Location = new Point(3, 400);
             passwordLabel.Name = "passwordLabel";
             passwordLabel.Size = new Size(73, 20);
             passwordLabel.TabIndex = 13;
@@ -233,8 +234,8 @@ namespace OGRIT_Database_Custom_App
             // 
             // passwordTB
             // 
-            passwordTB.Dock = DockStyle.Fill;
-            passwordTB.Location = new Point(5, 443);
+            passwordTB.Anchor = AnchorStyles.None;
+            passwordTB.Location = new Point(5, 433);
             passwordTB.Margin = new Padding(5, 3, 5, 3);
             passwordTB.Name = "passwordTB";
             passwordTB.PasswordChar = '*';
@@ -254,9 +255,9 @@ namespace OGRIT_Database_Custom_App
             connectButton.FlatStyle = FlatStyle.Flat;
             connectButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             connectButton.ForeColor = Color.LightGray;
-            connectButton.Location = new Point(3, 506);
+            connectButton.Location = new Point(3, 469);
             connectButton.Name = "connectButton";
-            connectButton.Size = new Size(331, 41);
+            connectButton.Size = new Size(331, 32);
             connectButton.TabIndex = 14;
             connectButton.Text = "Connect";
             connectButton.TextColor = Color.LightGray;
@@ -267,7 +268,7 @@ namespace OGRIT_Database_Custom_App
             dbInstanceLabel.Anchor = AnchorStyles.Left;
             dbInstanceLabel.AutoSize = true;
             dbInstanceLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dbInstanceLabel.Location = new Point(3, 146);
+            dbInstanceLabel.Location = new Point(3, 121);
             dbInstanceLabel.Name = "dbInstanceLabel";
             dbInstanceLabel.Size = new Size(110, 20);
             dbInstanceLabel.TabIndex = 11;
