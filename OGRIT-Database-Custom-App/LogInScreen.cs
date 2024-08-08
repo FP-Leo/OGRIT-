@@ -155,8 +155,8 @@ namespace OGRIT_Database_Custom_App
             insideTablePanel.RowCount = 11;
             if (selected == 1)
             {
-                outsideRowSize = 4.5F;
-                innerRowSize = 7F;
+                outsideRowSize = 1.0F;
+                innerRowSize = 7.5F;
                 insideTablePanel.RowCount = 15;
                 insideTablePanel.Controls.Add(usernameLabel, 0, 8);
                 insideTablePanel.Controls.Add(usernameTB, 0, 9);
