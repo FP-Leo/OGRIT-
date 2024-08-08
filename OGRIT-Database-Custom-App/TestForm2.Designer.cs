@@ -112,17 +112,18 @@
             insideTablePanel.Location = new Point(0, 0);
             insideTablePanel.MaximumSize = new Size(350, 550);
             insideTablePanel.Name = "insideTablePanel";
-            insideTablePanel.RowCount = 10;
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 13F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 17F));
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            insideTablePanel.RowCount = 11;
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 11.2068968F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8.620689F));
+            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 11.2068968F));
             insideTablePanel.Size = new Size(337, 550);
             insideTablePanel.TabIndex = 1;
             // 
@@ -131,7 +132,7 @@
             serverIPLabel.Anchor = AnchorStyles.Left;
             serverIPLabel.AutoSize = true;
             serverIPLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            serverIPLabel.Location = new Point(3, 80);
+            serverIPLabel.Location = new Point(3, 74);
             serverIPLabel.Name = "serverIPLabel";
             serverIPLabel.Size = new Size(135, 20);
             serverIPLabel.TabIndex = 9;
@@ -140,7 +141,7 @@
             // serverTB
             // 
             serverTB.Anchor = AnchorStyles.Left;
-            serverTB.Location = new Point(5, 126);
+            serverTB.Location = new Point(5, 118);
             serverTB.Margin = new Padding(5, 3, 5, 3);
             serverTB.Name = "serverTB";
             serverTB.PlaceholderText = "Value";
@@ -152,7 +153,7 @@
             dbInstanceLabel.Anchor = AnchorStyles.Left;
             dbInstanceLabel.AutoSize = true;
             dbInstanceLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dbInstanceLabel.Location = new Point(3, 180);
+            dbInstanceLabel.Location = new Point(3, 168);
             dbInstanceLabel.Name = "dbInstanceLabel";
             dbInstanceLabel.Size = new Size(110, 20);
             dbInstanceLabel.TabIndex = 11;
@@ -161,7 +162,7 @@
             // dbTB
             // 
             dbTB.Anchor = AnchorStyles.Left;
-            dbTB.Location = new Point(5, 226);
+            dbTB.Location = new Point(5, 212);
             dbTB.Margin = new Padding(5, 3, 5, 3);
             dbTB.Name = "dbTB";
             dbTB.PlaceholderText = "Value";
@@ -173,7 +174,7 @@
             portLabel.Anchor = AnchorStyles.Left;
             portLabel.AutoSize = true;
             portLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            portLabel.Location = new Point(3, 280);
+            portLabel.Location = new Point(3, 262);
             portLabel.Name = "portLabel";
             portLabel.Size = new Size(37, 20);
             portLabel.TabIndex = 17;
@@ -182,7 +183,7 @@
             // portTB
             // 
             portTB.Anchor = AnchorStyles.Left;
-            portTB.Location = new Point(5, 326);
+            portTB.Location = new Point(5, 306);
             portTB.Margin = new Padding(5, 3, 5, 3);
             portTB.Name = "portTB";
             portTB.PlaceholderText = "1433";
@@ -191,10 +192,10 @@
             // 
             // loginCB
             // 
-            loginCB.Dock = DockStyle.Fill;
+            loginCB.Anchor = AnchorStyles.None;
             loginCB.DropDownStyle = ComboBoxStyle.DropDownList;
             loginCB.FormattingEnabled = true;
-            loginCB.Location = new Point(3, 418);
+            loginCB.Location = new Point(3, 399);
             loginCB.Name = "loginCB";
             loginCB.Size = new Size(331, 28);
             loginCB.TabIndex = 15;
@@ -211,9 +212,9 @@
             connectButton.FlatStyle = FlatStyle.Flat;
             connectButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             connectButton.ForeColor = Color.LightGray;
-            connectButton.Location = new Point(3, 504);
+            connectButton.Location = new Point(3, 440);
             connectButton.Name = "connectButton";
-            connectButton.Size = new Size(331, 43);
+            connectButton.Size = new Size(331, 41);
             connectButton.TabIndex = 14;
             connectButton.Text = "Connect";
             connectButton.TextColor = Color.LightGray;
@@ -224,7 +225,7 @@
             loginLB.Anchor = AnchorStyles.Left;
             loginLB.AutoSize = true;
             loginLB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            loginLB.Location = new Point(3, 380);
+            loginLB.Location = new Point(3, 356);
             loginLB.Name = "loginLB";
             loginLB.Size = new Size(146, 20);
             loginLB.TabIndex = 18;

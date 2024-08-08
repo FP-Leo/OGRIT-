@@ -133,16 +133,15 @@ namespace OGRIT_Database_Custom_App
             //insideTablePanel.MinimumSize = new Size(337, 550);
             insideTablePanel.Location = new Point(346, 3);
             insideTablePanel.Name = "insideTablePanel";
-
             // 
             // loginCB
             // 
             loginCB.Dock = DockStyle.Fill;
             loginCB.DropDownStyle = ComboBoxStyle.DropDownList;
             loginCB.FormattingEnabled = true;
-            loginCB.Location = new Point(3, 310); // `loginLB`'nin altına yerleştirildi
+            loginCB.Location = new Point(3, 399);
             loginCB.Name = "loginCB";
-            loginCB.Size = new Size(330, 28);
+            loginCB.Size = new Size(331, 28);
             loginCB.TabIndex = 15;
             loginCB.BindingContext = this.BindingContext;
 
@@ -151,9 +150,9 @@ namespace OGRIT_Database_Custom_App
 
             loginCB.SelectedIndex = selected;
             loginCB.SelectedIndexChanged += LoginCB_SelectedIndexChanged;
-            float outsideRowSize = 17.3914928F;
-            float innerRowSize = 10.8702259F;
-            insideTablePanel.RowCount = 8;
+            float outsideRowSize = 11.2068968F;
+            float innerRowSize = 8.620689F;
+            insideTablePanel.RowCount = 11;
             if (selected == 1)
             {
                 innerRowSize = 13.69593F;
@@ -182,7 +181,7 @@ namespace OGRIT_Database_Custom_App
             insideTablePanel.Controls.Add(portTB, 0, 6);
             insideTablePanel.Controls.Add(loginLB, 0, 7);
             insideTablePanel.Controls.Add(loginCB, 0, 8);
-            insideTablePanel.Controls.Add(connectButton, 0, insideTablePanel.RowCount +1);
+            insideTablePanel.Controls.Add(connectButton, 0, insideTablePanel.RowCount - 2);
 
             // 
             // dbInstanceLabel
@@ -234,21 +233,20 @@ namespace OGRIT_Database_Custom_App
             connectButton.BackColor = Color.FromArgb(40, 40, 40);
             connectButton.BackgroundColor = Color.FromArgb(40, 40, 40);
             connectButton.BorderColor = Color.FromArgb(40, 40, 40);
-            connectButton.BorderRadius = 7;
+            connectButton.BorderRadius = 4;
             connectButton.BorderSize = 0;
             connectButton.Dock = DockStyle.Fill;
             connectButton.FlatAppearance.BorderSize = 0;
             connectButton.FlatStyle = FlatStyle.Flat;
             connectButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             connectButton.ForeColor = Color.LightGray;
-            connectButton.Location = new Point(3, 423); // `loginCB`'nin altına yerleştirildi
+            connectButton.Location = new Point(3, 440);
             connectButton.Name = "connectButton";
-            connectButton.Size = new Size(331, 36);
+            connectButton.Size = new Size(331, 41);
             connectButton.TabIndex = 14;
             connectButton.Text = "Connect";
             connectButton.TextColor = Color.LightGray;
             connectButton.UseVisualStyleBackColor = false;
-            connectButton.Click += LoginButton_Click;
             // 
             // dbTB
             // 
