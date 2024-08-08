@@ -92,6 +92,7 @@ namespace OGRIT_Database_Custom_App
             // 
             // insideTablePanel
             // 
+            insideTablePanel.Anchor = AnchorStyles.None;
             insideTablePanel.ColumnCount = 1;
             insideTablePanel.ColumnStyles.Add(new ColumnStyle());
             insideTablePanel.Controls.Add(loginTypeLB, 0, 7);
@@ -107,7 +108,6 @@ namespace OGRIT_Database_Custom_App
             insideTablePanel.Controls.Add(passwordTB, 0, 12);
             insideTablePanel.Controls.Add(connectButton, 0, 13);
             insideTablePanel.Controls.Add(dbInstanceLabel, 0, 3);
-            insideTablePanel.Dock = DockStyle.Fill;
             insideTablePanel.Location = new Point(346, 3);
             insideTablePanel.Name = "insideTablePanel";
             insideTablePanel.RowCount = 15;

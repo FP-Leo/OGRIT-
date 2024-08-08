@@ -128,8 +128,8 @@ namespace OGRIT_Database_Custom_App
             // 
             insideTablePanel.ColumnCount = 1;
             insideTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            insideTablePanel.Dock = DockStyle.Fill;
-            //insideTablePanel.MaximumSize = new Size(337, 550);
+            insideTablePanel.Anchor = AnchorStyles.None;
+            insideTablePanel.MaximumSize = new Size(440, 850);
             //insideTablePanel.MinimumSize = new Size(337, 550);
             insideTablePanel.Location = new Point(346, 3);
             insideTablePanel.Name = "insideTablePanel";
