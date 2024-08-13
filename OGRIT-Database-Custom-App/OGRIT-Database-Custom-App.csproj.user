@@ -16,11 +16,5 @@
     <Compile Update="StartingScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="TestForm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="TestForm2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
   </ItemGroup>
 </Project>

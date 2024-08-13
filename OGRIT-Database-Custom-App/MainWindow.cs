@@ -4,8 +4,8 @@ namespace OGRIT_Database_Custom_App
     {
         public MainWindow()
         {
-            SetUpStartingScreen();
             InitializeComponent();
+            SetUpStartingScreen();
         }
 
         public void SetUpStartingScreen()
@@ -20,7 +20,8 @@ namespace OGRIT_Database_Custom_App
                 MinimumSize = new Size(825, 450),
                 Name = "startingScreen1",
                 Size = new Size(825, 450),
-                TabIndex = 0
+                TabIndex = 0,
+                Visible = true
             };
 
             startingScreen.SetChanger(() =>
@@ -28,8 +29,9 @@ namespace OGRIT_Database_Custom_App
                     DestroyStartingScreen();
                 }
             );
-        }
 
+            Controls.Add(startingScreen);
+        }
         public void DestroyStartingScreen()
         {
             Controls.Remove(startingScreen);
@@ -60,7 +62,12 @@ namespace OGRIT_Database_Custom_App
             // 
             Controls.Add(logInScreen);
         }
-
+        public void DestroyLogInScreen()
+        {
+            Controls.Remove(logInScreen);
+            logInScreen = null;
+            //InitializeMenuScreen();
+        }
         public delegate void ScreenChanger();
     }
 }

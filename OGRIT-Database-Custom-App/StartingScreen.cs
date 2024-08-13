@@ -4,7 +4,7 @@ namespace OGRIT_Database_Custom_App
 {
     public partial class StartingScreen : UserControl
     {
-        private ScreenChanger _changer;
+        private ScreenChanger? _changer;
         public StartingScreen()
         {
             InitializeComponent();
