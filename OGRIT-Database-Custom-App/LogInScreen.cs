@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -15,8 +14,14 @@ namespace OGRIT_Database_Custom_App
         public LogInScreen(MainWindow parent)
         {
             InitializeComponent();
+            DrawInnerPanel();
             _parent = parent;
         }
+        //
+        // Events
+        //
+
+        // Event to validate DB connection.
         private void LoginButton_Click(object sender, EventArgs e)
         {
             if (_parent == null)
@@ -45,14 +50,37 @@ namespace OGRIT_Database_Custom_App
                 catch (Exception ex)
                 {
                     MessageBox.Show("An error occurred: " + ex.Message);
-                };
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
+        // Event to change Log In Screen Layout.
+        private void AuthCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // don't bother redrawing
+            if (authCB.SelectedIndex == selected)
+                return;
 
+            selected = authCB.SelectedIndex;
+
+            switch (selected)
+            {
+                case 0:
+                    // Remove Username Password Label/TB by making row % = 0, inner row = 11F, outter row = 8
+                    ChangeInnerTableLayout(false, 11.2068968F, 8.620689F, 0F);
+                    break;
+                case 1:
+                    // Show UserName Password Label/TB, inner/specialrow = 7.5F, outerrow = 1F
+                    ChangeInnerTableLayout(true, 7.5F, 1.0F, 7.5F);
+                    break;
+            }
+        }
+        // 
+        // Generic Functions
+        //
         private string? GetConnectionString()
         {
             bool validState = true;
@@ -80,7 +108,7 @@ namespace OGRIT_Database_Custom_App
                 {
                     port = Convert.ToInt32(portTB.Text);
                 }
-                catch 
+                catch
                 {
                     errorMessage += $"{err++}. Invalid Port\n\r";
                     validState = false;
@@ -123,22 +151,7 @@ namespace OGRIT_Database_Custom_App
 
             return connectionString;
         }
-
-        private void AuthCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (authCB.SelectedIndex == selected)
-                return;
-
-            selected = authCB.SelectedIndex;
-
-            DrawInnerPannel();
-
-        }
-        private void LogInScreen_Load(object sender, EventArgs e)
-        {
-            DrawInnerPannel();
-        }
-
+        // To avoid code repetiton
         private static Label CustomLabel(string name, int tabIndex, string text)
         {
             return new Label
@@ -151,7 +164,6 @@ namespace OGRIT_Database_Custom_App
                 Text = text
             };
         }
-
         private static TextBox CustomTextBox(string Name, string PlaceholderText, int TabIndex)
         {
             return new TextBox
@@ -163,18 +175,13 @@ namespace OGRIT_Database_Custom_App
                 TabIndex = TabIndex
             };
         }
-
-        private void DrawInnerPannel()
+        //
+        // innerPanelDesign
+        //
+        private void DrawInnerPanel()
         {
-            if (insideTablePanel != null)
-            {
-                Controls.Remove(insideTablePanel);
-                insideTablePanel.Dispose();
-                insideTablePanel = null;
-            }
-
-            insideTablePanel = new TableLayoutPanel();
-            insideTablePanel.SuspendLayout();
+            innerTablePanel = new TableLayoutPanel();
+            innerTablePanel.SuspendLayout();
             // Label declaration;
             serverIPLabel = CustomLabel("serverIPLabel", 9, "Server Name or IP");
             dbInstanceLabel = CustomLabel("dbInstanceLabel", 11, "Instance Name");
@@ -197,49 +204,36 @@ namespace OGRIT_Database_Custom_App
             // 
             // insideTablePanel
             // 
-            insideTablePanel.ColumnCount = 1;
-            insideTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            insideTablePanel.Anchor = AnchorStyles.None;
-            insideTablePanel.MaximumSize = new Size(440, 850);
+            innerTablePanel.ColumnCount = 1;
+            innerTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            innerTablePanel.Anchor = AnchorStyles.None;
+            innerTablePanel.MaximumSize = new Size(440, 850);
             //insideTablePanel.MinimumSize = new Size(337, 550);
-            insideTablePanel.Location = new Point(346, 3);
-            insideTablePanel.Name = "insideTablePanel";
+            innerTablePanel.Location = new Point(346, 3);
+            innerTablePanel.Name = "innerTablePanel";
 
             // Changing sizes based on how many rows there are, first and last (outside) row are there for space.
-            float outsideRowSize = 11.2068968F;
-            float innerRowSize = 8.620689F;
-            insideTablePanel.RowCount = 11;
-            if (selected == 1)
-            {
-                outsideRowSize = 1.0F;
-                innerRowSize = 7.5F;
-                insideTablePanel.RowCount = 15;
-                insideTablePanel.Controls.Add(usernameLabel, 0, 8);
-                insideTablePanel.Controls.Add(usernameTB, 0, 9);
-                insideTablePanel.Controls.Add(passwordLabel, 0, 10);
-                insideTablePanel.Controls.Add(passwordTB, 0, 11); 
-            }
-            insideTablePanel.RowStyles.Clear();
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, outsideRowSize));
-            for (int i = 0; i < insideTablePanel.RowCount - 2; i++)
-            {
-                insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, innerRowSize));
-            }
-            insideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, outsideRowSize));
-            insideTablePanel.Size = new Size(337, 550);
-            insideTablePanel.TabIndex = 0;
+            innerTablePanel.RowCount = 15;
+            innerTablePanel.Size = new Size(337, 550);
+            innerTablePanel.TabIndex = 0;
 
             // Adding based on location;
-            insideTablePanel.Controls.Add(serverIPLabel, 0, 1);
-            insideTablePanel.Controls.Add(serverTB, 0, 2);
-            insideTablePanel.Controls.Add(portLabel, 0, 3);
-            insideTablePanel.Controls.Add(portTB, 0, 4);
-            insideTablePanel.Controls.Add(dbInstanceLabel, 0, 5);
-            insideTablePanel.Controls.Add(dbTB, 0, 6);
-            insideTablePanel.Controls.Add(authLabel, 0, 7);
-            insideTablePanel.Controls.Add(authCB, 0, 8);
+            innerTablePanel.Controls.Add(serverIPLabel, 0, 1);
+            innerTablePanel.Controls.Add(serverTB, 0, 2);
+            innerTablePanel.Controls.Add(portLabel, 0, 3);
+            innerTablePanel.Controls.Add(portTB, 0, 4);
+            innerTablePanel.Controls.Add(dbInstanceLabel, 0, 5);
+            innerTablePanel.Controls.Add(dbTB, 0, 6);
+            innerTablePanel.Controls.Add(authLabel, 0, 7);
+            innerTablePanel.Controls.Add(authCB, 0, 8);
+            innerTablePanel.Controls.Add(usernameLabel, 0, 9);
+            innerTablePanel.Controls.Add(usernameTB, 0, 10);
+            innerTablePanel.Controls.Add(passwordLabel, 0, 11);
+            innerTablePanel.Controls.Add(passwordTB, 0, 12);
             // Button is the second to last one on both designes.
-            insideTablePanel.Controls.Add(connectButton, 0, insideTablePanel.RowCount - 2);
+            innerTablePanel.Controls.Add(connectButton, 0, 13);
+            
+            ChangeInnerTableLayout(false, 11.2068968F, 8.620689F, 0F);
 
             // 
             // authCB
@@ -280,9 +274,35 @@ namespace OGRIT_Database_Custom_App
             connectButton.UseVisualStyleBackColor = false;
             connectButton.Click += LoginButton_Click;
 
-            outsideTablePanel.Controls.Add(insideTablePanel, 1, 0);
-            insideTablePanel.ResumeLayout(false);
-            insideTablePanel.PerformLayout();
+            outerTablePanel.Controls.Add(innerTablePanel, 1, 0);
+            innerTablePanel.ResumeLayout(false);
+            innerTablePanel.PerformLayout();
+        }
+        //
+        // Change Design based on AuthCB
+        //
+        private void ChangeInnerTableLayout(bool visibleValue, float innerRow, float outterRow, float specialRows)
+        {
+            innerTablePanel.RowStyles.Clear();
+            innerTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, outterRow));
+            int i = 1;
+            for (; i < 9; i++)
+            {
+                innerTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, innerRow));
+            }
+            for (; i < 13; i++)
+            {
+                innerTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, specialRows));
+            }
+
+            innerTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, innerRow));
+
+            innerTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, outterRow));
+
+            usernameLabel.Visible = visibleValue;
+            usernameTB.Visible = visibleValue;
+            passwordLabel.Visible = visibleValue;
+            passwordTB.Visible = visibleValue;
         }
     }
 }

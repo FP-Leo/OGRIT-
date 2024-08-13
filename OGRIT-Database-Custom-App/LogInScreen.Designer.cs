@@ -30,10 +30,10 @@
         {
             logoPanel = new Panel();
             miniLogoBox = new PictureBox();
-            outsideTablePanel = new TableLayoutPanel();
+            outerTablePanel = new TableLayoutPanel();
             logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)miniLogoBox).BeginInit();
-            outsideTablePanel.SuspendLayout();
+            outerTablePanel.SuspendLayout();
             SuspendLayout();
             // 
             // logoPanel
@@ -58,35 +58,34 @@
             // 
             // outsideTablePanel
             // 
-            outsideTablePanel.ColumnCount = 3;
-            outsideTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            outsideTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            outsideTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            outsideTablePanel.Controls.Add(logoPanel, 2, 0);
-            outsideTablePanel.Dock = DockStyle.Fill;
-            outsideTablePanel.Location = new Point(0, 0);
-            outsideTablePanel.Name = "outsideTablePanel";
-            outsideTablePanel.RowCount = 1;
-            outsideTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            outsideTablePanel.Size = new Size(1030, 556);
-            outsideTablePanel.TabIndex = 0;
+            outerTablePanel.ColumnCount = 3;
+            outerTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            outerTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            outerTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            outerTablePanel.Controls.Add(logoPanel, 2, 0);
+            outerTablePanel.Dock = DockStyle.Fill;
+            outerTablePanel.Location = new Point(0, 0);
+            outerTablePanel.Name = "outsideTablePanel";
+            outerTablePanel.RowCount = 1;
+            outerTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            outerTablePanel.Size = new Size(1030, 556);
+            outerTablePanel.TabIndex = 0;
             // 
             // LogInScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(outsideTablePanel);
+            Controls.Add(outerTablePanel);
             Name = "LogInScreen";
             Size = new Size(1030, 556);
-            Load += LogInScreen_Load;
             logoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)miniLogoBox).EndInit();
-            outsideTablePanel.ResumeLayout(false);
+            outerTablePanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private TableLayoutPanel insideTablePanel;
+        private TableLayoutPanel innerTablePanel;
         private TextBox serverTB;
         private Label passwordLabel;
         private Label usernameLabel;
@@ -101,7 +100,7 @@
         private Label portLabel;
         private Panel logoPanel;
         private PictureBox miniLogoBox;
-        private TableLayoutPanel outsideTablePanel;
+        private TableLayoutPanel outerTablePanel;
         private Label authLabel;
         
     }
