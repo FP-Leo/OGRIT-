@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using static OGRIT_Database_Custom_App.MainWindow;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -7,15 +8,11 @@ namespace OGRIT_Database_Custom_App
     {
         private readonly MainWindow _parent;
         private int selected = 0;
+        private ScreenChanger _changer;
         public LogInScreen()
         {
             InitializeComponent();
-        }
-        public LogInScreen(MainWindow parent)
-        {
-            InitializeComponent();
             DrawInnerPanel();
-            _parent = parent;
         }
         //
         // Events
@@ -45,7 +42,7 @@ namespace OGRIT_Database_Custom_App
                     DataTable dataTable = new();
                     dataAdapter.Fill(dataTable);
                     //dataGridView1.DataSource = dataTable;
-                    _parent.logInScreen.Hide();
+                    _changer?.Invoke();
                 }
                 catch (Exception ex)
                 {
@@ -174,6 +171,13 @@ namespace OGRIT_Database_Custom_App
                 PlaceholderText = PlaceholderText,
                 TabIndex = TabIndex
             };
+        }
+        //
+        // Set Screen Changer
+        //
+        public void SetChanger(ScreenChanger changer)
+        {
+            _changer = changer;
         }
         //
         // innerPanelDesign

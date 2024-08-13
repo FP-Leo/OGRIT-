@@ -1,31 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using static OGRIT_Database_Custom_App.MainWindow;
 
 namespace OGRIT_Database_Custom_App
 {
     public partial class StartingScreen : UserControl
     {
-        private readonly MainWindow _parent;
+        private ScreenChanger _changer;
         public StartingScreen()
         {
             InitializeComponent();
         }
-        public StartingScreen(MainWindow parent)
-        {
-            InitializeComponent();
-            _parent = parent;
-        }
-
         private void ContinueButton_Click(object sender, EventArgs e)
         {
-            _parent?.DestroyStartingScreen();
+            _changer?.Invoke();
+        }
+        //
+        // Set Screen Changer
+        //
+        public void SetChanger(ScreenChanger changer)
+        {
+            _changer = changer;
         }
     }
 }

@@ -44,45 +44,6 @@
             ResumeLayout(false);
         }
 
-        public void SetUpStartingScreen()
-        {
-            startingScreen = new StartingScreen(this);
-            // 
-            // startingScreen
-            // 
-            startingScreen.Dock = DockStyle.Fill;
-            startingScreen.Location = new Point(0, 0);
-            startingScreen.MinimumSize = new Size(825, 450);
-            startingScreen.Name = "startingScreen1";
-            startingScreen.Size = new Size(825, 450);
-            startingScreen.TabIndex = 0;
-        }
-
-        public void DestroyStartingScreen()
-        {
-            Controls.Remove(startingScreen);
-            startingScreen = null;
-            InitializeLogInScreen();
-        }
-
-        public void InitializeLogInScreen()
-        {
-            logInScreen = new LogInScreen(this);
-            // 
-            // logInScreen
-            // 
-            logInScreen.Dock = DockStyle.Fill;
-            logInScreen.Location = new Point(10, 10);
-            logInScreen.Name = "LogInScreen";
-            logInScreen.Size = new Size(800, 450);
-            logInScreen.TabIndex = 0;
-            logInScreen.Visible = true;
-            // 
-            // MainWindow
-            // 
-            Controls.Add(logInScreen);
-        }
-
         #endregion
 
         public LogInScreen logInScreen;
