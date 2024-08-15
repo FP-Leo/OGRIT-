@@ -18,6 +18,7 @@ Status: Waiting.
 Status: Waiting.
 10. Fix documentation.
 Status: Waiting.
-11. Add Manage Connection Screen.
+12. Add Manage Connection Screen. 
+Status: Ongoing.
 
 My To Do List order ( Leo ) - 2., 11.

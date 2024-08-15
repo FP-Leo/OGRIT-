@@ -7,6 +7,12 @@
     <Compile Update="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ManageConnections.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="MenuScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="RoundButton.cs">
       <SubType>Component</SubType>
     </Compile>

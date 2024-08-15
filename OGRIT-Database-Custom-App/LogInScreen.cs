@@ -6,9 +6,8 @@ namespace OGRIT_Database_Custom_App
 {
     public partial class LogInScreen : UserControl
     {
-        private readonly MainWindow _parent;
         private int selected = 0;
-        private ScreenChanger _changer;
+        private LogInScreenChanger? _changer;
         public LogInScreen()
         {
             InitializeComponent();
@@ -21,11 +20,6 @@ namespace OGRIT_Database_Custom_App
         // Event to validate DB connection.
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            if (_parent == null)
-            {
-                return;
-            }
-
             string? connectionString = GetConnectionString();
 
             if (connectionString == null) {
@@ -35,19 +29,9 @@ namespace OGRIT_Database_Custom_App
             try
             {
                 var connection = new SqlConnection(connectionString);
-                string query = "SELECT * FROM [dbo].[dbInfo]";
-                try
-                {
-                    SqlDataAdapter dataAdapter = new(query, connection);
-                    DataTable dataTable = new();
-                    dataAdapter.Fill(dataTable);
-                    //dataGridView1.DataSource = dataTable;
-                    _changer?.Invoke();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
+                // Ensure that you're connected to the DB by using try and catch, if so pass the connection
+                // To do: Ensure that ServiceTable exists on that DB.
+                _changer?.Invoke(connection);
             }
             catch (Exception ex)
             {
@@ -90,7 +74,7 @@ namespace OGRIT_Database_Custom_App
             string username = usernameTB.Text;
             string password = passwordTB.Text;
 
-            string connectionString = "";
+            string? connectionString = "";
 
             if (string.IsNullOrEmpty(serverIP))
             {
@@ -175,7 +159,7 @@ namespace OGRIT_Database_Custom_App
         //
         // Set Screen Changer
         //
-        public void SetChanger(ScreenChanger changer)
+        public void SetChanger(LogInScreenChanger changer)
         {
             _changer = changer;
         }

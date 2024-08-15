@@ -51,8 +51,6 @@ C:\Users\leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debu
 C:\Users\leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.LogInScreen.resources
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.Properties.Resources.resources
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.RoundTextbox.resources
-C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.TestForm.resources
-C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.TestForm2.resources
 C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\OGRIT-Database-Custom-App.exe
 C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\OGRIT-Database-Custom-App.deps.json
 C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\OGRIT-Database-Custom-App.runtimeconfig.json
@@ -84,3 +82,5 @@ C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debu
 C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT-Database-Custom-App.pdb
 C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT-Database-Custom-App.genruntimeconfig.cache
 C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\ref\OGRIT-Database-Custom-App.dll
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.ManageConnections.resources
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.MenuScreen.resources

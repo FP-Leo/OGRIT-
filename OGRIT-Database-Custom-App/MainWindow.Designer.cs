@@ -46,7 +46,9 @@
 
         #endregion
 
-        public LogInScreen logInScreen;
         private StartingScreen startingScreen;
+        private LogInScreen logInScreen;
+        private MenuScreen menuScreen;
+        private ManageConnections connectionsScreen;
     }
 }
