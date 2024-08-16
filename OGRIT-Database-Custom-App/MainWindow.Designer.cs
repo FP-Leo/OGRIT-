@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            
             SuspendLayout();
             // 
             // MainWindow
@@ -36,9 +35,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(825, 450);
-            Controls.Add(startingScreen);
-            MinimumSize = new Size(845, 500);
+            ClientSize = new Size(1007, 478);
+            MinimumSize = new Size(1025, 525);
             Name = "MainWindow";
             Text = "OGRIT DB APP";
             ResumeLayout(false);

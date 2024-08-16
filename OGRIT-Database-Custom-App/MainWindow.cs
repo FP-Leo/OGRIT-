@@ -150,7 +150,6 @@ namespace OGRIT_Database_Custom_App
         }
 
         public delegate void ScreenChanger();
-
         public delegate void MenuScreenChanger(int selected);
         public delegate void LogInScreenChanger(SqlConnection connection);
     }

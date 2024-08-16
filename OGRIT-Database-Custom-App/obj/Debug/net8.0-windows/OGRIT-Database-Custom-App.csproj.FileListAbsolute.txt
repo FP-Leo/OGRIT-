@@ -84,3 +84,4 @@ C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debu
 C:\Users\BURAK\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\ref\OGRIT-Database-Custom-App.dll
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.ManageConnections.resources
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.MenuScreen.resources
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.inputForm.resources
