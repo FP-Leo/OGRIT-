@@ -34,7 +34,8 @@ namespace OGRIT_Database_Custom_App
             }
         }
         // To get the main DB connection from MainWindow
-        public void SetConnection(SqlConnection? connection) { 
+        public void SetConnection(SqlConnection? connection)
+        {
             _connection = connection;
         }
     }

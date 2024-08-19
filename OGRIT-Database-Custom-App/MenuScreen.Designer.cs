@@ -35,9 +35,9 @@
             executeProcedureButton = new RoundButton();
             viewProcedureButton = new RoundButton();
             connectButton = new RoundButton();
+            quitButton = new RoundButton();
             menuLabel = new Label();
             linePanel = new Panel();
-            quitButton = new RoundButton();
             menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             menuTablePanel.SuspendLayout();
@@ -168,6 +168,29 @@
             connectButton.Text = "Manage Connection";
             connectButton.TextColor = Color.LightGray;
             connectButton.UseVisualStyleBackColor = false;
+            connectButton.Click += ManageConnectionButton_Click;
+            // 
+            // quitButton
+            // 
+            quitButton.BackColor = Color.FromArgb(40, 40, 40);
+            quitButton.BackgroundColor = Color.FromArgb(40, 40, 40);
+            quitButton.BorderColor = Color.PaleVioletRed;
+            quitButton.BorderRadius = 8;
+            quitButton.BorderSize = 0;
+            quitButton.Dock = DockStyle.Fill;
+            quitButton.FlatAppearance.BorderSize = 0;
+            quitButton.FlatStyle = FlatStyle.Flat;
+            quitButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            quitButton.ForeColor = Color.LightGray;
+            quitButton.Location = new Point(75, 184);
+            quitButton.Margin = new Padding(75, 10, 75, 10);
+            quitButton.Name = "quitButton";
+            quitButton.Size = new Size(244, 40);
+            quitButton.TabIndex = 7;
+            quitButton.Text = "Quit";
+            quitButton.TextColor = Color.LightGray;
+            quitButton.UseVisualStyleBackColor = false;
+            quitButton.Click += quitButton_Click;
             // 
             // menuLabel
             // 
@@ -190,27 +213,6 @@
             linePanel.Name = "linePanel";
             linePanel.Size = new Size(400, 2);
             linePanel.TabIndex = 1;
-            // 
-            // quitButton
-            // 
-            quitButton.BackColor = Color.FromArgb(40, 40, 40);
-            quitButton.BackgroundColor = Color.FromArgb(40, 40, 40);
-            quitButton.BorderColor = Color.PaleVioletRed;
-            quitButton.BorderRadius = 8;
-            quitButton.BorderSize = 0;
-            quitButton.Dock = DockStyle.Fill;
-            quitButton.FlatAppearance.BorderSize = 0;
-            quitButton.FlatStyle = FlatStyle.Flat;
-            quitButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            quitButton.ForeColor = Color.LightGray;
-            quitButton.Location = new Point(75, 184);
-            quitButton.Margin = new Padding(75, 10, 75, 10);
-            quitButton.Name = "quitButton";
-            quitButton.Size = new Size(244, 40);
-            quitButton.TabIndex = 7;
-            quitButton.Text = "Quit";
-            quitButton.TextColor = Color.LightGray;
-            quitButton.UseVisualStyleBackColor = false;
             // 
             // MenuScreen
             // 

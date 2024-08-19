@@ -53,7 +53,6 @@
             lsTablePanel.Anchor = AnchorStyles.None;
             lsTablePanel.ColumnCount = 1;
             lsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            lsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             lsTablePanel.Controls.Add(connectButton, 0, 1);
             lsTablePanel.Controls.Add(LISinputForm, 0, 0);
             lsTablePanel.Location = new Point(355, 118);
