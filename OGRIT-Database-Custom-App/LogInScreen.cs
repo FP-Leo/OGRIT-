@@ -15,11 +15,11 @@ namespace OGRIT_Database_Custom_App
         //
         // Events
         //
-
+        
         // Event to validate DB connection.
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            string? connectionString = LSinputForm.GetConnectionString();
+            string? connectionString = LISinputForm.GetConnectionString();
 
             if (connectionString == null)
             {
@@ -44,6 +44,17 @@ namespace OGRIT_Database_Custom_App
         public void SetChanger(LogInScreenChanger changer)
         {
             _changer = changer;
+        }
+
+        private void LogInScreen_Resize(object sender, EventArgs e)
+        {
+            int newWidth = Math.Min(450, this.Width - 800);
+            int newHeight = Math.Min(600, this.Height - 200);
+            lsTablePanel.Size = new Size(newWidth, newHeight);
+
+            lsTablePanel.Location = new Point(
+                (lsOuterPanel.Width - lsTablePanel.Width) / 2,
+                (lsOuterPanel.Height - lsTablePanel.Height) / 2);
         }
     }
 }

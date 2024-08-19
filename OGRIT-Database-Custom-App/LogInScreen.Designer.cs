@@ -2,15 +2,8 @@
 {
     partial class LogInScreen
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,102 +15,55 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            logoPanel = new Panel();
-            miniLogoBox = new PictureBox();
-            outerTablePanel = new TableLayoutPanel();
-            innerTableLayout = new TableLayoutPanel();
-            LogInInputFormTableLayout = new TableLayoutPanel();
-            LSinputForm = new inputForm();
+            lsOuterPanel = new Panel();
+            logoBox = new PictureBox();
+            lsTablePanel = new TableLayoutPanel();
             connectButton = new RoundButton();
-            logoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)miniLogoBox).BeginInit();
-            outerTablePanel.SuspendLayout();
-            innerTableLayout.SuspendLayout();
-            LogInInputFormTableLayout.SuspendLayout();
+            LISinputForm = new inputForm();
+            lsOuterPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
+            lsTablePanel.SuspendLayout();
             SuspendLayout();
             // 
-            // logoPanel
+            // lsOuterPanel
             // 
-            logoPanel.Controls.Add(miniLogoBox);
-            logoPanel.Dock = DockStyle.Fill;
-            logoPanel.Location = new Point(667, 3);
-            logoPanel.Name = "logoPanel";
-            logoPanel.Size = new Size(327, 485);
-            logoPanel.TabIndex = 1;
+            lsOuterPanel.Controls.Add(logoBox);
+            lsOuterPanel.Controls.Add(lsTablePanel);
+            lsOuterPanel.Dock = DockStyle.Fill;
+            lsOuterPanel.Location = new Point(0, 0);
+            lsOuterPanel.Name = "lsOuterPanel";
+            lsOuterPanel.Size = new Size(1060, 587);
+            lsOuterPanel.TabIndex = 1;
             // 
-            // miniLogoBox
+            // logoBox
             // 
-            miniLogoBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            miniLogoBox.Image = Properties.Resources.OGRIT_Mini_Logo;
-            miniLogoBox.Location = new Point(162, 403);
-            miniLogoBox.Name = "miniLogoBox";
-            miniLogoBox.Size = new Size(162, 79);
-            miniLogoBox.SizeMode = PictureBoxSizeMode.CenterImage;
-            miniLogoBox.TabIndex = 0;
-            miniLogoBox.TabStop = false;
+            logoBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            logoBox.BackgroundImage = Properties.Resources.OGRIT_Mini_Logo;
+            logoBox.BackgroundImageLayout = ImageLayout.Center;
+            logoBox.Location = new Point(890, 505);
+            logoBox.Name = "logoBox";
+            logoBox.Size = new Size(154, 68);
+            logoBox.TabIndex = 2;
+            logoBox.TabStop = false;
             // 
-            // outerTablePanel
+            // lsTablePanel
             // 
-            outerTablePanel.ColumnCount = 3;
-            outerTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            outerTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            outerTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            outerTablePanel.Controls.Add(logoPanel, 2, 0);
-            outerTablePanel.Controls.Add(innerTableLayout, 1, 0);
-            outerTablePanel.Dock = DockStyle.Fill;
-            outerTablePanel.Location = new Point(0, 0);
-            outerTablePanel.Name = "outerTablePanel";
-            outerTablePanel.RowCount = 1;
-            outerTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            outerTablePanel.Size = new Size(997, 491);
-            outerTablePanel.TabIndex = 0;
-            // 
-            // innerTableLayout
-            // 
-            innerTableLayout.ColumnCount = 1;
-            innerTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            innerTableLayout.Controls.Add(LogInInputFormTableLayout, 0, 1);
-            innerTableLayout.Dock = DockStyle.Fill;
-            innerTableLayout.Location = new Point(335, 3);
-            innerTableLayout.Name = "innerTableLayout";
-            innerTableLayout.RowCount = 3;
-            innerTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
-            innerTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
-            innerTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
-            innerTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            innerTableLayout.Size = new Size(326, 485);
-            innerTableLayout.TabIndex = 2;
-            // 
-            // LogInInputFormTableLayout
-            // 
-            LogInInputFormTableLayout.Anchor = AnchorStyles.None;
-            LogInInputFormTableLayout.ColumnCount = 1;
-            LogInInputFormTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            LogInInputFormTableLayout.Controls.Add(LSinputForm, 0, 0);
-            LogInInputFormTableLayout.Controls.Add(connectButton, 0, 1);
-            LogInInputFormTableLayout.Location = new Point(3, 27);
-            LogInInputFormTableLayout.MaximumSize = new Size(400, 800);
-            LogInInputFormTableLayout.MinimumSize = new Size(320, 430);
-            LogInInputFormTableLayout.Name = "LogInInputFormTableLayout";
-            LogInInputFormTableLayout.RowCount = 2;
-            LogInInputFormTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
-            LogInInputFormTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            LogInInputFormTableLayout.Size = new Size(320, 430);
-            LogInInputFormTableLayout.TabIndex = 0;
-            // 
-            // LSinputForm
-            // 
-            LSinputForm.Dock = DockStyle.Fill;
-            LSinputForm.Location = new Point(3, 3);
-            LSinputForm.Name = "LSinputForm";
-            LSinputForm.Size = new Size(314, 381);
-            LSinputForm.TabIndex = 0;
+            lsTablePanel.Anchor = AnchorStyles.None;
+            lsTablePanel.ColumnCount = 1;
+            lsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            lsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            lsTablePanel.Controls.Add(connectButton, 0, 1);
+            lsTablePanel.Controls.Add(LISinputForm, 0, 0);
+            lsTablePanel.Location = new Point(355, 118);
+            lsTablePanel.MinimumSize = new Size(350, 350);
+            lsTablePanel.Name = "lsTablePanel";
+            lsTablePanel.RowCount = 2;
+            lsTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
+            lsTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            lsTablePanel.Size = new Size(350, 350);
+            lsTablePanel.TabIndex = 1;
             // 
             // connectButton
             // 
@@ -131,40 +77,44 @@
             connectButton.FlatStyle = FlatStyle.Flat;
             connectButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             connectButton.ForeColor = Color.LightGray;
-            connectButton.Location = new Point(3, 390);
+            connectButton.Location = new Point(3, 320);
+            connectButton.Margin = new Padding(3, 5, 3, 5);
             connectButton.Name = "connectButton";
-            connectButton.Size = new Size(314, 37);
-            connectButton.TabIndex = 1;
+            connectButton.Size = new Size(344, 25);
+            connectButton.TabIndex = 3;
             connectButton.Text = "Connect";
             connectButton.TextColor = Color.LightGray;
             connectButton.UseVisualStyleBackColor = false;
             connectButton.Click += LoginButton_Click;
             // 
+            // LISinputForm
+            // 
+            LISinputForm.Dock = DockStyle.Fill;
+            LISinputForm.Location = new Point(3, 3);
+            LISinputForm.Name = "LISinputForm";
+            LISinputForm.Size = new Size(344, 309);
+            LISinputForm.TabIndex = 4;
+            // 
             // LogInScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(outerTablePanel);
-            MinimumSize = new Size(995, 490);
+            Controls.Add(lsOuterPanel);
             Name = "LogInScreen";
-            Size = new Size(997, 491);
-            logoPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)miniLogoBox).EndInit();
-            outerTablePanel.ResumeLayout(false);
-            innerTableLayout.ResumeLayout(false);
-            LogInInputFormTableLayout.ResumeLayout(false);
+            Size = new Size(1060, 587);
+            Resize += LogInScreen_Resize;
+            lsOuterPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
+            lsTablePanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel logoPanel;
-        private PictureBox miniLogoBox;
-
-        private TableLayoutPanel outerTablePanel;
-        private TableLayoutPanel innerTableLayout;
-        private TableLayoutPanel LogInInputFormTableLayout;
-        private inputForm LSinputForm;
+        private Panel lsOuterPanel;
+        private PictureBox logoBox;
+        private TableLayoutPanel lsTablePanel;
         private RoundButton connectButton;
+        private inputForm LISinputForm;
     }
 }

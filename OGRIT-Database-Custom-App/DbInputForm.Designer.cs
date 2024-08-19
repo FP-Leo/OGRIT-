@@ -35,7 +35,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Name = "inputForm";
-            Size = new Size(330, 440);
+            Size = new Size(340, 325);
             ResumeLayout(false);
         }
 

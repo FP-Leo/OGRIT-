@@ -117,7 +117,7 @@
                 Visible = true
             };
         }
-        private static TextBox CustomTextBox(string Name, string PlaceholderText, int TabIndex)
+        private static TextBox CustomTextBox(string Name, string PlaceholderText, int TabIndex, string text)
         {
             return new TextBox
             {
@@ -125,6 +125,7 @@
                 Margin = new Padding(5, 3, 5, 3),
                 Name = Name,
                 PlaceholderText = PlaceholderText,
+                Text = text,
                 TabIndex = TabIndex,
                 Visible =true
             };
@@ -142,11 +143,11 @@
             passwordLabel = CustomLabel("passwordLabel", 13, "Password");
             authLabel = CustomLabel("authLabel", 18, "Authentication Type");
             // TextBox declaration;
-            serverTB = CustomTextBox("serverTB", "Value", 0);
-            portTB = CustomTextBox("portTB", "Value", 1);
-            dbTB = CustomTextBox("dbTB", "Value", 2);
-            usernameTB = CustomTextBox("usernameTB", "Value", 4);
-            passwordTB = CustomTextBox("passwordTB", "Value", 5);
+            serverTB = CustomTextBox("serverTB", "Value", 0, "localhost");
+            portTB = CustomTextBox("portTB", "Value", 1, "1433");
+            dbTB = CustomTextBox("dbTB", "Value", 2, "OGRIT-DB");
+            usernameTB = CustomTextBox("usernameTB", "Value", 4, "sa");
+            passwordTB = CustomTextBox("passwordTB", "Value", 5, "");
             passwordTB.PasswordChar = '*';
             // ComboBox declaration;
             authCB = new ComboBox();
@@ -203,16 +204,17 @@
         private void ChangeTableLayout(bool visibleValue)
         {
             dbIFTableLayoutPanel.RowStyles.Clear();
-            int i = 0;
 
             float rowHeight = 100F / 8;
-            float specialRowHeight = 0;
+            float specialRowHeight = 0F;
+            SizeType st = SizeType.Absolute;
 
             if (visibleValue) {
                 rowHeight = 100F / 12;
                 specialRowHeight = rowHeight;
+                st = SizeType.Percent;
             }
-
+            int i = 0;
             for (; i < 9; i++)
             {
                 dbIFTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, rowHeight));
@@ -220,7 +222,7 @@
 
             for (; i < 12; i++)
             {
-                dbIFTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, specialRowHeight));
+                dbIFTableLayoutPanel.RowStyles.Add(new RowStyle(st, specialRowHeight));
             }
 
             usernameLabel.Visible = visibleValue;
