@@ -4,10 +4,10 @@ Status: Waiting.
 Status: On queue.
 3. Refactor code in a way that you can change between Starting Screen and Login Screen without passing MainWindow as parent to them ( not good practice, to solve probably need to use interfaces )
 Status: Completed.
-4. Decide on the design of the menu after login ( waiting on Emre abi ). 
-Status: Waiting.
+4. Decide on the design of the menu after login. 
+Status: Done.
 5. Implement the said design.
-Status: Waiting for task 4.
+Status: Done.
 6. Instead of MessageBoxes use something else to show messages to user.
 Status: Waiting.
 7. Add a logging system.
@@ -21,6 +21,6 @@ Status: Waiting.
 11. Add Manage Connection Screen. 
 Status: Ongoing.
 12. Seperate Input Form from login screen for reusability.
-Status: Partially done. Resizing issues.
+Status: Done.
 
 My To Do List order ( Leo ) - 2., 11.
