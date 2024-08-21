@@ -1,4 +1,4 @@
-﻿using OGRIT_Database_Custom_App.View;
+﻿using OGRIT_Database_Custom_App.Views.Generics;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -31,7 +31,7 @@ namespace OGRIT_Database_Custom_App
         private void InitializeComponent()
         {
             IUFormOuterTablePanel = new TableLayoutPanel();
-            IUinputForm = new inputForm();
+            IUinputForm = new DbDataInput();
             IUButtonTableLayout = new TableLayoutPanel();
             submitButton = new RoundButton();
             cancelButton = new RoundButton();
@@ -134,7 +134,7 @@ namespace OGRIT_Database_Custom_App
         #endregion
 
         private TableLayoutPanel IUFormOuterTablePanel;
-        private inputForm IUinputForm;
+        private DbDataInput IUinputForm;
         private TableLayoutPanel IUButtonTableLayout;
         private RoundButton submitButton;
         private RoundButton cancelButton;

@@ -1,7 +1,7 @@
 ﻿using System.Drawing.Drawing2D;
 using System.ComponentModel;
 
-namespace OGRIT_Database_Custom_App.View
+namespace OGRIT_Database_Custom_App.Views.Generics
 {
     public class RoundButton : Button
     {

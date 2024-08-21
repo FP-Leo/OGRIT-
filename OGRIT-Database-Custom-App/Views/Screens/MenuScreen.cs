@@ -1,4 +1,5 @@
-﻿using static OGRIT_Database_Custom_App.MainWindow;
+﻿using static OGRIT_Database_Custom_App.Generics.DelegateContainer;
+using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
 namespace OGRIT_Database_Custom_App
 {

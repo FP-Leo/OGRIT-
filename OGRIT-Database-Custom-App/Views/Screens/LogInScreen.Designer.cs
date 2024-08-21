@@ -1,4 +1,4 @@
-﻿using OGRIT_Database_Custom_App.View;
+﻿using OGRIT_Database_Custom_App.Views.Generics;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -23,7 +23,7 @@ namespace OGRIT_Database_Custom_App
             logoBox = new PictureBox();
             lsTablePanel = new TableLayoutPanel();
             connectButton = new RoundButton();
-            LISinputForm = new inputForm();
+            LISinputForm = new DbDataInput();
             lsOuterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             lsTablePanel.SuspendLayout();
@@ -116,6 +116,6 @@ namespace OGRIT_Database_Custom_App
         private PictureBox logoBox;
         private TableLayoutPanel lsTablePanel;
         private RoundButton connectButton;
-        private inputForm LISinputForm;
+        private DbDataInput LISinputForm;
     }
 }

@@ -1,8 +1,8 @@
-﻿using OGRIT_Database_Custom_App.View;
+﻿using OGRIT_Database_Custom_App.Views.Generics;
 
 namespace OGRIT_Database_Custom_App
 {
-    partial class ManageConnections
+    partial class ManageConnectionsScreen
     {
         /// <summary> 
         /// Required designer variable.

@@ -47,6 +47,6 @@
         private StartingScreen startingScreen;
         private LogInScreen logInScreen;
         private MenuScreen menuScreen;
-        private ManageConnections connectionsScreen;
+        private ManageConnectionsScreen connectionsScreen;
     }
 }

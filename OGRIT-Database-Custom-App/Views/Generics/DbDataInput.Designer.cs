@@ -1,6 +1,6 @@
 ﻿namespace OGRIT_Database_Custom_App
 {
-    partial class inputForm
+    partial class DbDataInput
     {
         /// <summary> 
         /// Required designer variable.

@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="View\DbInputForm.cs">
+    <Compile Update="Views\Generics\DbDataInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\InsertUpdateForm.cs">
+    <Compile Update="Views\Forms\InsertUpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\LogInScreen.cs">
+    <Compile Update="Views\Screens\LogInScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\MainWindow.cs">
+    <Compile Update="Views\Forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\ManageConnections.cs">
+    <Compile Update="Views\Screens\ManageConnectionsScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\MenuScreen.cs">
+    <Compile Update="Views\Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\RoundButton.cs">
+    <Compile Update="Views\Generics\RoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="View\RoundTextbox.cs">
+    <Compile Update="Views\Generics\RoundTextbox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\StartingScreen.cs">
+    <Compile Update="Views\Screens\StartingScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

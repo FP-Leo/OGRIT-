@@ -1,4 +1,4 @@
-﻿using OGRIT_Database_Custom_App.View;
+﻿using OGRIT_Database_Custom_App.Views.Generics;
 
 namespace OGRIT_Database_Custom_App
 {

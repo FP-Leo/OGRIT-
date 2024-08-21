@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\controller\\maincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\controller\\maincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\controllers\\maincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\controllers\\maincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\generics\\screendestroyer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\generics\\screendestroyer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\generics\\screeninitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\generics\\screeninitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\views\\screens\\manageconnectionsscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\views\\screens\\manageconnectionsscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\generics\\screenenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\generics\\screenenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\views\\generics\\dbdatainput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\views\\generics\\dbdatainput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\views\\forms\\insertupdateform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\views\\forms\\insertupdateform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,20 +38,97 @@
       "DocumentGroups": [
         {
           "DockedWidth": 309,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ScreenDestroyer.cs",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Generics\\ScreenDestroyer.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Generics\\ScreenDestroyer.cs",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Generics\\ScreenDestroyer.cs",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\Generics\\ScreenDestroyer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T18:07:01.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ScreenInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Generics\\ScreenInitializer.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Generics\\ScreenInitializer.cs",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Generics\\ScreenInitializer.cs",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\Generics\\ScreenInitializer.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAgwEoAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T17:30:39.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ScreenEnums.cs",
+              "DocumentMoniker": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Generics\\ScreenEnums.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Generics\\ScreenEnums.cs",
+              "ToolTip": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Generics\\ScreenEnums.cs",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\Generics\\ScreenEnums.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T17:16:59.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ManageConnectionsScreen.cs",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Views\\Screens\\ManageConnectionsScreen.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Views\\Screens\\ManageConnectionsScreen.cs",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Views\\Screens\\ManageConnectionsScreen.cs",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\Views\\Screens\\ManageConnectionsScreen.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwAEAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T17:10:09.24Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainController.cs",
-              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Controller\\MainController.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Controller\\MainController.cs",
-              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Controller\\MainController.cs",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\Controller\\MainController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAZAAAA",
+              "DocumentMoniker": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Controllers\\MainController.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Controllers\\MainController.cs",
+              "ToolTip": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Controllers\\MainController.cs",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\Controllers\\MainController.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAgwDcAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-21T13:03:43.821Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DbDataInput.cs",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Views\\Generics\\DbDataInput.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Views\\Generics\\DbDataInput.cs",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Views\\Generics\\DbDataInput.cs",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\Views\\Generics\\DbDataInput.cs",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAkwKwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T15:51:17.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "InsertUpdateForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Views\\Forms\\InsertUpdateForm.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Views\\Forms\\InsertUpdateForm.cs",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Views\\Forms\\InsertUpdateForm.cs [Design]",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\Views\\Forms\\InsertUpdateForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T15:46:49.525Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

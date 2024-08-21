@@ -1,14 +1,15 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
-using static OGRIT_Database_Custom_App.MainWindow;
+using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
+using static OGRIT_Database_Custom_App.Generics.DelegateContainer;
 
 namespace OGRIT_Database_Custom_App
 {
-    public partial class ManageConnections : UserControl
+    public partial class ManageConnectionsScreen : UserControl
     {
         private SqlConnection? _connection;
-        private MainWindow.ConnectionScreenChanger _changer;
-        public ManageConnections()
+        private ConnectionScreenChanger? _changer;
+        public ManageConnectionsScreen()
         {
             InitializeComponent();
         }

@@ -1,105 +1,80 @@
-﻿namespace OGRIT_Database_Custom_App
+﻿using OGRIT_Database_Custom_App.Models;
+
+namespace OGRIT_Database_Custom_App
 {
-    public partial class inputForm : UserControl
+    public partial class DbDataInput : UserControl
     {
-        private int selected = 0;
-        public inputForm()
+        private bool SQLAuth = false;
+        private ConnectionString? connectionString;
+        private bool validState = true;
+        private string errorMessageList = string.Empty;
+        private int err = 0;
+        public DbDataInput()
         {
             InitializeComponent();
-            InitializeForm();
+            InitializeInputComponent();
         }
 
         // Event to change Log In Screen Layout.
         private void AuthCB_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int currentIndex = SQLAuth ? 1 : 0;
             // don't bother redrawing
-            if (authCB.SelectedIndex == selected)
+            if (authCB.SelectedIndex == currentIndex)
                 return;
 
-            selected = authCB.SelectedIndex;
+            SQLAuth = !SQLAuth;
 
-            switch (selected)
-            {
-                case 0:
-                    // Remove Username Password Label/TB by making row height% = 0
-                    ChangeTableLayout(false);
-                    break;
-                case 1:
-                    // Show UserName Password Label/TB
-                    ChangeTableLayout(true);
-                    break;
-            }
+            // Remove Username Password Label/TB by making row height% = 0 if SQLAuth == false else show
+            ChangeTableLayout();
         }
         // 
         // Generic Functions
         //
-        public string? GetConnectionString()
+        private void AddToErrorList(string errorMessage)
         {
-            bool validState = true;
-            string errorMessage = "\tError List\n\r\n\r";
-            int err = 1;
+            errorMessageList += $"{err++}. {errorMessage}\n\r";
+            validState = false;
+        }
+        public ConnectionString? ValidateInput()
+        {
+            validState = true;
+            errorMessageList = "\tError List\n\r\n\r";
+            err = 1;
 
             string serverIP = serverTB.Text;
-
             string dbi = dbTB.Text;
             string username = usernameTB.Text;
             string password = passwordTB.Text;
 
-            string? connectionString = "";
+            if (string.IsNullOrEmpty(serverIP)) AddToErrorList("Server IP missing");
 
-            if (string.IsNullOrEmpty(serverIP))
+            int port = 0;
+            try
             {
-                errorMessage += $"{err++}. Server IP missing\n\r";
-                validState = false;
+                port = Convert.ToInt32(portTB.Text);
+            }
+            catch
+            {
+                AddToErrorList("Invalid Port");
             }
 
-            int port = 1433;
-            if (portTB.Text != "")
-            {
-                try
-                {
-                    port = Convert.ToInt32(portTB.Text);
-                }
-                catch
-                {
-                    errorMessage += $"{err++}. Invalid Port\n\r";
-                    validState = false;
-                }
-            }
+            if (string.IsNullOrEmpty(dbi)) AddToErrorList("Database Instance missing");
 
-            if (string.IsNullOrEmpty(dbi))
+            if (SQLAuth)
             {
-                errorMessage += $"{err++}. Database Instance missing\n\r";
-                validState = false;
-            }
+                if (string.IsNullOrEmpty(username)) AddToErrorList("Username missing");
 
-            connectionString += $"Data Source={serverIP},{port};Initial Catalog={dbi};";
-
-            if (selected == 1)
-            {
-                if (string.IsNullOrEmpty(username))
-                {
-                    errorMessage += $"{err++}. Username missing\n\r";
-                    validState = false;
-                }
-
-                if (string.IsNullOrEmpty(password))
-                {
-                    errorMessage += $"{err++}. Password missing\n\r";
-                    validState = false;
-                }
-                connectionString += $"User ID={username};Password={password};";
-            }
-            else
-            {
-                connectionString += "Integrated Security=True;";
+                if (string.IsNullOrEmpty(password)) AddToErrorList("Password missing");
             }
 
             if (!validState)
             {
-                MessageBox.Show(errorMessage);
-                connectionString = null;
+                MessageBox.Show(errorMessageList);
+                return null;
             }
+
+            connectionString = new ConnectionString(serverIP, port, dbi, SQLAuth, username, password);
 
             return connectionString;
         }
@@ -131,7 +106,7 @@
             };
         }
 
-        private void InitializeForm()
+        private void InitializeInputComponent()
         {
             // dbIFTableLayoutPanel decalaration
             dbIFTableLayoutPanel = new TableLayoutPanel();
@@ -178,7 +153,7 @@
             dbIFTableLayoutPanel.Controls.Add(passwordLabel, 0, 10);
             dbIFTableLayoutPanel.Controls.Add(passwordTB, 0, 11);
 
-            ChangeTableLayout(false);
+            ChangeTableLayout();
 
             // 
             // authCB
@@ -196,12 +171,12 @@
             var cbOptions = new List<string> { "Windows Authentication", "SQL Server Authentication" };
             authCB.DataSource = cbOptions;
 
-            authCB.SelectedIndex = selected;
+            authCB.SelectedIndex = SQLAuth? 1:0;
             authCB.SelectedIndexChanged += AuthCB_SelectedIndexChanged;
 
             Controls.Add(dbIFTableLayoutPanel);
         }
-        private void ChangeTableLayout(bool visibleValue)
+        private void ChangeTableLayout()
         {
             dbIFTableLayoutPanel.RowStyles.Clear();
 
@@ -209,7 +184,7 @@
             float specialRowHeight = 0F;
             SizeType st = SizeType.Absolute;
 
-            if (visibleValue) {
+            if (SQLAuth) {
                 rowHeight = 100F / 12;
                 specialRowHeight = rowHeight;
                 st = SizeType.Percent;
@@ -224,11 +199,11 @@
             {
                 dbIFTableLayoutPanel.RowStyles.Add(new RowStyle(st, specialRowHeight));
             }
-
-            usernameLabel.Visible = visibleValue;
-            usernameTB.Visible = visibleValue;
-            passwordLabel.Visible = visibleValue;
-            passwordTB.Visible = visibleValue;
+            // If SQLAuth == true these need to be shown.
+            usernameLabel.Visible = SQLAuth;
+            usernameTB.Visible = SQLAuth;
+            passwordLabel.Visible = SQLAuth;
+            passwordTB.Visible = SQLAuth;
         }
     }
 }
