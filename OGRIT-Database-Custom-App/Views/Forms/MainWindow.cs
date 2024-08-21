@@ -13,18 +13,18 @@ namespace OGRIT_Database_Custom_App
 
         public void SetScreen(UserControl screen)
         {
+            ResetScreen();
             _screen = screen;
+            ShowScreen();
         }
-
-        public void ShowScreen()
+        private void ShowScreen()
         {
             if (_screen != null) {
                 screenSet = true;
                 Controls.Add(_screen);
             }
         }
-
-        public void CloseScreen() {
+        private void ResetScreen() {
             if (_screen != null && screenSet) { 
                 Controls.Remove(_screen);
                 _screen = null;

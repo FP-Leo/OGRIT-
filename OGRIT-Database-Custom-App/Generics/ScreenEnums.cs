@@ -7,16 +7,15 @@
             StartingScreen,
             LogInScreen,
             MenuScreen,
-        }
-        public enum MenuOptions
-        {
-            ManageConnections,
-            ViewProcedures,
-            ExecuteProcedures,
+            // Menu options, added here to avoid using two switch statements
+            ManageConnectionsScreen,
+            ViewProceduresScreen,
+            ExecuteProceduresScreen,
             Quit
         }
         public enum ConnectionMenuOptions
         {
+            ShowConnections,
             Insert,
             Update,
             Delete,

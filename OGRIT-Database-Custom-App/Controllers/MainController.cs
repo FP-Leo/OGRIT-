@@ -1,6 +1,7 @@
 ﻿using OGRIT_Database_Custom_App.Generics;
 using OGRIT_Database_Custom_App.Model;
 using OGRIT_Database_Custom_App.Models;
+using System.Data;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
 namespace OGRIT_Database_Custom_App.Controller
@@ -37,7 +38,6 @@ namespace OGRIT_Database_Custom_App.Controller
         }
 
         private void SetScreen(Screens toBeSet) {
-            mainWindow.CloseScreen();
             switch (toBeSet) {
                 case Screens.StartingScreen:
                     _startingScreen = ScreenInitializer.InitializeStartingScreen();
@@ -50,12 +50,28 @@ namespace OGRIT_Database_Custom_App.Controller
                     mainWindow.SetScreen(_logInScreen);
                     break;
                 case Screens.MenuScreen:
-                    _menuScreen = ScreenInitializer.InitializeMenuScreen();
-                    SetMenuScreenChanger();
+                    if(_menuScreen == null)
+                    {
+                        _menuScreen = ScreenInitializer.InitializeMenuScreen();
+                        SetMenuScreenChanger();
+                    }
                     mainWindow.SetScreen(_menuScreen);
                     break;
+                case Screens.ManageConnectionsScreen:
+                    _connectionsScreen = ScreenInitializer.InitializeConnectionsScreen();
+                    SetConnectionsScreenChanger();
+                    mainWindow.SetScreen(_connectionsScreen);
+                    break;
+                case Screens.ViewProceduresScreen:
+                    //InitializeProcedureList();
+                    break;
+                case Screens.ExecuteProceduresScreen:
+                    //InitializeExecutionScreen();
+                    break;
+                default:
+                    System.Windows.Forms.Application.Exit();
+                    break;
             }
-            mainWindow.ShowScreen();
         }
         public void DestroyScreen(Screens toBeSet)
         {
@@ -68,6 +84,10 @@ namespace OGRIT_Database_Custom_App.Controller
                     ScreenDestroyer.DestroyScreen(ref _logInScreen);
                     break;
                 case Screens.MenuScreen:
+                    ScreenDestroyer.DestroyScreen(ref _menuScreen);
+                    break;
+                case Screens.ManageConnectionsScreen:
+                    ScreenDestroyer.DestroyScreen(ref _connectionsScreen);
                     break;
             }
         }
@@ -103,39 +123,31 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if (_menuScreen == null)
                 return;
-            _menuScreen.SetChanger((MenuOptions selected) =>
+            _menuScreen.SetChanger((Screens selected) =>
             {
-                switch (selected)
-                {
-                    case MenuOptions.ManageConnections:
-                        //InitializeConnectionsScreen();
-                        break;
-                    case MenuOptions.ViewProcedures:
-                        //InitializeProcedureList();
-                        break;
-                    case MenuOptions.ExecuteProcedures:
-                        //InitializeExecutionScreen();
-                        break;
-                    case MenuOptions.Quit:
-                        System.Windows.Forms.Application.Exit();
-                        break;
-                }
+                ChangeScreen(null, selected);
             });
         }
         private void SetConnectionsScreenChanger()
         {
-            /*
-            _connectionsScreen.SetConnection(_connection);
+            if(_connectionsScreen == null) return;
+            //_connectionsScreen.SetConnection(DatabaseConnection.);
             _connectionsScreen.setChanger((ConnectionMenuOptions option) =>
             {
-                DestroyConnectionsScreen();
                 switch (option)
                 {
+                    case ConnectionMenuOptions.ShowConnections:
+                        // Get all the Available Connections on Load.
+                        string query = "SELECT * FROM [dbo].[ServerConfig]";
+                        DataTable? dataTable = mainDBConnection.ExecuteSelectQuery(query);
+                        if(dataTable == null) { return; }
+                        _connectionsScreen.FillDataGrid(dataTable);
+                        break;
                     case ConnectionMenuOptions.Menu:
-                        InitializeMenuScreen();
+                        ChangeScreen(Screens.ManageConnectionsScreen, Screens.MenuScreen);
                         break;
                 }
-            });*/
+            });
         }
         private void SetProcedureListScreenChanger()
         {

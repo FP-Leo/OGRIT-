@@ -44,9 +44,5 @@
 
         #endregion
 
-        private StartingScreen startingScreen;
-        private LogInScreen logInScreen;
-        private MenuScreen menuScreen;
-        private ManageConnectionsScreen connectionsScreen;
     }
 }

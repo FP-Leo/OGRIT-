@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
 using OGRIT_Database_Custom_App.Models;
+using System.Data.Common;
 
 
 namespace OGRIT_Database_Custom_App.Model
@@ -39,6 +40,22 @@ namespace OGRIT_Database_Custom_App.Model
             catch (Exception ex)
             {
                 return ex.Message;
+            }
+        }
+
+        public DataTable? ExecuteSelectQuery(string query)
+        {
+            try
+            {
+                SqlDataAdapter dataAdapter = new(query, Connection);
+                DataTable dataTable = new();
+                dataAdapter.Fill(dataTable);
+                return dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+                return null;
             }
         }
     }
