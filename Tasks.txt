@@ -20,7 +20,9 @@ Status: Waiting.
 Status: Waiting.
 11. Add Manage Connection Screen. 
 Status: Ongoing.
-12. Seperate Input Form from login screen for reusability.
+12. Separate Input Form from login screen for reusability.
+Status: Done.
+13. Refactor Code so that it uses MVC architecture.
 Status: Done.
 
-My To Do List order ( Leo ) - 2., 11.
+My To Do List order ( Leo ) - 11.
