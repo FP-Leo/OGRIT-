@@ -1,7 +1,7 @@
 ﻿using System.Drawing.Drawing2D;
 using System.ComponentModel;
 
-namespace OGRIT_Database_Custom_App
+namespace OGRIT_Database_Custom_App.View
 {
     public class RoundButton : Button
     {
@@ -13,18 +13,18 @@ namespace OGRIT_Database_Custom_App
         //Constructor
         public RoundButton()
         {
-            this.FlatStyle = FlatStyle.Flat;
-            this.FlatAppearance.BorderSize = 0;
-            this.Size = new Size(150, 40);
-            this.BackColor = Color.MediumSlateBlue;
-            this.ForeColor = Color.White;
-            this.Resize += new EventHandler(Button_Resize);
+            FlatStyle = FlatStyle.Flat;
+            FlatAppearance.BorderSize = 0;
+            Size = new Size(150, 40);
+            BackColor = Color.MediumSlateBlue;
+            ForeColor = Color.White;
+            Resize += new EventHandler(Button_Resize);
         }
 
         private void Button_Resize(object sender, EventArgs e)
         {
-            if (borderRadius > this.Height)
-                borderRadius = this.Height;
+            if (borderRadius > Height)
+                borderRadius = Height;
         }
 
         //Properties
@@ -35,7 +35,7 @@ namespace OGRIT_Database_Custom_App
             set
             {
                 borderSize = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -46,7 +46,7 @@ namespace OGRIT_Database_Custom_App
             set
             {
                 borderRadius = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -57,21 +57,21 @@ namespace OGRIT_Database_Custom_App
             set
             {
                 borderColor = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
         [Category("Custom Settings")]
         public Color BackgroundColor
         {
-            get { return this.BackColor; }
-            set { this.BackColor = value; }
+            get { return BackColor; }
+            set { BackColor = value; }
         }
 
         [Category("Custom Settings")]
         public Color TextColor
         {
-            get { return this.ForeColor; }
-            set { this.ForeColor = value; }
+            get { return ForeColor; }
+            set { ForeColor = value; }
         }
 
         //Methods
@@ -93,7 +93,7 @@ namespace OGRIT_Database_Custom_App
         {
             base.OnPaint(pevent);
 
-            Rectangle rectSurface = this.ClientRectangle;
+            Rectangle rectSurface = ClientRectangle;
             Rectangle rectBorder = Rectangle.Inflate(rectSurface, -borderSize, -borderSize);
             int smoothSize = 2;
             if (borderSize > 0)
@@ -103,12 +103,12 @@ namespace OGRIT_Database_Custom_App
             {
                 using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
                 using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - borderSize))
-                using (Pen penSurface = new (this.Parent.BackColor, smoothSize))
-                using (Pen penBorder = new (borderColor, borderSize))
+                using (Pen penSurface = new(Parent.BackColor, smoothSize))
+                using (Pen penBorder = new(borderColor, borderSize))
                 {
                     pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                     //Button surface
-                    this.Region = new Region(pathSurface);
+                    Region = new Region(pathSurface);
                     //Draw surface border for HD result
                     pevent.Graphics.DrawPath(penSurface, pathSurface);
 
@@ -122,14 +122,14 @@ namespace OGRIT_Database_Custom_App
             {
                 pevent.Graphics.SmoothingMode = SmoothingMode.None;
                 //Button surface
-                this.Region = new Region(rectSurface);
+                Region = new Region(rectSurface);
                 //Button border
                 if (borderSize >= 1)
                 {
                     using (Pen penBorder = new(borderColor, borderSize))
                     {
                         penBorder.Alignment = PenAlignment.Inset;
-                        pevent.Graphics.DrawRectangle(penBorder, 0, 0, this.Width - 1, this.Height - 1);
+                        pevent.Graphics.DrawRectangle(penBorder, 0, 0, Width - 1, Height - 1);
                     }
                 }
             }
@@ -137,12 +137,12 @@ namespace OGRIT_Database_Custom_App
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
-            this.Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
+            Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
         }
 
         private void Container_BackColorChanged(object sender, EventArgs e)
         {
-            this.Invalidate();
+            Invalidate();
         }
     }
 }

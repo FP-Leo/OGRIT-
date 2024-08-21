@@ -1,3 +1,5 @@
+using OGRIT_Database_Custom_App.Controller;
+
 namespace OGRIT_Database_Custom_App
 {
     internal static class Program
@@ -11,7 +13,8 @@ namespace OGRIT_Database_Custom_App
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainWindow());
+            var controller = new MainController();
+            controller.Run();
         }
     }
 }

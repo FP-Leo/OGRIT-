@@ -143,7 +143,16 @@ namespace OGRIT_Database_Custom_App
                 Visible = true
             };
 
-             connectionsScreen.SetConnection(_connection);
+            connectionsScreen.SetConnection(_connection);
+            connectionsScreen.setChanger((ConnectionMenuOptions option) =>
+            {
+                DestroyConnectionsScreen();
+                switch (option) {
+                    case ConnectionMenuOptions.Menu:
+                        InitializeMenuScreen();
+                        break;
+                }
+            });
             // 
             // MainWindow
             // 
@@ -171,6 +180,7 @@ namespace OGRIT_Database_Custom_App
         public delegate void ScreenChanger();
         public delegate void MenuScreenChanger(MenuOptions selected);
         public delegate void LogInScreenChanger(SqlConnection connection);
+        public delegate void ConnectionScreenChanger(ConnectionMenuOptions selected);
 
         public enum MenuOptions
         {
@@ -178,6 +188,14 @@ namespace OGRIT_Database_Custom_App
             ViewProcedures,
             ExecuteProcedures,
             Quit
+        }
+
+        public enum ConnectionMenuOptions
+        {
+            Insert,
+            Update, 
+            Delete,
+            Menu
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
+using static OGRIT_Database_Custom_App.MainWindow;
 
 namespace OGRIT_Database_Custom_App
 {
     public partial class ManageConnections : UserControl
     {
         private SqlConnection? _connection;
+        private MainWindow.ConnectionScreenChanger _changer;
         public ManageConnections()
         {
             InitializeComponent();
@@ -37,6 +39,16 @@ namespace OGRIT_Database_Custom_App
         public void SetConnection(SqlConnection? connection)
         {
             _connection = connection;
+        }
+
+        public void setChanger(ConnectionScreenChanger changer)
+        {
+            _changer = changer;
+        }
+
+        private void mcMenuButton_Click(object sender, EventArgs e)
+        {
+            _changer?.Invoke(ConnectionMenuOptions.Menu);
         }
     }
 }

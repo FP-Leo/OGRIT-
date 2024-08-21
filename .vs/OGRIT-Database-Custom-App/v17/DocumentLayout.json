@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\loginscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\loginscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\manageconnections.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\manageconnections.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\manageconnections.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\manageconnections.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\menuscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\menuscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\controller\\maincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\controller\\maincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,51 +19,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LogInScreen.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\LogInScreen.cs",
-              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\LogInScreen.cs [Design]",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\LogInScreen.cs [Design]",
+              "Title": "MainController.cs",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Controller\\MainController.cs",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\Controller\\MainController.cs",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\Controller\\MainController.cs",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\Controller\\MainController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T21:33:36.27Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MenuScreen.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\MenuScreen.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\MenuScreen.cs",
-              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\MenuScreen.cs [Design]",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\MenuScreen.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T21:26:31.841Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ManageConnections.cs",
-              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\ManageConnections.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\ManageConnections.cs",
-              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\ManageConnections.cs",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\ManageConnections.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T21:12:27.975Z",
+              "WhenOpened": "2024-08-21T13:03:43.821Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ManageConnections.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\ManageConnections.cs",
-              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\ManageConnections.cs",
-              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\ManageConnections.cs [Design]",
-              "RelativeToolTip": "OGRIT-Database-Custom-App\\ManageConnections.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T21:10:19.843Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }

@@ -1,4 +1,6 @@
-﻿namespace OGRIT_Database_Custom_App
+﻿using OGRIT_Database_Custom_App.View;
+
+namespace OGRIT_Database_Custom_App
 {
     partial class LogInScreen
     {
