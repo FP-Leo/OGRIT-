@@ -2,7 +2,7 @@ using System.Data.SqlClient;
 
 namespace OGRIT_Database_Custom_App
 {
-    public partial class MainWindow : Form
+    public partial class MainWindow : System.Windows.Forms.Form
     {
         private UserControl? _screen;
         private bool screenSet = false;

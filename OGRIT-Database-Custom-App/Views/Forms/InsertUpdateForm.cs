@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace OGRIT_Database_Custom_App
+﻿namespace OGRIT_Database_Custom_App
 {
-    public partial class InsertUpdateForm : Form
+    public partial class InsertUpdateForm : System.Windows.Forms.Form
     {
         public InsertUpdateForm()
         {
             InitializeComponent();
+        }
+        public void setButtonText(string text) { 
+            submitUpdateButton.Text = text;
+        }
+
+        public void ResetInputFormText()
+        {
+            IUinputForm.ResetInput();
         }
     }
 }

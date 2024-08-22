@@ -29,13 +29,16 @@ namespace OGRIT_Database_Custom_App
             ChangeTableLayout();
         }
         // 
-        // Generic Functions
+        // To show errors properly
         //
         private void AddToErrorList(string errorMessage)
         {
             errorMessageList += $"{err++}. {errorMessage}\n\r";
             validState = false;
         }
+        //
+        // To validate connection string input, it doesnt use logic just stops empty fields.s
+        //
         public ConnectionString? ValidateInput()
         {
             validState = true;
@@ -105,7 +108,7 @@ namespace OGRIT_Database_Custom_App
                 Visible =true
             };
         }
-
+        // To draw the user control
         private void InitializeInputComponent()
         {
             // dbIFTableLayoutPanel decalaration
@@ -176,6 +179,7 @@ namespace OGRIT_Database_Custom_App
 
             Controls.Add(dbIFTableLayoutPanel);
         }
+        // To dynamically change it based on auth type.
         private void ChangeTableLayout()
         {
             dbIFTableLayoutPanel.RowStyles.Clear();
@@ -204,6 +208,38 @@ namespace OGRIT_Database_Custom_App
             usernameTB.Visible = SQLAuth;
             passwordLabel.Visible = SQLAuth;
             passwordTB.Visible = SQLAuth;
+        }
+        public void ResetInput()
+        {
+            serverTB.Text = string.Empty;
+            portTB.Text = string.Empty;
+            dbTB.Text = string.Empty;
+            usernameTB.Text = string.Empty;
+            passwordTB.Text = string.Empty;
+
+            SQLAuth = false;
+
+            ChangeTableLayout();
+        }
+        public void SetInput(string serverTBText, string portTBText, string dbTBText)
+        {
+            serverTB.Text = serverTBText;
+            portTB.Text = portTBText;
+            dbTB.Text = dbTBText;
+
+            SQLAuth = false;
+
+            ChangeTableLayout();
+        }
+
+        public void SetInput(string serverTBText, string portTBText, string dbTBText, string usernameTBText)
+        {
+            SetInput(serverTBText, portTBText, dbTBText);
+
+            SQLAuth = true;
+            usernameTB.Text = usernameTBText;
+
+            ChangeTableLayout();
         }
     }
 }

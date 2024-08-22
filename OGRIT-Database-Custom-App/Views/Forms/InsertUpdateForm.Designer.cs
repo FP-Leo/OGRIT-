@@ -33,7 +33,7 @@ namespace OGRIT_Database_Custom_App
             IUFormOuterTablePanel = new TableLayoutPanel();
             IUinputForm = new DbDataInput();
             IUButtonTableLayout = new TableLayoutPanel();
-            submitButton = new RoundButton();
+            submitUpdateButton = new RoundButton();
             cancelButton = new RoundButton();
             IUFormOuterTablePanel.SuspendLayout();
             IUButtonTableLayout.SuspendLayout();
@@ -43,24 +43,25 @@ namespace OGRIT_Database_Custom_App
             // 
             IUFormOuterTablePanel.ColumnCount = 1;
             IUFormOuterTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            IUFormOuterTablePanel.Controls.Add(IUinputForm, 0, 1);
-            IUFormOuterTablePanel.Controls.Add(IUButtonTableLayout, 0, 2);
+            IUFormOuterTablePanel.Controls.Add(IUinputForm, 0, 0);
+            IUFormOuterTablePanel.Controls.Add(IUButtonTableLayout, 0, 1);
             IUFormOuterTablePanel.Dock = DockStyle.Fill;
             IUFormOuterTablePanel.Location = new Point(0, 0);
             IUFormOuterTablePanel.Name = "IUFormOuterTablePanel";
-            IUFormOuterTablePanel.RowCount = 4;
-            IUFormOuterTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            IUFormOuterTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            IUFormOuterTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            IUFormOuterTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            IUFormOuterTablePanel.RowCount = 2;
+            IUFormOuterTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
+            IUFormOuterTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
+            IUFormOuterTablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            IUFormOuterTablePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             IUFormOuterTablePanel.Size = new Size(332, 453);
             IUFormOuterTablePanel.TabIndex = 0;
             // 
             // IUinputForm
             // 
-            IUinputForm.Location = new Point(3, 48);
+            IUinputForm.Dock = DockStyle.Fill;
+            IUinputForm.Location = new Point(3, 3);
             IUinputForm.Name = "IUinputForm";
-            IUinputForm.Size = new Size(326, 305);
+            IUinputForm.Size = new Size(326, 379);
             IUinputForm.TabIndex = 0;
             // 
             // IUButtonTableLayout
@@ -68,33 +69,34 @@ namespace OGRIT_Database_Custom_App
             IUButtonTableLayout.ColumnCount = 2;
             IUButtonTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             IUButtonTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            IUButtonTableLayout.Controls.Add(submitButton, 0, 0);
+            IUButtonTableLayout.Controls.Add(submitUpdateButton, 0, 0);
             IUButtonTableLayout.Controls.Add(cancelButton, 1, 0);
             IUButtonTableLayout.Dock = DockStyle.Fill;
-            IUButtonTableLayout.Location = new Point(3, 365);
+            IUButtonTableLayout.Location = new Point(3, 388);
             IUButtonTableLayout.Name = "IUButtonTableLayout";
             IUButtonTableLayout.RowCount = 1;
             IUButtonTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            IUButtonTableLayout.Size = new Size(326, 39);
+            IUButtonTableLayout.Size = new Size(326, 62);
             IUButtonTableLayout.TabIndex = 1;
             // 
-            // submitButton
+            // submitUpdateButton
             // 
-            submitButton.BackColor = Color.FromArgb(40, 40, 40);
-            submitButton.BackgroundColor = Color.FromArgb(40, 40, 40);
-            submitButton.BorderColor = Color.FromArgb(40, 40, 40);
-            submitButton.BorderRadius = 5;
-            submitButton.BorderSize = 0;
-            submitButton.FlatAppearance.BorderSize = 0;
-            submitButton.FlatStyle = FlatStyle.Flat;
-            submitButton.ForeColor = Color.White;
-            submitButton.Location = new Point(3, 3);
-            submitButton.Name = "submitButton";
-            submitButton.Size = new Size(157, 32);
-            submitButton.TabIndex = 0;
-            submitButton.Text = "Submit";
-            submitButton.TextColor = Color.White;
-            submitButton.UseVisualStyleBackColor = false;
+            submitUpdateButton.BackColor = Color.FromArgb(40, 40, 40);
+            submitUpdateButton.BackgroundColor = Color.FromArgb(40, 40, 40);
+            submitUpdateButton.BorderColor = Color.FromArgb(40, 40, 40);
+            submitUpdateButton.BorderRadius = 5;
+            submitUpdateButton.BorderSize = 0;
+            submitUpdateButton.Dock = DockStyle.Fill;
+            submitUpdateButton.FlatAppearance.BorderSize = 0;
+            submitUpdateButton.FlatStyle = FlatStyle.Flat;
+            submitUpdateButton.ForeColor = Color.White;
+            submitUpdateButton.Location = new Point(3, 10);
+            submitUpdateButton.Margin = new Padding(3, 10, 3, 10);
+            submitUpdateButton.Name = "submitUpdateButton";
+            submitUpdateButton.Size = new Size(157, 42);
+            submitUpdateButton.TabIndex = 0;
+            submitUpdateButton.TextColor = Color.White;
+            submitUpdateButton.UseVisualStyleBackColor = false;
             // 
             // cancelButton
             // 
@@ -103,12 +105,14 @@ namespace OGRIT_Database_Custom_App
             cancelButton.BorderColor = Color.FromArgb(40, 40, 40);
             cancelButton.BorderRadius = 5;
             cancelButton.BorderSize = 0;
+            cancelButton.Dock = DockStyle.Fill;
             cancelButton.FlatAppearance.BorderSize = 0;
             cancelButton.FlatStyle = FlatStyle.Flat;
             cancelButton.ForeColor = Color.White;
-            cancelButton.Location = new Point(166, 3);
+            cancelButton.Location = new Point(166, 10);
+            cancelButton.Margin = new Padding(3, 10, 3, 10);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(157, 32);
+            cancelButton.Size = new Size(157, 42);
             cancelButton.TabIndex = 1;
             cancelButton.Text = "Cancel";
             cancelButton.TextColor = Color.White;
@@ -116,16 +120,16 @@ namespace OGRIT_Database_Custom_App
             // 
             // InsertUpdateForm
             // 
-            AcceptButton = submitButton;
+            AcceptButton = submitUpdateButton;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = cancelButton;
             ClientSize = new Size(332, 453);
             Controls.Add(IUFormOuterTablePanel);
-            MaximumSize = new Size(400, 600);
+            MaximumSize = new Size(350, 500);
             MinimumSize = new Size(350, 500);
             Name = "InsertUpdateForm";
-            Text = "InsertUpdateForm";
+            Text = "Form";
             IUFormOuterTablePanel.ResumeLayout(false);
             IUButtonTableLayout.ResumeLayout(false);
             ResumeLayout(false);
@@ -136,7 +140,7 @@ namespace OGRIT_Database_Custom_App
         private TableLayoutPanel IUFormOuterTablePanel;
         private DbDataInput IUinputForm;
         private TableLayoutPanel IUButtonTableLayout;
-        private RoundButton submitButton;
+        private RoundButton submitUpdateButton;
         private RoundButton cancelButton;
     }
 }

@@ -32,11 +32,10 @@
             // 
             // MainWindow
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Inherit;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(1060, 587);
-            MinimumSize = new Size(1060, 587);
+            ClientSize = new Size(1062, 588);
+            MinimumSize = new Size(1080, 635);
             Name = "MainWindow";
             Text = "OGRIT DB APP";
             ResumeLayout(false);

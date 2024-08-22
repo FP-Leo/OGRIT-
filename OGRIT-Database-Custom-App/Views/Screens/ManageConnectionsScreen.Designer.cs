@@ -30,26 +30,41 @@ namespace OGRIT_Database_Custom_App
         /// </summary>
         private void InitializeComponent()
         {
+            mcDataGrid = new DataGridView();
             mcOuterTableLayout = new TableLayoutPanel();
             mcBodyTableLayoutPanel = new TableLayoutPanel();
             mcControlPanel = new Panel();
-            tableLayoutPanel2 = new TableLayoutPanel();
+            buttonTablePannel = new TableLayoutPanel();
             mcInsertButton = new RoundButton();
             mcUpdateButton = new RoundButton();
             mcDeleteButton = new RoundButton();
             mcMenuButton = new RoundButton();
-            mcDataGrid = new DataGridView();
             mcHeaderLayoutPanel = new TableLayoutPanel();
             label1 = new Label();
             mcLogoPictureBox = new PictureBox();
+            mcOuterPanel = new Panel();
+            ((System.ComponentModel.ISupportInitialize)mcDataGrid).BeginInit();
             mcOuterTableLayout.SuspendLayout();
             mcBodyTableLayoutPanel.SuspendLayout();
             mcControlPanel.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)mcDataGrid).BeginInit();
+            buttonTablePannel.SuspendLayout();
             mcHeaderLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mcLogoPictureBox).BeginInit();
+            mcOuterPanel.SuspendLayout();
             SuspendLayout();
+            // 
+            // mcDataGrid
+            // 
+            mcDataGrid.AllowUserToAddRows = false;
+            mcDataGrid.AllowUserToDeleteRows = false;
+            mcDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            mcDataGrid.Dock = DockStyle.Fill;
+            mcDataGrid.Location = new Point(161, 3);
+            mcDataGrid.Name = "mcDataGrid";
+            mcDataGrid.ReadOnly = true;
+            mcDataGrid.RowHeadersWidth = 51;
+            mcDataGrid.Size = new Size(890, 457);
+            mcDataGrid.TabIndex = 1;
             // 
             // mcOuterTableLayout
             // 
@@ -66,13 +81,13 @@ namespace OGRIT_Database_Custom_App
             mcOuterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
             mcOuterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             mcOuterTableLayout.Size = new Size(1060, 587);
-            mcOuterTableLayout.TabIndex = 0;
+            mcOuterTableLayout.TabIndex = 1;
             // 
             // mcBodyTableLayoutPanel
             // 
             mcBodyTableLayoutPanel.ColumnCount = 2;
-            mcBodyTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            mcBodyTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            mcBodyTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+            mcBodyTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85F));
             mcBodyTableLayoutPanel.Controls.Add(mcControlPanel, 0, 0);
             mcBodyTableLayoutPanel.Controls.Add(mcDataGrid, 1, 0);
             mcBodyTableLayoutPanel.Dock = DockStyle.Fill;
@@ -85,32 +100,32 @@ namespace OGRIT_Database_Custom_App
             // 
             // mcControlPanel
             // 
-            mcControlPanel.Controls.Add(tableLayoutPanel2);
+            mcControlPanel.Controls.Add(buttonTablePannel);
             mcControlPanel.Dock = DockStyle.Fill;
             mcControlPanel.Location = new Point(3, 3);
             mcControlPanel.Name = "mcControlPanel";
-            mcControlPanel.Size = new Size(204, 457);
+            mcControlPanel.Size = new Size(152, 457);
             mcControlPanel.TabIndex = 0;
             // 
-            // tableLayoutPanel2
+            // buttonTablePannel
             // 
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(mcInsertButton, 0, 0);
-            tableLayoutPanel2.Controls.Add(mcUpdateButton, 0, 1);
-            tableLayoutPanel2.Controls.Add(mcDeleteButton, 0, 2);
-            tableLayoutPanel2.Controls.Add(mcMenuButton, 0, 4);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 0);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 5;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanel2.Size = new Size(204, 457);
-            tableLayoutPanel2.TabIndex = 4;
+            buttonTablePannel.ColumnCount = 1;
+            buttonTablePannel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            buttonTablePannel.Controls.Add(mcInsertButton, 0, 0);
+            buttonTablePannel.Controls.Add(mcUpdateButton, 0, 1);
+            buttonTablePannel.Controls.Add(mcDeleteButton, 0, 2);
+            buttonTablePannel.Controls.Add(mcMenuButton, 0, 4);
+            buttonTablePannel.Dock = DockStyle.Fill;
+            buttonTablePannel.Location = new Point(0, 0);
+            buttonTablePannel.Name = "buttonTablePannel";
+            buttonTablePannel.RowCount = 5;
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            buttonTablePannel.Size = new Size(152, 457);
+            buttonTablePannel.TabIndex = 4;
             // 
             // mcInsertButton
             // 
@@ -125,11 +140,12 @@ namespace OGRIT_Database_Custom_App
             mcInsertButton.ForeColor = Color.White;
             mcInsertButton.Location = new Point(3, 3);
             mcInsertButton.Name = "mcInsertButton";
-            mcInsertButton.Size = new Size(198, 51);
+            mcInsertButton.Size = new Size(146, 44);
             mcInsertButton.TabIndex = 0;
             mcInsertButton.Text = "Insert";
             mcInsertButton.TextColor = Color.White;
             mcInsertButton.UseVisualStyleBackColor = false;
+            mcInsertButton.Click += mcInsertButton_Click;
             // 
             // mcUpdateButton
             // 
@@ -142,13 +158,14 @@ namespace OGRIT_Database_Custom_App
             mcUpdateButton.FlatAppearance.BorderSize = 0;
             mcUpdateButton.FlatStyle = FlatStyle.Flat;
             mcUpdateButton.ForeColor = Color.White;
-            mcUpdateButton.Location = new Point(3, 60);
+            mcUpdateButton.Location = new Point(3, 53);
             mcUpdateButton.Name = "mcUpdateButton";
-            mcUpdateButton.Size = new Size(198, 51);
+            mcUpdateButton.Size = new Size(146, 44);
             mcUpdateButton.TabIndex = 1;
             mcUpdateButton.Text = "Update";
             mcUpdateButton.TextColor = Color.White;
             mcUpdateButton.UseVisualStyleBackColor = false;
+            mcUpdateButton.Click += mcUpdateButton_Click;
             // 
             // mcDeleteButton
             // 
@@ -161,9 +178,9 @@ namespace OGRIT_Database_Custom_App
             mcDeleteButton.FlatAppearance.BorderSize = 0;
             mcDeleteButton.FlatStyle = FlatStyle.Flat;
             mcDeleteButton.ForeColor = Color.White;
-            mcDeleteButton.Location = new Point(3, 117);
+            mcDeleteButton.Location = new Point(3, 103);
             mcDeleteButton.Name = "mcDeleteButton";
-            mcDeleteButton.Size = new Size(198, 51);
+            mcDeleteButton.Size = new Size(146, 44);
             mcDeleteButton.TabIndex = 2;
             mcDeleteButton.Text = "Delete";
             mcDeleteButton.TextColor = Color.White;
@@ -180,33 +197,20 @@ namespace OGRIT_Database_Custom_App
             mcMenuButton.FlatAppearance.BorderSize = 0;
             mcMenuButton.FlatStyle = FlatStyle.Flat;
             mcMenuButton.ForeColor = Color.White;
-            mcMenuButton.Location = new Point(3, 402);
+            mcMenuButton.Location = new Point(3, 410);
             mcMenuButton.Name = "mcMenuButton";
-            mcMenuButton.Size = new Size(198, 52);
+            mcMenuButton.Size = new Size(146, 44);
             mcMenuButton.TabIndex = 3;
             mcMenuButton.Text = "Menu";
             mcMenuButton.TextColor = Color.White;
             mcMenuButton.UseVisualStyleBackColor = false;
             mcMenuButton.Click += mcMenuButton_Click;
             // 
-            // mcDataGrid
-            // 
-            mcDataGrid.AllowUserToAddRows = false;
-            mcDataGrid.AllowUserToDeleteRows = false;
-            mcDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            mcDataGrid.Dock = DockStyle.Fill;
-            mcDataGrid.Location = new Point(213, 3);
-            mcDataGrid.Name = "mcDataGrid";
-            mcDataGrid.ReadOnly = true;
-            mcDataGrid.RowHeadersWidth = 51;
-            mcDataGrid.Size = new Size(838, 457);
-            mcDataGrid.TabIndex = 1;
-            // 
             // mcHeaderLayoutPanel
             // 
             mcHeaderLayoutPanel.ColumnCount = 2;
-            mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
+            mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85F));
             mcHeaderLayoutPanel.Controls.Add(label1, 1, 0);
             mcHeaderLayoutPanel.Dock = DockStyle.Fill;
             mcHeaderLayoutPanel.Location = new Point(3, 3);
@@ -222,7 +226,7 @@ namespace OGRIT_Database_Custom_App
             label1.AutoSize = true;
             label1.Font = new Font("Century Schoolbook", 18F);
             label1.ForeColor = Color.FromArgb(145, 162, 255);
-            label1.Location = new Point(540, 8);
+            label1.Location = new Point(514, 8);
             label1.Name = "label1";
             label1.Size = new Size(184, 35);
             label1.TabIndex = 0;
@@ -239,38 +243,49 @@ namespace OGRIT_Database_Custom_App
             mcLogoPictureBox.TabIndex = 3;
             mcLogoPictureBox.TabStop = false;
             // 
-            // ManageConnections
+            // mcOuterPanel
+            // 
+            mcOuterPanel.Controls.Add(mcOuterTableLayout);
+            mcOuterPanel.Dock = DockStyle.Fill;
+            mcOuterPanel.Location = new Point(0, 0);
+            mcOuterPanel.Name = "mcOuterPanel";
+            mcOuterPanel.Size = new Size(1060, 587);
+            mcOuterPanel.TabIndex = 2;
+            // 
+            // ManageConnectionsScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(mcOuterTableLayout);
-            Name = "ManageConnections";
+            Controls.Add(mcOuterPanel);
+            Name = "ManageConnectionsScreen";
             Size = new Size(1060, 587);
             Load += ManageConnections_Load;
+            ((System.ComponentModel.ISupportInitialize)mcDataGrid).EndInit();
             mcOuterTableLayout.ResumeLayout(false);
             mcBodyTableLayoutPanel.ResumeLayout(false);
             mcControlPanel.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)mcDataGrid).EndInit();
+            buttonTablePannel.ResumeLayout(false);
             mcHeaderLayoutPanel.ResumeLayout(false);
             mcHeaderLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)mcLogoPictureBox).EndInit();
+            mcOuterPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
+        private DataGridView mcDataGrid;
         private TableLayoutPanel mcOuterTableLayout;
         private TableLayoutPanel mcBodyTableLayoutPanel;
         private Panel mcControlPanel;
-        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel buttonTablePannel;
         private RoundButton mcInsertButton;
         private RoundButton mcUpdateButton;
         private RoundButton mcDeleteButton;
         private RoundButton mcMenuButton;
-        private DataGridView mcDataGrid;
         private TableLayoutPanel mcHeaderLayoutPanel;
         private Label label1;
         private PictureBox mcLogoPictureBox;
+        private Panel mcOuterPanel;
     }
 }

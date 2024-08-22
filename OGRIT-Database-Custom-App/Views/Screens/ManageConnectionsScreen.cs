@@ -8,10 +8,11 @@ namespace OGRIT_Database_Custom_App
     {
         private ConnectionScreenChanger? _changer;
 
-        private InsertUpdateForm? _insertUpdateForm;
+        private InsertUpdateForm _insertUpdateForm;
         bool ScreenExist = false;
         public ManageConnectionsScreen()
         {
+            _insertUpdateForm = new InsertUpdateForm();
             InitializeComponent();
         }
 
@@ -33,6 +34,23 @@ namespace OGRIT_Database_Custom_App
         private void mcMenuButton_Click(object sender, EventArgs e)
         {
             _changer?.Invoke(ConnectionMenuOptions.Menu);
+        }
+
+        private void mcInsertButton_Click(object sender, EventArgs e)
+        {
+            _insertUpdateForm.ResetInputFormText();
+            _insertUpdateForm.Text = "Insert Form";
+            _insertUpdateForm.setButtonText("Submit");
+            _insertUpdateForm.ShowDialog();
+        }
+
+        private void mcUpdateButton_Click(object sender, EventArgs e)
+        {
+
+            _insertUpdateForm.ResetInputFormText();
+            _insertUpdateForm.Text = "Update Form";
+            _insertUpdateForm.setButtonText("Update");
+            _insertUpdateForm.ShowDialog();
         }
     }
 }
