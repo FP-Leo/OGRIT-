@@ -16,10 +16,10 @@ namespace OGRIT_Database_Custom_App.Controller
         private ManageConnectionsScreen? _connectionsScreen;
 
         // Models
-        private readonly DatabaseConnection mainDBConnection;
+        private readonly MainDatabaseConnetion mainDBConnection;
         public MainController()
         {
-            mainDBConnection = new DatabaseConnection();
+            mainDBConnection = new MainDatabaseConnetion();
             mainWindow = new MainWindow();
         }
 
@@ -115,6 +115,7 @@ namespace OGRIT_Database_Custom_App.Controller
                     MessageBox.Show(result);
                     return;
                 }
+                mainDBConnection.OpenConnection();
 
                 ChangeScreen(Screens.LogInScreen, Screens.MenuScreen);
             });
@@ -138,10 +139,20 @@ namespace OGRIT_Database_Custom_App.Controller
                 {
                     case ConnectionMenuOptions.ShowConnections:
                         // Get all the Available Connections on Load.
-                        string query = "SELECT * FROM [dbo].[ServerConfig]";
-                        DataTable? dataTable = mainDBConnection.ExecuteSelectQuery(query);
+                        string selectQuery = "SELECT * FROM [dbo].[ServerConfig]";
+                        DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
                         if(dataTable == null) { return; }
                         _connectionsScreen.FillDataGrid(dataTable);
+                        break;
+                    case ConnectionMenuOptions.Insert:
+                        var submittedCS = _connectionsScreen.GetInputedConnectionString();
+                        
+                        if(submittedCS == null) { return; }
+
+                        mainDBConnection.InsertConnection(submittedCS);
+
+                        _connectionsScreen.RefreshTable();
+
                         break;
                     case ConnectionMenuOptions.Menu:
                         ChangeScreen(Screens.ManageConnectionsScreen, Screens.MenuScreen);

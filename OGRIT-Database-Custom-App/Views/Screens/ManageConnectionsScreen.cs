@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 using static OGRIT_Database_Custom_App.Generics.DelegateContainer;
+using OGRIT_Database_Custom_App.Models;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -9,16 +10,22 @@ namespace OGRIT_Database_Custom_App
         private ConnectionScreenChanger? _changer;
 
         private InsertUpdateForm _insertUpdateForm;
-        bool ScreenExist = false;
+
+        private ConnectionString? inputedConnectionString;
         public ManageConnectionsScreen()
         {
             _insertUpdateForm = new InsertUpdateForm();
             InitializeComponent();
         }
 
-        private void ManageConnections_Load(object sender, EventArgs e)
+        public void RefreshTable()
         {
             _changer?.Invoke(ConnectionMenuOptions.ShowConnections);
+        }
+
+        private void ManageConnections_Load(object sender, EventArgs e)
+        {
+            RefreshTable();
         }
         // To get the main DB connection from MainWindow
         public void FillDataGrid(DataTable dataTable)
@@ -42,6 +49,7 @@ namespace OGRIT_Database_Custom_App
             _insertUpdateForm.Text = "Insert Form";
             _insertUpdateForm.setButtonText("Submit");
             _insertUpdateForm.ShowDialog();
+            GetConnectionStringFromForm(ConnectionMenuOptions.Insert);
         }
 
         private void mcUpdateButton_Click(object sender, EventArgs e)
@@ -51,6 +59,21 @@ namespace OGRIT_Database_Custom_App
             _insertUpdateForm.Text = "Update Form";
             _insertUpdateForm.setButtonText("Update");
             _insertUpdateForm.ShowDialog();
+            GetConnectionStringFromForm(ConnectionMenuOptions.Update);
+        }
+
+        private void GetConnectionStringFromForm(ConnectionMenuOptions option)
+        {
+            if (_insertUpdateForm.DialogResult == DialogResult.OK)
+            {
+                inputedConnectionString = _insertUpdateForm.GetConnectionString();
+                _changer?.Invoke(option);
+            }
+        }
+
+        public ConnectionString? GetInputedConnectionString()
+        {
+            return inputedConnectionString;
         }
     }
 }

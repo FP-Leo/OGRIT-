@@ -33,5 +33,30 @@ namespace OGRIT_Database_Custom_App.Models
             }
             return connectionString;
         }
+
+        public string GetServerNameIP()
+        {
+            return _serverNameIP ;
+        }
+
+        public int GetPort()
+        {
+            return _Port ;
+        }
+        public string GetInstanceName() { 
+            return _InstanceName ;
+        }
+
+        public bool IsSQLAuth() { 
+            return _SQLAuth;
+        }
+
+        public string? GetUsername() {
+            return _username;
+        }
+
+        public string? GetPassword() {
+            return _password;
+        }
     }
 }

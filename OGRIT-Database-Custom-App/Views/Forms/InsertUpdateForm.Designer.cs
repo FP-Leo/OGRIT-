@@ -97,6 +97,7 @@ namespace OGRIT_Database_Custom_App
             submitUpdateButton.TabIndex = 0;
             submitUpdateButton.TextColor = Color.White;
             submitUpdateButton.UseVisualStyleBackColor = false;
+            submitUpdateButton.Click += submitUpdateButton_Click;
             // 
             // cancelButton
             // 

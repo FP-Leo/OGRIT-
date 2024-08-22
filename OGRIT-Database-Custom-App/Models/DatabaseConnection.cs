@@ -8,7 +8,7 @@ namespace OGRIT_Database_Custom_App.Model
 {
     public class DatabaseConnection
     {
-        private SqlConnection? Connection;
+        protected SqlConnection? Connection;
 
         public DatabaseConnection(){}
         public void OpenConnection()
@@ -29,33 +29,16 @@ namespace OGRIT_Database_Custom_App.Model
                 Connection.Close();
             }
         }
-        public string? SetConnection(ConnectionString connectionString)
+
+        public void ExecuteCommand(SqlCommand command)
         {
             try
-            {
-                Connection = new SqlConnection(connectionString.ToString());
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-
-        public DataTable? ExecuteSelectQuery(string query)
-        {
-            try
-            {
-                SqlDataAdapter dataAdapter = new(query, Connection);
-                DataTable dataTable = new();
-                dataAdapter.Fill(dataTable);
-                return dataTable;
+            { 
+                command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
-                return null;
             }
         }
     }
