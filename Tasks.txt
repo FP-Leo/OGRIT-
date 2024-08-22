@@ -24,5 +24,15 @@ Status: Ongoing.
 Status: Done.
 13. Refactor Code so that it uses MVC architecture.
 Status: Done.
+14. Implement Insert Connection function.
+Status: Done.
+15. Implement Update Connection function.
+Status: Waiting.
+16. Implement Delete Connection function.
+Status: Waiting.
+17. Implement Show Procedures List screen.
+Status: Waiting.
+18. Implement Execute Procedures screen.
+Status: Waiting.
 
-My To Do List order ( Leo ) - 11.
+My To Do List order ( Leo ) - 15, 11.
