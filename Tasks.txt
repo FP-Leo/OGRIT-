@@ -34,5 +34,7 @@ Status: Waiting.
 Status: Waiting.
 18. Implement Execute Procedures screen.
 Status: Waiting.
+19. Add Password Encryption ( + app.config file, normally it shouldn't get uploaded to GitHub since it contains the encryption key but this is a test environment ).
+Status: Completed.
 
 My To Do List order ( Leo ) - 15, 11.
