@@ -86,3 +86,8 @@ C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debu
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.InsertUpdateForm.resources
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.DbDataInput.resources
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.ManageConnectionsScreen.resources
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\OGRIT-Database-Custom-App.dll.config
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\DataJuggler.Core.Cryptography.dll
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\DataJuggler.UltimateHelper.Core.dll
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\Konscious.Security.Cryptography.Argon2.dll
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\Konscious.Security.Cryptography.Blake2.dll

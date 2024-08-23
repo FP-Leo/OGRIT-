@@ -1,5 +1,4 @@
 ﻿using OGRIT_Database_Custom_App.Generics;
-using OGRIT_Database_Custom_App.Model;
 using OGRIT_Database_Custom_App.Models;
 using System.Data;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
@@ -22,7 +21,6 @@ namespace OGRIT_Database_Custom_App.Controller
             mainDBConnection = new MainDatabaseConnetion();
             mainWindow = new MainWindow();
         }
-
         public void Run()
         {
             ChangeScreen(null, Screens.StartingScreen);
@@ -36,7 +34,6 @@ namespace OGRIT_Database_Custom_App.Controller
             }
             SetScreen(toBeSet);
         }
-
         private void SetScreen(Screens toBeSet) {
             switch (toBeSet) {
                 case Screens.StartingScreen:
@@ -99,6 +96,11 @@ namespace OGRIT_Database_Custom_App.Controller
 
             _startingScreen.SetChanger(() =>
             {
+                if (!StaticMethodHolder.ValidConfigKey("encryptionKey"))
+                {
+                    MessageBox.Show("Error: No encryption key found in the config file.\n\rCannot proceed to the Log In screen.");
+                    return;
+                }
                 ChangeScreen(Screens.StartingScreen, Screens.LogInScreen);
             });
         }
@@ -109,15 +111,10 @@ namespace OGRIT_Database_Custom_App.Controller
 
             _logInScreen.SetChanger((ConnectionString connection) =>
             {
-                string? result = mainDBConnection.SetConnection(connection);
-                if (result != null)
-                {
-                    MessageBox.Show(result);
-                    return;
-                }
-                mainDBConnection.OpenConnection();
-
-                ChangeScreen(Screens.LogInScreen, Screens.MenuScreen);
+                mainDBConnection.setConnectionString(connection);
+                
+                if(mainDBConnection.OpenConnection())
+                    ChangeScreen(Screens.LogInScreen, Screens.MenuScreen);
             });
         }
         private void SetMenuScreenChanger()

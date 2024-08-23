@@ -1,4 +1,6 @@
 ﻿using OGRIT_Database_Custom_App.Models;
+using OGRIT_Database_Custom_App.Generics;
+using System.Configuration;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -95,7 +97,7 @@ namespace OGRIT_Database_Custom_App
                 Visible = true
             };
         }
-        private static TextBox CustomTextBox(string Name, string PlaceholderText, int TabIndex, string text)
+        private static TextBox CustomTextBox(string Name, string PlaceholderText, int TabIndex)
         {
             return new TextBox
             {
@@ -103,7 +105,6 @@ namespace OGRIT_Database_Custom_App
                 Margin = new Padding(5, 3, 5, 3),
                 Name = Name,
                 PlaceholderText = PlaceholderText,
-                Text = text,
                 TabIndex = TabIndex,
                 Visible =true
             };
@@ -121,11 +122,11 @@ namespace OGRIT_Database_Custom_App
             passwordLabel = CustomLabel("passwordLabel", 13, "Password");
             authLabel = CustomLabel("authLabel", 18, "Authentication Type");
             // TextBox declaration;
-            serverTB = CustomTextBox("serverTB", "Value", 0, "localhost");
-            portTB = CustomTextBox("portTB", "Value", 1, "1433");
-            dbTB = CustomTextBox("dbTB", "Value", 2, "OGRIT-DB");
-            usernameTB = CustomTextBox("usernameTB", "Value", 4, "sa");
-            passwordTB = CustomTextBox("passwordTB", "Value", 5, "");
+            serverTB = CustomTextBox("serverTB", "Value", 0);
+            portTB = CustomTextBox("portTB", "Value", 1);
+            dbTB = CustomTextBox("dbTB", "Value", 2);
+            usernameTB = CustomTextBox("usernameTB", "Value", 4);
+            passwordTB = CustomTextBox("passwordTB", "Value", 5);
             passwordTB.PasswordChar = '*';
             // ComboBox declaration;
             authCB = new ComboBox();
@@ -156,7 +157,7 @@ namespace OGRIT_Database_Custom_App
             dbIFTableLayoutPanel.Controls.Add(passwordLabel, 0, 10);
             dbIFTableLayoutPanel.Controls.Add(passwordTB, 0, 11);
 
-            ChangeTableLayout();
+            SetDefaultInput();
 
             // 
             // authCB
@@ -221,25 +222,30 @@ namespace OGRIT_Database_Custom_App
 
             ChangeTableLayout();
         }
-        public void SetInput(string serverTBText, string portTBText, string dbTBText)
+
+        public void SetInput(string? serverTBText, string? portTBText, string? dbTBText, string? usernameTBText)
         {
             serverTB.Text = serverTBText;
             portTB.Text = portTBText;
             dbTB.Text = dbTBText;
 
             SQLAuth = false;
+            usernameTB.Text = usernameTBText;
+            if (usernameTBText != null)
+            {
+                SQLAuth = true;
+            }
 
             ChangeTableLayout();
         }
-
-        public void SetInput(string serverTBText, string portTBText, string dbTBText, string usernameTBText)
+        
+        public void SetDefaultInput()
         {
-            SetInput(serverTBText, portTBText, dbTBText);
-
-            SQLAuth = true;
-            usernameTB.Text = usernameTBText;
-
-            ChangeTableLayout();
+            SetInput(ConfigurationManager.AppSettings["defaultServer"], 
+                     ConfigurationManager.AppSettings["defaultPort"],
+                     ConfigurationManager.AppSettings["defaultInstance"],
+                     ConfigurationManager.AppSettings["defaultUsername"]
+                     );
         }
     }
 }

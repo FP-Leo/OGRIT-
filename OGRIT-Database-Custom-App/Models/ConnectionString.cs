@@ -1,4 +1,6 @@
-﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+﻿using DataJuggler.Core.Cryptography;
+using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OGRIT_Database_Custom_App.Models
 {
@@ -10,28 +12,24 @@ namespace OGRIT_Database_Custom_App.Models
         private bool _SQLAuth;
         private string? _username;
         private string? _password;
+        private bool encrypted = false;
 
-        public ConnectionString(string serverNameIP, int Port, string InstanceName, bool SQLAuth, string username, string password)
+        public ConnectionString(string serverNameIP, int Port, string InstanceName, bool SQLAuth, string? username, string? password)
         {
             _serverNameIP = serverNameIP;
             _Port = Port;
             _InstanceName = InstanceName;
             _SQLAuth = SQLAuth;
-            _username = username;
-            _password = password;
-        }
-
-        public override string ToString() {
-            string connectionString = $"Data Source={_serverNameIP},{_Port};Initial Catalog={_InstanceName};";
-            if (_SQLAuth)
+            if (SQLAuth)
             {
-                connectionString += $"User ID={_username};Password={_password};";
+                _username = username;
+                // The way the code is written it should never be null nor empty (we do the validation on the input form), but you never know.
+                if (String.IsNullOrEmpty(password))
+                    return;
+                // Upon getting the password, encrypt it.
+                _password = CryptographyHelper.EncryptString(password, ConfigurationManager.AppSettings["encryptionKey"]);
+                encrypted = true;
             }
-            else
-            {
-                connectionString += "Integrated Security=True;";
-            }
-            return connectionString;
         }
 
         public string GetServerNameIP()
@@ -56,7 +54,9 @@ namespace OGRIT_Database_Custom_App.Models
         }
 
         public string? GetPassword() {
-            return _password;
+            if(encrypted) 
+                return _password;
+            return null;
         }
     }
 }

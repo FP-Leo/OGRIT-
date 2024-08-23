@@ -6,19 +6,6 @@ namespace OGRIT_Database_Custom_App.Models
 {
     public class MainDatabaseConnetion : DatabaseConnection
     {
-        public string? SetConnection(ConnectionString connectionString)
-        {
-            try
-            {
-                Connection = new SqlConnection(connectionString.ToString());
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
         public DataTable? ExecuteSelectQueryAndGetResult(string query)
         {
             if (!query.StartsWith("SELECT"))
