@@ -31,10 +31,10 @@ Status: Waiting.
 16. Implement Delete Connection function.
 Status: Waiting.
 17. Implement Show Procedures List screen.
-Status: Waiting.
+Status: Ongoing.
 18. Implement Execute Procedures screen.
-Status: Waiting.
+Status: Ongoing.
 19. Add Password Encryption ( + app.config file, normally it shouldn't get uploaded to GitHub since it contains the encryption key but this is a test environment ).
 Status: Completed.
 
-My To Do List order ( Leo ) - 15, 11.
+My To Do List order ( Leo ) - 15, 11, 17, 18.
