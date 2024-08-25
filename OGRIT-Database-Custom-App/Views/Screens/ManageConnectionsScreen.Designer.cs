@@ -41,16 +41,18 @@ namespace OGRIT_Database_Custom_App
             mcMenuButton = new RoundButton();
             mcHeaderLayoutPanel = new TableLayoutPanel();
             label1 = new Label();
-            mcLogoPictureBox = new PictureBox();
             mcOuterPanel = new Panel();
+            logoPanel = new Panel();
+            mcLogoPictureBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)mcDataGrid).BeginInit();
             mcOuterTableLayout.SuspendLayout();
             mcBodyTableLayoutPanel.SuspendLayout();
             mcControlPanel.SuspendLayout();
             buttonTablePannel.SuspendLayout();
             mcHeaderLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)mcLogoPictureBox).BeginInit();
             mcOuterPanel.SuspendLayout();
+            logoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mcLogoPictureBox).BeginInit();
             SuspendLayout();
             // 
             // mcDataGrid
@@ -63,7 +65,7 @@ namespace OGRIT_Database_Custom_App
             mcDataGrid.Name = "mcDataGrid";
             mcDataGrid.ReadOnly = true;
             mcDataGrid.RowHeadersWidth = 51;
-            mcDataGrid.Size = new Size(890, 457);
+            mcDataGrid.Size = new Size(890, 428);
             mcDataGrid.TabIndex = 1;
             // 
             // mcOuterTableLayout
@@ -72,14 +74,14 @@ namespace OGRIT_Database_Custom_App
             mcOuterTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             mcOuterTableLayout.Controls.Add(mcBodyTableLayoutPanel, 0, 1);
             mcOuterTableLayout.Controls.Add(mcHeaderLayoutPanel, 0, 0);
-            mcOuterTableLayout.Controls.Add(mcLogoPictureBox, 0, 2);
+            mcOuterTableLayout.Controls.Add(logoPanel, 0, 2);
             mcOuterTableLayout.Dock = DockStyle.Fill;
             mcOuterTableLayout.Location = new Point(0, 0);
             mcOuterTableLayout.Name = "mcOuterTableLayout";
             mcOuterTableLayout.RowCount = 3;
             mcOuterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            mcOuterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
-            mcOuterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            mcOuterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
+            mcOuterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             mcOuterTableLayout.Size = new Size(1060, 587);
             mcOuterTableLayout.TabIndex = 1;
             // 
@@ -95,7 +97,7 @@ namespace OGRIT_Database_Custom_App
             mcBodyTableLayoutPanel.Name = "mcBodyTableLayoutPanel";
             mcBodyTableLayoutPanel.RowCount = 1;
             mcBodyTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            mcBodyTableLayoutPanel.Size = new Size(1054, 463);
+            mcBodyTableLayoutPanel.Size = new Size(1054, 434);
             mcBodyTableLayoutPanel.TabIndex = 1;
             // 
             // mcControlPanel
@@ -104,7 +106,7 @@ namespace OGRIT_Database_Custom_App
             mcControlPanel.Dock = DockStyle.Fill;
             mcControlPanel.Location = new Point(3, 3);
             mcControlPanel.Name = "mcControlPanel";
-            mcControlPanel.Size = new Size(152, 457);
+            mcControlPanel.Size = new Size(152, 428);
             mcControlPanel.TabIndex = 0;
             // 
             // buttonTablePannel
@@ -124,7 +126,7 @@ namespace OGRIT_Database_Custom_App
             buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            buttonTablePannel.Size = new Size(152, 457);
+            buttonTablePannel.Size = new Size(152, 428);
             buttonTablePannel.TabIndex = 4;
             // 
             // mcInsertButton
@@ -197,7 +199,7 @@ namespace OGRIT_Database_Custom_App
             mcMenuButton.FlatAppearance.BorderSize = 0;
             mcMenuButton.FlatStyle = FlatStyle.Flat;
             mcMenuButton.ForeColor = Color.White;
-            mcMenuButton.Location = new Point(3, 410);
+            mcMenuButton.Location = new Point(3, 381);
             mcMenuButton.Name = "mcMenuButton";
             mcMenuButton.Size = new Size(146, 44);
             mcMenuButton.TabIndex = 3;
@@ -232,17 +234,6 @@ namespace OGRIT_Database_Custom_App
             label1.TabIndex = 0;
             label1.Text = "Connections";
             // 
-            // mcLogoPictureBox
-            // 
-            mcLogoPictureBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            mcLogoPictureBox.Image = Properties.Resources.OGRIT_Mini_Logo;
-            mcLogoPictureBox.Location = new Point(891, 530);
-            mcLogoPictureBox.Name = "mcLogoPictureBox";
-            mcLogoPictureBox.Size = new Size(166, 54);
-            mcLogoPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
-            mcLogoPictureBox.TabIndex = 3;
-            mcLogoPictureBox.TabStop = false;
-            // 
             // mcOuterPanel
             // 
             mcOuterPanel.Controls.Add(mcOuterTableLayout);
@@ -251,6 +242,26 @@ namespace OGRIT_Database_Custom_App
             mcOuterPanel.Name = "mcOuterPanel";
             mcOuterPanel.Size = new Size(1060, 587);
             mcOuterPanel.TabIndex = 2;
+            // 
+            // logoPanel
+            // 
+            logoPanel.Controls.Add(mcLogoPictureBox);
+            logoPanel.Dock = DockStyle.Fill;
+            logoPanel.Location = new Point(3, 501);
+            logoPanel.Name = "logoPanel";
+            logoPanel.Size = new Size(1054, 83);
+            logoPanel.TabIndex = 3;
+            // 
+            // mcLogoPictureBox
+            // 
+            mcLogoPictureBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            mcLogoPictureBox.Image = Properties.Resources.OGRIT_Mini_Logo;
+            mcLogoPictureBox.Location = new Point(874, 12);
+            mcLogoPictureBox.Name = "mcLogoPictureBox";
+            mcLogoPictureBox.Size = new Size(166, 54);
+            mcLogoPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            mcLogoPictureBox.TabIndex = 4;
+            mcLogoPictureBox.TabStop = false;
             // 
             // ManageConnectionsScreen
             // 
@@ -267,8 +278,9 @@ namespace OGRIT_Database_Custom_App
             buttonTablePannel.ResumeLayout(false);
             mcHeaderLayoutPanel.ResumeLayout(false);
             mcHeaderLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)mcLogoPictureBox).EndInit();
             mcOuterPanel.ResumeLayout(false);
+            logoPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)mcLogoPictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -285,7 +297,8 @@ namespace OGRIT_Database_Custom_App
         private RoundButton mcMenuButton;
         private TableLayoutPanel mcHeaderLayoutPanel;
         private Label label1;
-        private PictureBox mcLogoPictureBox;
         private Panel mcOuterPanel;
+        private Panel logoPanel;
+        private PictureBox mcLogoPictureBox;
     }
 }

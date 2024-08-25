@@ -6,8 +6,10 @@
         {
             StartingScreen,
             LogInScreen,
-            MenuScreen,
-            // Menu options, added here to avoid using two switch statements
+            MenuScreen
+        }
+        public enum SubScreens
+        {
             ManageConnectionsScreen,
             ViewProceduresScreen,
             ExecuteProceduresScreen,

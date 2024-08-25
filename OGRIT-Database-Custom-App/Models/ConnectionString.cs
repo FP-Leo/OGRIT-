@@ -31,12 +31,10 @@ namespace OGRIT_Database_Custom_App.Models
                 encrypted = true;
             }
         }
-
         public string GetServerNameIP()
         {
             return _serverNameIP ;
         }
-
         public int GetPort()
         {
             return _Port ;
@@ -44,15 +42,12 @@ namespace OGRIT_Database_Custom_App.Models
         public string GetInstanceName() { 
             return _InstanceName ;
         }
-
         public bool IsSQLAuth() { 
             return _SQLAuth;
         }
-
         public string? GetUsername() {
             return _username;
         }
-
         public string? GetPassword() {
             if(encrypted) 
                 return _password;

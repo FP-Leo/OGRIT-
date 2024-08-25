@@ -1,4 +1,6 @@
-﻿namespace OGRIT_Database_Custom_App.Generics
+﻿using OGRIT_Database_Custom_App.Views.Screens;
+
+namespace OGRIT_Database_Custom_App.Generics
 {
     public static class ScreenInitializer
     {
@@ -66,16 +68,32 @@
         // 
         // ProcedureListScreen
         // 
-        public static void InitializeProcedureList()
+        public static ProcedureListScreen InitializeProcedureList()
         {
-            // To be implemented
+            return new()
+            {
+                Dock = DockStyle.Fill,
+                Location = new Point(10, 10),
+                Name = "ViewProcedureListScrenn",
+                Size = new Size(800, 450),
+                TabIndex = 0,
+                Visible = true
+            };
         }
         // 
         // ExecutionScreen
         //
-        public static void InitializeExecutionScreen()
+        public static ExecuteProceduresScreen InitializeExecutionScreen()
         {
-            // To be implemented
+            return new()
+            {
+                Dock = DockStyle.Fill,
+                Location = new Point(10, 10),
+                Name = "ExecuteProceduresList",
+                Size = new Size(800, 450),
+                TabIndex = 0,
+                Visible = true
+            };
         }
 
     }

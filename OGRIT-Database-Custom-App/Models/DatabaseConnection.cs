@@ -53,7 +53,6 @@ namespace OGRIT_Database_Custom_App.Model
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
-
         private string FormatConnectionString()
         {
             string connectionString = $"Data Source={cs.GetServerNameIP()},{cs.GetPort()};Initial Catalog={cs.GetInstanceName()};";
@@ -68,7 +67,6 @@ namespace OGRIT_Database_Custom_App.Model
             }
             return connectionString;
         }
-
         public void setConnectionString(ConnectionString connectionString)
         {
             cs = connectionString;

@@ -1,5 +1,6 @@
 ﻿using OGRIT_Database_Custom_App.Generics;
 using OGRIT_Database_Custom_App.Models;
+using OGRIT_Database_Custom_App.Views.Screens;
 using System.Data;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
@@ -12,7 +13,10 @@ namespace OGRIT_Database_Custom_App.Controller
         private StartingScreen? _startingScreen;
         private LogInScreen? _logInScreen;
         private MenuScreen? _menuScreen;
+        //// SubScreens
         private ManageConnectionsScreen? _connectionsScreen;
+        private ProcedureListScreen? _showProceduresScreen;
+        private ExecuteProceduresScreen? _executeProceduresScreen;
 
         // Models
         private readonly MainDatabaseConnetion mainDBConnection;
@@ -32,6 +36,11 @@ namespace OGRIT_Database_Custom_App.Controller
             if (toBeDestroyed != null) {
                 DestroyScreen((Screens)toBeDestroyed);
             }
+            SetScreen(toBeSet);
+        }
+        private void ChangeScreen(SubScreens toBeDestroyed, Screens toBeSet)
+        {
+            DestroyScreen(toBeDestroyed);
             SetScreen(toBeSet);
         }
         private void SetScreen(Screens toBeSet) {
@@ -54,25 +63,30 @@ namespace OGRIT_Database_Custom_App.Controller
                     }
                     mainWindow.SetScreen(_menuScreen);
                     break;
-                case Screens.ManageConnectionsScreen:
+            }
+        }
+        private void SetScreen(SubScreens screen) {
+            switch (screen) {
+                case SubScreens.ManageConnectionsScreen:
                     _connectionsScreen = ScreenInitializer.InitializeConnectionsScreen();
                     SetConnectionsScreenChanger();
                     mainWindow.SetScreen(_connectionsScreen);
                     break;
-                case Screens.ViewProceduresScreen:
-                    //InitializeProcedureList();
+                case SubScreens.ViewProceduresScreen:
+                    _showProceduresScreen = ScreenInitializer.InitializeProcedureList();
+                    SetProcedureListScreenChanger();
+                    mainWindow.SetScreen(_showProceduresScreen);
                     break;
-                case Screens.ExecuteProceduresScreen:
-                    //InitializeExecutionScreen();
-                    break;
-                default:
-                    System.Windows.Forms.Application.Exit();
+                case SubScreens.ExecuteProceduresScreen:
+                    _executeProceduresScreen = ScreenInitializer.InitializeExecutionScreen();
+                    SetExecutionScreenChanger();
+                    mainWindow.SetScreen(_executeProceduresScreen);
                     break;
             }
         }
-        public void DestroyScreen(Screens toBeSet)
+        public void DestroyScreen(Screens toBeDestroyed)
         {
-            switch (toBeSet)
+            switch (toBeDestroyed)
             {
                 case Screens.StartingScreen:
                     ScreenDestroyer.DestroyScreen(ref _startingScreen);
@@ -83,8 +97,20 @@ namespace OGRIT_Database_Custom_App.Controller
                 case Screens.MenuScreen:
                     ScreenDestroyer.DestroyScreen(ref _menuScreen);
                     break;
-                case Screens.ManageConnectionsScreen:
+            }
+        }
+        public void DestroyScreen(SubScreens toBeSet)
+        {
+            switch (toBeSet)
+            {
+                case SubScreens.ManageConnectionsScreen:
                     ScreenDestroyer.DestroyScreen(ref _connectionsScreen);
+                    break;
+                case SubScreens.ViewProceduresScreen:
+                    ScreenDestroyer.DestroyScreen(ref _showProceduresScreen);
+                    break;
+                case SubScreens.ExecuteProceduresScreen:
+                    //ScreenDestroyer.DestroyScreen(ref _executeProceduresScreen);
                     break;
             }
         }
@@ -121,9 +147,9 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if (_menuScreen == null)
                 return;
-            _menuScreen.SetChanger((Screens selected) =>
+            _menuScreen.SetChanger((SubScreens selected) =>
             {
-                ChangeScreen(null, selected);
+                SetScreen(selected);
             });
         }
         private void SetConnectionsScreenChanger()
@@ -151,19 +177,41 @@ namespace OGRIT_Database_Custom_App.Controller
                         _connectionsScreen.RefreshTable();
 
                         break;
-                    case ConnectionMenuOptions.Menu:
-                        ChangeScreen(Screens.ManageConnectionsScreen, Screens.MenuScreen);
-                        break;
                 }
+            });
+
+            _connectionsScreen.setGoToMenuOption((SubScreens currentSubScreen) => {
+                ChangeScreen(currentSubScreen, Screens.MenuScreen);
             });
         }
         private void SetProcedureListScreenChanger()
         {
-            // To be implemented
+            if (_showProceduresScreen == null) return;
+
+            _showProceduresScreen.setGoToMenuOption((SubScreens currentSubScreen) => {
+                ChangeScreen(currentSubScreen, Screens.MenuScreen);
+            });
         }
         private void SetExecutionScreenChanger()
         {
-            // To be implemented
+            if (_executeProceduresScreen == null) return;
+
+            _executeProceduresScreen.setGoToMenuOption((SubScreens currentSubScreen) => {
+                ChangeScreen(currentSubScreen, Screens.MenuScreen);
+            });
+
+            _executeProceduresScreen.setFillSignal(() =>
+            {
+                string selectQuery = "SELECT * FROM [dbo].[ServerConfig]";
+                DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
+                if (dataTable == null) { return; }
+                //_executeProceduresScreen.epCSComboBox
+                _executeProceduresScreen.SetCSsSource(dataTable);
+                selectQuery = "SELECT * FROM [dbo].[ServerProcedures]";
+                dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
+                if (dataTable == null) { return; }
+                _executeProceduresScreen.SetSPsSource(dataTable);
+            });
         }
     }
 }

@@ -6,8 +6,9 @@ namespace OGRIT_Database_Custom_App.Generics
     public class DelegateContainer
     {
         public delegate void ScreenChanger();
-        public delegate void MenuScreenChanger(Screens selected);
+        public delegate void MenuScreenChanger(SubScreens selected);
         public delegate void LogInScreenChanger(ConnectionString connection);
         public delegate void ConnectionScreenChanger(ConnectionMenuOptions selected);
+        public delegate void FillSignal();
     }
 }

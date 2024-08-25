@@ -31,22 +31,22 @@ namespace OGRIT_Database_Custom_App
 
         private void ManageConnectionButton_Click(object sender, EventArgs e)
         {
-            _changer?.Invoke(Screens.ManageConnectionsScreen);
+            _changer?.Invoke(SubScreens.ManageConnectionsScreen);
         }
 
         private void viewProcedureButton_Click(object sender, EventArgs e)
         {
-            _changer?.Invoke(Screens.ViewProceduresScreen);
+            _changer?.Invoke(SubScreens.ViewProceduresScreen);
         }
 
         private void executeProcedureButton_Click(object sender, EventArgs e)
         {
-            _changer?.Invoke(Screens.ExecuteProceduresScreen);
+            _changer?.Invoke(SubScreens.ExecuteProceduresScreen);
         }
 
         private void quitButton_Click(object sender, EventArgs e)
         {
-            _changer?.Invoke(Screens.Quit);
+            _changer?.Invoke(SubScreens.Quit);
         }
     }
 }

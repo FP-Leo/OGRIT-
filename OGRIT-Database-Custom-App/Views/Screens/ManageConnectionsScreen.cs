@@ -8,6 +8,7 @@ namespace OGRIT_Database_Custom_App
     public partial class ManageConnectionsScreen : UserControl
     {
         private ConnectionScreenChanger? _changer;
+        private MenuScreenChanger? _goToMenu;
 
         private InsertUpdateForm _insertUpdateForm;
 
@@ -38,9 +39,14 @@ namespace OGRIT_Database_Custom_App
             _changer = changer;
         }
 
+        public void setGoToMenuOption(MenuScreenChanger goToMenu)
+        {
+            _goToMenu = goToMenu;
+        }
+
         private void mcMenuButton_Click(object sender, EventArgs e)
         {
-            _changer?.Invoke(ConnectionMenuOptions.Menu);
+            _goToMenu?.Invoke(SubScreens.ManageConnectionsScreen);
         }
 
         private void mcInsertButton_Click(object sender, EventArgs e)

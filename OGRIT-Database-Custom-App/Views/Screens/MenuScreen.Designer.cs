@@ -62,7 +62,7 @@ namespace OGRIT_Database_Custom_App
             logoBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             logoBox.BackgroundImage = Properties.Resources.OGRIT_Mini_Logo;
             logoBox.BackgroundImageLayout = ImageLayout.Center;
-            logoBox.Location = new Point(894, 507);
+            logoBox.Location = new Point(890, 505);
             logoBox.Name = "logoBox";
             logoBox.Size = new Size(154, 68);
             logoBox.TabIndex = 3;
