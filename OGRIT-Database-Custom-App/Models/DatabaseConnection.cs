@@ -13,16 +13,22 @@ namespace OGRIT_Database_Custom_App.Model
         private ConnectionString? cs;
         protected SqlConnection? Connection;
 
-        public DatabaseConnection()
-        {}
+        public DatabaseConnection(){}
+        public DatabaseConnection(ConnectionString connectionString) {
+            cs = connectionString;
+        }
         public bool OpenConnection()
         {
             try
             {
-                if (Connection == null)
-                    Connection = new SqlConnection(FormatConnectionString());
+                if( cs == null)
+                    return false;
+
+                Connection ??= new SqlConnection(FormatConnectionString());
+
                 if (Connection.State == ConnectionState.Closed)
                     Connection.Open();
+
                 return true;
             }
             catch (Exception ex)
@@ -42,7 +48,7 @@ namespace OGRIT_Database_Custom_App.Model
             }
         }
 
-        public void ExecuteCommand(SqlCommand command)
+        public static void ExecuteCommand(SqlCommand command)
         {
             try
             { 
@@ -59,8 +65,10 @@ namespace OGRIT_Database_Custom_App.Model
             var command = new SqlCommand(query, Connection);
             ExecuteCommand(command);
         }
-        private string FormatConnectionString()
+        private string? FormatConnectionString()
         {
+            if (cs == null)
+                return null;
             string connectionString = $"Data Source={cs.GetServerNameIP()},{cs.GetPort()};Initial Catalog={cs.GetInstanceName()};";
             if (cs.IsSQLAuth())
             {
@@ -73,7 +81,7 @@ namespace OGRIT_Database_Custom_App.Model
             }
             return connectionString;
         }
-        public void setConnectionString(ConnectionString connectionString)
+        public void SetConnectionString(ConnectionString connectionString)
         {
             cs = connectionString;
         }

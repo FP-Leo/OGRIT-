@@ -222,7 +222,16 @@ namespace OGRIT_Database_Custom_App
 
             ChangeTableLayout();
         }
+        public void SetInput(ConnectionString cs)
+        {
+            serverTB.Text = cs.GetServerNameIP();
+            portTB.Text = Convert.ToString(cs.GetPort());
+            dbTB.Text = cs.GetInstanceName();
+            SQLAuth = cs.IsSQLAuth();
+            usernameTB.Text = cs.GetUsername();
 
+            ChangeTableLayout();
+        }
         public void SetInput(string? serverTBText, string? portTBText, string? dbTBText, string? usernameTBText)
         {
             serverTB.Text = serverTBText;
@@ -238,7 +247,6 @@ namespace OGRIT_Database_Custom_App
 
             ChangeTableLayout();
         }
-        
         public void SetDefaultInput()
         {
             SetInput(ConfigurationManager.AppSettings["defaultServer"], 

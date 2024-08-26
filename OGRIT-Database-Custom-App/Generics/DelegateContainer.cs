@@ -11,5 +11,6 @@ namespace OGRIT_Database_Custom_App.Generics
         public delegate void ConnectionScreenChanger(ConnectionMenuOptions selected);
         public delegate void FillSignal();
         public delegate void Refresher();
+        public delegate void UpdateSetter();
     }
 }

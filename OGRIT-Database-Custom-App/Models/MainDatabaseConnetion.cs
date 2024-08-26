@@ -27,10 +27,8 @@ namespace OGRIT_Database_Custom_App.Models
                 return null;
             }
         }
-
-        public void InsertConnection(ConnectionString connectionString) {
-            string query = $"INSERT INTO [dbo].[ServerConfig] VALUES ( @var1, @var2, @var3, @var4, @var5, @var6 )";
-
+        public void AddParamAndExecuteCommand(string query, ConnectionString connectionString)
+        {
             SqlCommand command = new SqlCommand(query, Connection);
 
             command.Parameters.AddWithValue("@var1", connectionString.GetServerNameIP());
@@ -52,6 +50,5 @@ namespace OGRIT_Database_Custom_App.Models
 
             ExecuteCommand(command);
         }
-
     }
 }

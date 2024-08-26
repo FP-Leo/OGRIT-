@@ -40,7 +40,7 @@ namespace OGRIT_Database_Custom_App
             mcDeleteButton = new RoundButton();
             mcMenuButton = new RoundButton();
             mcHeaderLayoutPanel = new TableLayoutPanel();
-            label1 = new Label();
+            connectionsLabel = new Label();
             logoPanel = new Panel();
             mcLogoPictureBox = new PictureBox();
             mcOuterPanel = new Panel();
@@ -215,7 +215,7 @@ namespace OGRIT_Database_Custom_App
             mcHeaderLayoutPanel.ColumnCount = 2;
             mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
             mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85F));
-            mcHeaderLayoutPanel.Controls.Add(label1, 1, 0);
+            mcHeaderLayoutPanel.Controls.Add(connectionsLabel, 1, 0);
             mcHeaderLayoutPanel.Dock = DockStyle.Fill;
             mcHeaderLayoutPanel.Location = new Point(3, 3);
             mcHeaderLayoutPanel.Name = "mcHeaderLayoutPanel";
@@ -224,17 +224,17 @@ namespace OGRIT_Database_Custom_App
             mcHeaderLayoutPanel.Size = new Size(1054, 52);
             mcHeaderLayoutPanel.TabIndex = 2;
             // 
-            // label1
+            // connectionsLabel
             // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Century Schoolbook", 18F);
-            label1.ForeColor = Color.FromArgb(145, 162, 255);
-            label1.Location = new Point(514, 8);
-            label1.Name = "label1";
-            label1.Size = new Size(184, 35);
-            label1.TabIndex = 0;
-            label1.Text = "Connections";
+            connectionsLabel.Anchor = AnchorStyles.Bottom;
+            connectionsLabel.AutoSize = true;
+            connectionsLabel.Font = new Font("Century Schoolbook", 18F);
+            connectionsLabel.ForeColor = Color.FromArgb(145, 162, 255);
+            connectionsLabel.Location = new Point(514, 17);
+            connectionsLabel.Name = "connectionsLabel";
+            connectionsLabel.Size = new Size(184, 35);
+            connectionsLabel.TabIndex = 0;
+            connectionsLabel.Text = "Connections";
             // 
             // logoPanel
             // 
@@ -298,7 +298,7 @@ namespace OGRIT_Database_Custom_App
         private RoundButton mcDeleteButton;
         private RoundButton mcMenuButton;
         private TableLayoutPanel mcHeaderLayoutPanel;
-        private Label label1;
+        private Label connectionsLabel;
         private Panel mcOuterPanel;
         private Panel logoPanel;
         private PictureBox mcLogoPictureBox;

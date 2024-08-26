@@ -3,6 +3,7 @@ using OGRIT_Database_Custom_App.Models;
 using OGRIT_Database_Custom_App.Views.Screens;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
 namespace OGRIT_Database_Custom_App.Controller
@@ -153,7 +154,7 @@ namespace OGRIT_Database_Custom_App.Controller
 
             _logInScreen.SetChanger((ConnectionString connection) =>
             {
-                mainDBConnection.setConnectionString(connection);
+                mainDBConnection.SetConnectionString(connection);
                 
                 if(mainDBConnection.OpenConnection())
                     ChangeScreen(Screens.LogInScreen, Screens.MenuScreen);
@@ -171,7 +172,6 @@ namespace OGRIT_Database_Custom_App.Controller
         private void SetConnectionsScreenChanger()
         {
             if(_connectionsScreen == null) return;
-            //_connectionsScreen.SetConnection(DatabaseConnection.);
 
             _connectionsScreen.SetChanger((ConnectionMenuOptions option) =>
             {
@@ -189,10 +189,26 @@ namespace OGRIT_Database_Custom_App.Controller
                         
                         if(submittedCS == null) { return; }
 
-                        mainDBConnection.InsertConnection(submittedCS);
+                        string insertQuery = $"INSERT INTO [{ConnectionTableSchema}].[{ConnectionTable}] VALUES ( @var1, @var2, @var3, @var4, @var5, @var6 )";
+
+                        mainDBConnection.AddParamAndExecuteCommand(insertQuery, submittedCS);
 
                         _connectionsScreen.RefreshTable();
+                        break;
+                    case ConnectionMenuOptions.Update:
+                        int? id = _connectionsScreen.GetUpdateIndex();
+                        if (id == null) return;
 
+                        var updatedCS = _connectionsScreen.GetInputedConnectionString();
+
+                        if (updatedCS == null) { return; }
+
+                        string updateQuery = $"UPDATE [{ConnectionTableSchema}].[{ConnectionTable}]  SET ServerIPorName=@var1, Port=@var2, InstanceName=@var3, SQLAuth=@var4, UserName=@var5, Password=@var6 WHERE ID={id}";
+
+                        mainDBConnection.AddParamAndExecuteCommand(updateQuery, updatedCS);
+
+                        _connectionsScreen.ResetUpdateIndex();
+                        _connectionsScreen.RefreshTable();
                         break;
                     case ConnectionMenuOptions.Delete:
                         // Not validating with the others since the application can still work without it
@@ -231,6 +247,40 @@ namespace OGRIT_Database_Custom_App.Controller
             _connectionsScreen.SetGoToMenuOption((SubScreens currentSubScreen) => {
                 ChangeScreen(currentSubScreen, Screens.MenuScreen);
             });
+
+            _connectionsScreen.SetUpdater(() => {
+                // Already forced it to only be one row in ManageConnectionsScreen.
+                var row = _connectionsScreen.GetSelectedRows()[0];
+
+                try
+                {
+                    var ID = Convert.ToInt32(row.Cells["ID"].Value);
+                    var serverNameIP = Convert.ToString(row.Cells["ServerIPorName"].Value);
+                    var Port = Convert.ToInt32(row.Cells["Port"].Value);
+                    var InstanceName = Convert.ToString(row.Cells["InstanceName"].Value);
+                    var SQLAuth = Convert.ToBoolean(row.Cells["SQLAuth"].Value);
+                    var username = Convert.ToString(row.Cells["Username"].Value);
+                    var password = Convert.ToString(row.Cells["Password"].Value);
+
+                    if (string.IsNullOrEmpty(serverNameIP))
+                    {
+                        MessageBox.Show("Error: Failed to get Server Name/IP");
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(InstanceName)) {
+                        MessageBox.Show("Error: Failed to get Instance Name");
+                        return;
+                    }
+
+                    var cs = new ConnectionString(serverNameIP, Port, InstanceName, SQLAuth, username, password);
+                    _connectionsScreen.SetUpUpdateForm(cs, ID);
+                }
+                catch(Exception ex) 
+                {
+                    MessageBox.Show("Error: " + ex.ToString());
+                }
+            });
         }
         private void SetProcedureListScreenChanger()
         {
@@ -242,7 +292,7 @@ namespace OGRIT_Database_Custom_App.Controller
 
             _showProceduresScreen.SetRefresher(() =>
             {
-                string selectQuery = "SELECT * FROM [dbo].[ServerProcedures]";
+                string selectQuery = $"SELECT * FROM [{ProcedureTableSchema}].[{ProcedureTable}]";
                 DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
                 if (dataTable == null) { return; }
                 _showProceduresScreen.FillDataGrid(dataTable);
@@ -258,12 +308,12 @@ namespace OGRIT_Database_Custom_App.Controller
 
             _executeProceduresScreen.setFillSignal(() =>
             {
-                string selectQuery = "SELECT * FROM [dbo].[ServerConfig]";
+                string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
                 DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
                 if (dataTable == null) { return; }
-                //_executeProceduresScreen.epCSComboBox
                 _executeProceduresScreen.SetCSsSource(dataTable);
-                selectQuery = "SELECT * FROM [dbo].[ServerProcedures]";
+
+                selectQuery = $"SELECT * FROM [{ProcedureTableSchema}].[{ProcedureTable}]";
                 dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
                 if (dataTable == null) { return; }
                 _executeProceduresScreen.SetSPsSource(dataTable);

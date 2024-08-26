@@ -9,7 +9,7 @@ namespace OGRIT_Database_Custom_App
         {
             InitializeComponent();
         }
-        public void setButtonText(string text)
+        public void SetButtonText(string text)
         {
             submitUpdateButton.Text = text;
         }
@@ -19,7 +19,12 @@ namespace OGRIT_Database_Custom_App
             IUinputForm.ResetInput();
         }
 
-        private void submitUpdateButton_Click(object sender, EventArgs e)
+        public void SetInputFormText(ConnectionString cs)
+        {
+            IUinputForm.SetInput(cs);
+        }
+
+        private void SubmitUpdateButton_Click(object sender, EventArgs e)
         {
             _connectionString = IUinputForm.ValidateInput();
 

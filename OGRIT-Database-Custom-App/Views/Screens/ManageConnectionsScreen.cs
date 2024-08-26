@@ -9,6 +9,8 @@ namespace OGRIT_Database_Custom_App
     {
         private ConnectionScreenChanger? _changer;
         private MenuScreenChanger? _goToMenu;
+        private UpdateSetter? _updater;
+        private int? _updateIndex;
 
         private readonly InsertUpdateForm _insertUpdateForm;
 
@@ -44,6 +46,11 @@ namespace OGRIT_Database_Custom_App
             _goToMenu = goToMenu;
         }
 
+        public void SetUpdater(UpdateSetter updater)
+        {
+            _updater = updater;
+        }
+
         private void McMenuButton_Click(object sender, EventArgs e)
         {
             _goToMenu?.Invoke(SubScreens.ManageConnectionsScreen);
@@ -52,31 +59,26 @@ namespace OGRIT_Database_Custom_App
         private void McInsertButton_Click(object sender, EventArgs e)
         {
             _insertUpdateForm.ResetInputFormText();
-            _insertUpdateForm.Text = "Insert Form";
-            _insertUpdateForm.setButtonText("Submit");
-            _insertUpdateForm.ShowDialog();
+            InitializeInputForm("Insert Form", "Submit");
             GetConnectionStringFromForm(ConnectionMenuOptions.Insert);
         }
 
         private void McUpdateButton_Click(object sender, EventArgs e)
         {
+            _insertUpdateForm.ResetInputFormText();
             if (mcDataGrid.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please first select the rows you want to update!");
                 return;
             }
 
-            if (mcDataGrid.SelectedRows.Count > 0)
+            if (mcDataGrid.SelectedRows.Count > 1)
             {
                 MessageBox.Show("Please update one at a time!");
                 return;
             }
+            _updater?.Invoke();
 
-            _insertUpdateForm.ResetInputFormText();
-            _insertUpdateForm.Text = "Update Form";
-            _insertUpdateForm.setButtonText("Update");
-            _insertUpdateForm.ShowDialog();
-            GetConnectionStringFromForm(ConnectionMenuOptions.Update);
         }
 
         private void GetConnectionStringFromForm(ConnectionMenuOptions option)
@@ -107,6 +109,32 @@ namespace OGRIT_Database_Custom_App
         public DataGridViewSelectedRowCollection GetSelectedRows()
         {
             return mcDataGrid.SelectedRows;
+        }
+
+        
+        // This isn't very clean, will probably change in the future. It was done to avoid using logic on a view
+        public void SetUpUpdateForm(ConnectionString toBeUpdated, int updateIndex)
+        {
+            _insertUpdateForm.SetInputFormText(toBeUpdated);
+            _updateIndex = updateIndex;
+            InitializeInputForm("Update Form", "Update");
+            GetConnectionStringFromForm(ConnectionMenuOptions.Update);
+        }
+        public void ResetUpdateIndex()
+        {
+            _updateIndex = null;
+        }
+
+        public int? GetUpdateIndex()
+        {
+            return _updateIndex;
+        }
+
+        private void InitializeInputForm(string Title, string ButtonText)
+        {
+            _insertUpdateForm.Text = Title;
+            _insertUpdateForm.SetButtonText(ButtonText);
+            _insertUpdateForm.ShowDialog();
         }
     }
 }

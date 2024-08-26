@@ -6,13 +6,13 @@ namespace OGRIT_Database_Custom_App.Models
 {
     public class ConnectionString
     {
-        private string _serverNameIP;
-        private int _Port;
-        private string _InstanceName;
-        private bool _SQLAuth;
-        private string? _username;
-        private string? _password;
-        private bool encrypted = false;
+        private readonly string _serverNameIP;
+        private readonly int _Port;
+        private readonly string _InstanceName;
+        private readonly bool _SQLAuth;
+        private readonly string? _username;
+        private readonly string? _password;
+        private readonly bool encrypted = false;
 
         public ConnectionString(string serverNameIP, int Port, string InstanceName, bool SQLAuth, string? username, string? password)
         {
