@@ -34,19 +34,19 @@ namespace OGRIT_Database_Custom_App
             _changer?.Invoke(SubScreens.ManageConnectionsScreen);
         }
 
-        private void viewProcedureButton_Click(object sender, EventArgs e)
+        private void ViewProcedureButton_Click(object sender, EventArgs e)
         {
             _changer?.Invoke(SubScreens.ViewProceduresScreen);
         }
 
-        private void executeProcedureButton_Click(object sender, EventArgs e)
+        private void ExecuteProcedureButton_Click(object sender, EventArgs e)
         {
             _changer?.Invoke(SubScreens.ExecuteProceduresScreen);
         }
 
-        private void quitButton_Click(object sender, EventArgs e)
+        private void QuitButton_Click(object sender, EventArgs e)
         {
-            _changer?.Invoke(SubScreens.Quit);
+            System.Environment.Exit(0);
         }
     }
 }

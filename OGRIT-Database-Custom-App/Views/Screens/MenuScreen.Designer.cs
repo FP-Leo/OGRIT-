@@ -126,7 +126,7 @@ namespace OGRIT_Database_Custom_App
             executeProcedureButton.Text = "Execute Procedures";
             executeProcedureButton.TextColor = Color.LightGray;
             executeProcedureButton.UseVisualStyleBackColor = false;
-            executeProcedureButton.Click += executeProcedureButton_Click;
+            executeProcedureButton.Click += ExecuteProcedureButton_Click;
             // 
             // viewProcedureButton
             // 
@@ -148,7 +148,7 @@ namespace OGRIT_Database_Custom_App
             viewProcedureButton.Text = "View Procedure List";
             viewProcedureButton.TextColor = Color.LightGray;
             viewProcedureButton.UseVisualStyleBackColor = false;
-            viewProcedureButton.Click += viewProcedureButton_Click;
+            viewProcedureButton.Click += ViewProcedureButton_Click;
             // 
             // connectButton
             // 
@@ -192,7 +192,7 @@ namespace OGRIT_Database_Custom_App
             quitButton.Text = "Quit";
             quitButton.TextColor = Color.LightGray;
             quitButton.UseVisualStyleBackColor = false;
-            quitButton.Click += quitButton_Click;
+            quitButton.Click += QuitButton_Click;
             // 
             // menuLabel
             // 

@@ -12,16 +12,14 @@
         {
             ManageConnectionsScreen,
             ViewProceduresScreen,
-            ExecuteProceduresScreen,
-            Quit
+            ExecuteProceduresScreen
         }
         public enum ConnectionMenuOptions
         {
             ShowConnections,
             Insert,
             Update,
-            Delete,
-            Menu
+            Delete
         }
     }
 }

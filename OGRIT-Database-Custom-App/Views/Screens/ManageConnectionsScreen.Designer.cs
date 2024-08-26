@@ -41,18 +41,18 @@ namespace OGRIT_Database_Custom_App
             mcMenuButton = new RoundButton();
             mcHeaderLayoutPanel = new TableLayoutPanel();
             label1 = new Label();
-            mcOuterPanel = new Panel();
             logoPanel = new Panel();
             mcLogoPictureBox = new PictureBox();
+            mcOuterPanel = new Panel();
             ((System.ComponentModel.ISupportInitialize)mcDataGrid).BeginInit();
             mcOuterTableLayout.SuspendLayout();
             mcBodyTableLayoutPanel.SuspendLayout();
             mcControlPanel.SuspendLayout();
             buttonTablePannel.SuspendLayout();
             mcHeaderLayoutPanel.SuspendLayout();
-            mcOuterPanel.SuspendLayout();
             logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mcLogoPictureBox).BeginInit();
+            mcOuterPanel.SuspendLayout();
             SuspendLayout();
             // 
             // mcDataGrid
@@ -65,6 +65,7 @@ namespace OGRIT_Database_Custom_App
             mcDataGrid.Name = "mcDataGrid";
             mcDataGrid.ReadOnly = true;
             mcDataGrid.RowHeadersWidth = 51;
+            mcDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             mcDataGrid.Size = new Size(890, 428);
             mcDataGrid.TabIndex = 1;
             // 
@@ -147,7 +148,7 @@ namespace OGRIT_Database_Custom_App
             mcInsertButton.Text = "Insert";
             mcInsertButton.TextColor = Color.White;
             mcInsertButton.UseVisualStyleBackColor = false;
-            mcInsertButton.Click += mcInsertButton_Click;
+            mcInsertButton.Click += McInsertButton_Click;
             // 
             // mcUpdateButton
             // 
@@ -167,7 +168,7 @@ namespace OGRIT_Database_Custom_App
             mcUpdateButton.Text = "Update";
             mcUpdateButton.TextColor = Color.White;
             mcUpdateButton.UseVisualStyleBackColor = false;
-            mcUpdateButton.Click += mcUpdateButton_Click;
+            mcUpdateButton.Click += McUpdateButton_Click;
             // 
             // mcDeleteButton
             // 
@@ -187,6 +188,7 @@ namespace OGRIT_Database_Custom_App
             mcDeleteButton.Text = "Delete";
             mcDeleteButton.TextColor = Color.White;
             mcDeleteButton.UseVisualStyleBackColor = false;
+            mcDeleteButton.Click += McDeleteButton_Click;
             // 
             // mcMenuButton
             // 
@@ -206,7 +208,7 @@ namespace OGRIT_Database_Custom_App
             mcMenuButton.Text = "Menu";
             mcMenuButton.TextColor = Color.White;
             mcMenuButton.UseVisualStyleBackColor = false;
-            mcMenuButton.Click += mcMenuButton_Click;
+            mcMenuButton.Click += McMenuButton_Click;
             // 
             // mcHeaderLayoutPanel
             // 
@@ -234,15 +236,6 @@ namespace OGRIT_Database_Custom_App
             label1.TabIndex = 0;
             label1.Text = "Connections";
             // 
-            // mcOuterPanel
-            // 
-            mcOuterPanel.Controls.Add(mcOuterTableLayout);
-            mcOuterPanel.Dock = DockStyle.Fill;
-            mcOuterPanel.Location = new Point(0, 0);
-            mcOuterPanel.Name = "mcOuterPanel";
-            mcOuterPanel.Size = new Size(1060, 587);
-            mcOuterPanel.TabIndex = 2;
-            // 
             // logoPanel
             // 
             logoPanel.Controls.Add(mcLogoPictureBox);
@@ -263,6 +256,15 @@ namespace OGRIT_Database_Custom_App
             mcLogoPictureBox.TabIndex = 4;
             mcLogoPictureBox.TabStop = false;
             // 
+            // mcOuterPanel
+            // 
+            mcOuterPanel.Controls.Add(mcOuterTableLayout);
+            mcOuterPanel.Dock = DockStyle.Fill;
+            mcOuterPanel.Location = new Point(0, 0);
+            mcOuterPanel.Name = "mcOuterPanel";
+            mcOuterPanel.Size = new Size(1060, 587);
+            mcOuterPanel.TabIndex = 2;
+            // 
             // ManageConnectionsScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -278,9 +280,9 @@ namespace OGRIT_Database_Custom_App
             buttonTablePannel.ResumeLayout(false);
             mcHeaderLayoutPanel.ResumeLayout(false);
             mcHeaderLayoutPanel.PerformLayout();
-            mcOuterPanel.ResumeLayout(false);
             logoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)mcLogoPictureBox).EndInit();
+            mcOuterPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 

@@ -6,6 +6,7 @@ namespace OGRIT_Database_Custom_App.Models
 {
     public class MainDatabaseConnetion : DatabaseConnection
     {
+        //private List<DatabaseConnection>? estabileshedConnections;
         public DataTable? ExecuteSelectQueryAndGetResult(string query)
         {
             if (!query.StartsWith("SELECT"))
@@ -51,5 +52,6 @@ namespace OGRIT_Database_Custom_App.Models
 
             ExecuteCommand(command);
         }
+
     }
 }

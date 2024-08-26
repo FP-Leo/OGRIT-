@@ -10,7 +10,7 @@ namespace OGRIT_Database_Custom_App
         private ConnectionScreenChanger? _changer;
         private MenuScreenChanger? _goToMenu;
 
-        private InsertUpdateForm _insertUpdateForm;
+        private readonly InsertUpdateForm _insertUpdateForm;
 
         private ConnectionString? inputedConnectionString;
         public ManageConnectionsScreen()
@@ -34,22 +34,22 @@ namespace OGRIT_Database_Custom_App
             mcDataGrid.DataSource = dataTable;
         }
 
-        public void setChanger(ConnectionScreenChanger changer)
+        public void SetChanger(ConnectionScreenChanger changer)
         {
             _changer = changer;
         }
 
-        public void setGoToMenuOption(MenuScreenChanger goToMenu)
+        public void SetGoToMenuOption(MenuScreenChanger goToMenu)
         {
             _goToMenu = goToMenu;
         }
 
-        private void mcMenuButton_Click(object sender, EventArgs e)
+        private void McMenuButton_Click(object sender, EventArgs e)
         {
             _goToMenu?.Invoke(SubScreens.ManageConnectionsScreen);
         }
 
-        private void mcInsertButton_Click(object sender, EventArgs e)
+        private void McInsertButton_Click(object sender, EventArgs e)
         {
             _insertUpdateForm.ResetInputFormText();
             _insertUpdateForm.Text = "Insert Form";
@@ -58,8 +58,19 @@ namespace OGRIT_Database_Custom_App
             GetConnectionStringFromForm(ConnectionMenuOptions.Insert);
         }
 
-        private void mcUpdateButton_Click(object sender, EventArgs e)
+        private void McUpdateButton_Click(object sender, EventArgs e)
         {
+            if (mcDataGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please first select the rows you want to update!");
+                return;
+            }
+
+            if (mcDataGrid.SelectedRows.Count > 0)
+            {
+                MessageBox.Show("Please update one at a time!");
+                return;
+            }
 
             _insertUpdateForm.ResetInputFormText();
             _insertUpdateForm.Text = "Update Form";
@@ -80,6 +91,22 @@ namespace OGRIT_Database_Custom_App
         public ConnectionString? GetInputedConnectionString()
         {
             return inputedConnectionString;
+        }
+
+        private void McDeleteButton_Click(object sender, EventArgs e)
+        {
+            if(mcDataGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please first select the rows you want to delete!");
+                return;
+            }
+
+            _changer?.Invoke(ConnectionMenuOptions.Delete);
+        }
+
+        public DataGridViewSelectedRowCollection GetSelectedRows()
+        {
+            return mcDataGrid.SelectedRows;
         }
     }
 }

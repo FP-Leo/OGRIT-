@@ -1,6 +1,7 @@
 ﻿using OGRIT_Database_Custom_App.Generics;
 using OGRIT_Database_Custom_App.Models;
 using OGRIT_Database_Custom_App.Views.Screens;
+using System.Configuration;
 using System.Data;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
@@ -20,8 +21,15 @@ namespace OGRIT_Database_Custom_App.Controller
 
         // Models
         private readonly MainDatabaseConnetion mainDBConnection;
+
+        // Configuration 
+        private string? ConnectionTable;
+        private string? ConnectionTableSchema;
+        private string? ProcedureTable;
+        private string? ProcedureTableSchema;
         public MainController()
         {
+            ValidateConfig();
             mainDBConnection = new MainDatabaseConnetion();
             mainWindow = new MainWindow();
         }
@@ -29,6 +37,14 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             ChangeScreen(null, Screens.StartingScreen);
             Application.Run(mainWindow);
+        }
+
+        private void ValidateConfig()
+        {
+            ConnectionTable = StaticMethodHolder.GetConfigKey("ConnectionTable");
+            ConnectionTableSchema = StaticMethodHolder.GetConfigKey("ConnectionTableSchema");
+            ProcedureTable = StaticMethodHolder.GetConfigKey("ProcedureTable");
+            ProcedureTableSchema = StaticMethodHolder.GetConfigKey("ProcedureTableSchema");
         }
         // Screen Switcher
         private void ChangeScreen(Screens? toBeDestroyed, Screens toBeSet)
@@ -156,13 +172,14 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if(_connectionsScreen == null) return;
             //_connectionsScreen.SetConnection(DatabaseConnection.);
-            _connectionsScreen.setChanger((ConnectionMenuOptions option) =>
+
+            _connectionsScreen.SetChanger((ConnectionMenuOptions option) =>
             {
                 switch (option)
                 {
                     case ConnectionMenuOptions.ShowConnections:
                         // Get all the Available Connections on Load.
-                        string selectQuery = "SELECT * FROM [dbo].[ServerConfig]";
+                        string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
                         DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
                         if(dataTable == null) { return; }
                         _connectionsScreen.FillDataGrid(dataTable);
@@ -177,10 +194,41 @@ namespace OGRIT_Database_Custom_App.Controller
                         _connectionsScreen.RefreshTable();
 
                         break;
+                    case ConnectionMenuOptions.Delete:
+                        // Not validating with the others since the application can still work without it
+                        string? filterColumn = ConfigurationManager.AppSettings["FilterColumn"];
+                        if (string.IsNullOrEmpty(filterColumn))
+                        {
+                            MessageBox.Show("Configuration Error: Filter Column not set.");
+                            return;
+                        }
+
+                        foreach (DataGridViewRow row in _connectionsScreen.GetSelectedRows())
+                        {
+                            try
+                            {
+                                var colValue = row.Cells[filterColumn].Value;
+                                string? colText = Convert.ToString(colValue);
+                                if (string.IsNullOrEmpty(colText)) {
+                                    MessageBox.Show("Failed to convert Filter Column's value to string");
+                                    return;
+                                }
+
+                                string deleteQuery = $"DELETE FROM [{ConnectionTableSchema}].[{ConnectionTable}] WHERE {filterColumn}={colText}";
+                                mainDBConnection.ExecuteQuery(deleteQuery);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Configuration Error: Invalid Filter Column. Please check the Connections Table for a valid Column.");
+                                return;
+                            }
+                        }
+                        _connectionsScreen.RefreshTable();
+                        break;
                 }
             });
 
-            _connectionsScreen.setGoToMenuOption((SubScreens currentSubScreen) => {
+            _connectionsScreen.SetGoToMenuOption((SubScreens currentSubScreen) => {
                 ChangeScreen(currentSubScreen, Screens.MenuScreen);
             });
         }
@@ -188,8 +236,16 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if (_showProceduresScreen == null) return;
 
-            _showProceduresScreen.setGoToMenuOption((SubScreens currentSubScreen) => {
+            _showProceduresScreen.SetGoToMenuOption((SubScreens currentSubScreen) => {
                 ChangeScreen(currentSubScreen, Screens.MenuScreen);
+            });
+
+            _showProceduresScreen.SetRefresher(() =>
+            {
+                string selectQuery = "SELECT * FROM [dbo].[ServerProcedures]";
+                DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
+                if (dataTable == null) { return; }
+                _showProceduresScreen.FillDataGrid(dataTable);
             });
         }
         private void SetExecutionScreenChanger()

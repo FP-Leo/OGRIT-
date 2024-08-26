@@ -53,6 +53,12 @@ namespace OGRIT_Database_Custom_App.Model
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
+
+        public void ExecuteQuery(string query)
+        {
+            var command = new SqlCommand(query, Connection);
+            ExecuteCommand(command);
+        }
         private string FormatConnectionString()
         {
             string connectionString = $"Data Source={cs.GetServerNameIP()},{cs.GetPort()};Initial Catalog={cs.GetInstanceName()};";

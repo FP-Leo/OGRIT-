@@ -96,7 +96,7 @@
             spMenuButton.Text = "Menu";
             spMenuButton.TextColor = Color.White;
             spMenuButton.UseVisualStyleBackColor = false;
-            spMenuButton.Click += spMenuButton_Click;
+            spMenuButton.Click += SpMenuButton_Click;
             // 
             // spGridTablePanel
             // 
@@ -153,6 +153,7 @@
             Controls.Add(spTablePanel);
             Name = "ProcedureListScreen";
             Size = new Size(1060, 587);
+            Load += ProcedureListScreen_Load;
             spTablePanel.ResumeLayout(false);
             spButtonTablePanel.ResumeLayout(false);
             spGridTablePanel.ResumeLayout(false);
