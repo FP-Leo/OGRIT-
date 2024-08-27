@@ -4,9 +4,18 @@ using System.Data;
 
 namespace OGRIT_Database_Custom_App.Models
 {
-    public class MainDatabaseConnetion : DatabaseConnection
+    /// <summary>
+    /// Represents a database connection with additional functionalities for executing queries and commands.
+    /// </summary>
+    public class MainDatabaseConnection : DatabaseConnection
     {
         //private List<DatabaseConnection>? estabileshedConnections;
+
+        /// <summary>
+        /// Executes a SELECT SQL query and retrieves the results as a <see cref="DataTable"/>.
+        /// </summary>
+        /// <param name="query">The SQL SELECT query to execute.</param>
+        /// <returns>A <see cref="DataTable"/> containing the query results, or <c>null</c> if the query does not start with "SELECT" or an error occurs.</returns>
         public DataTable? ExecuteSelectQueryAndGetResult(string query)
         {
             if (!query.StartsWith("SELECT"))
@@ -27,6 +36,12 @@ namespace OGRIT_Database_Custom_App.Models
                 return null;
             }
         }
+
+        /// <summary>
+        /// Adds parameters to the SQL command and executes it using the provided connection string.
+        /// </summary>
+        /// <param name="query">The SQL query to execute with parameters.</param>
+        /// <param name="connectionString">The <see cref="ConnectionString"/> object containing the parameters to add.</param>
         public void AddParamAndExecuteCommand(string query, ConnectionString connectionString)
         {
             SqlCommand command = new SqlCommand(query, Connection);
