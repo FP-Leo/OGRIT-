@@ -80,7 +80,7 @@ namespace OGRIT_Database_Custom_App
                 return null;
             }
 
-            connectionString = new ConnectionString(serverIP, port, dbi, SQLAuth, username, password);
+            connectionString = new ConnectionString(serverIP, port, dbi, SQLAuth, username, password, false);
 
             return connectionString;
         }

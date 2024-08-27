@@ -14,7 +14,7 @@ namespace OGRIT_Database_Custom_App.Models
         private readonly string? _password;
         private readonly bool encrypted = false;
 
-        public ConnectionString(string serverNameIP, int Port, string InstanceName, bool SQLAuth, string? username, string? password)
+        public ConnectionString(string serverNameIP, int Port, string InstanceName, bool SQLAuth, string? username, string? password, bool AlreadyEncrypted)
         {
             _serverNameIP = serverNameIP;
             _Port = Port;
@@ -26,8 +26,13 @@ namespace OGRIT_Database_Custom_App.Models
                 // The way the code is written it should never be null nor empty (we do the validation on the input form), but you never know.
                 if (String.IsNullOrEmpty(password))
                     return;
+
+                _password = password;
                 // Upon getting the password, encrypt it.
-                _password = CryptographyHelper.EncryptString(password, ConfigurationManager.AppSettings["encryptionKey"]);
+                if (!AlreadyEncrypted)
+                {
+                    _password = CryptographyHelper.EncryptString(password, ConfigurationManager.AppSettings["encryptionKey"]);
+                }
                 encrypted = true;
             }
         }

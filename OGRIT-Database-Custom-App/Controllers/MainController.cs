@@ -24,28 +24,27 @@ namespace OGRIT_Database_Custom_App.Controller
         private readonly MainDatabaseConnetion mainDBConnection;
 
         // Configuration 
-        private string? ConnectionTable;
-        private string? ConnectionTableSchema;
-        private string? ProcedureTable;
-        private string? ProcedureTableSchema;
+        private readonly string ConnectionTable;
+        private readonly string ConnectionTableSchema;
+        private readonly string ProcedureTable;
+        private readonly string ProcedureTableSchema;
+        private readonly string FilterColumn;
         public MainController()
         {
-            ValidateConfig();
-            mainDBConnection = new MainDatabaseConnetion();
+            // Validate Config
+            ConnectionTable = StaticMethodHolder.GetConfigKey("ConnectionTable");
+            ConnectionTableSchema = StaticMethodHolder.GetConfigKey("ConnectionTableSchema");
+            ProcedureTable = StaticMethodHolder.GetConfigKey("ProcedureTable");
+            ProcedureTableSchema = StaticMethodHolder.GetConfigKey("ProcedureTableSchema");
+            FilterColumn = StaticMethodHolder.GetConfigKey("FilterColumn");
+
+            mainDBConnection = new MainDatabaseConnetion(ConnectionTable, ConnectionTableSchema, FilterColumn);
             mainWindow = new MainWindow();
         }
         public void Run()
         {
             ChangeScreen(null, Screens.StartingScreen);
             Application.Run(mainWindow);
-        }
-
-        private void ValidateConfig()
-        {
-            ConnectionTable = StaticMethodHolder.GetConfigKey("ConnectionTable");
-            ConnectionTableSchema = StaticMethodHolder.GetConfigKey("ConnectionTableSchema");
-            ProcedureTable = StaticMethodHolder.GetConfigKey("ProcedureTable");
-            ProcedureTableSchema = StaticMethodHolder.GetConfigKey("ProcedureTableSchema");
         }
         // Screen Switcher
         private void ChangeScreen(Screens? toBeDestroyed, Screens toBeSet)
@@ -211,26 +210,18 @@ namespace OGRIT_Database_Custom_App.Controller
                         _connectionsScreen.RefreshTable();
                         break;
                     case ConnectionMenuOptions.Delete:
-                        // Not validating with the others since the application can still work without it
-                        string? filterColumn = ConfigurationManager.AppSettings["FilterColumn"];
-                        if (string.IsNullOrEmpty(filterColumn))
-                        {
-                            MessageBox.Show("Configuration Error: Filter Column not set.");
-                            return;
-                        }
-
                         foreach (DataGridViewRow row in _connectionsScreen.GetSelectedRows())
                         {
                             try
                             {
-                                var colValue = row.Cells[filterColumn].Value;
+                                var colValue = row.Cells[FilterColumn].Value;
                                 string? colText = Convert.ToString(colValue);
                                 if (string.IsNullOrEmpty(colText)) {
                                     MessageBox.Show("Failed to convert Filter Column's value to string");
                                     return;
                                 }
 
-                                string deleteQuery = $"DELETE FROM [{ConnectionTableSchema}].[{ConnectionTable}] WHERE {filterColumn}={colText}";
+                                string deleteQuery = $"DELETE FROM [{ConnectionTableSchema}].[{ConnectionTable}] WHERE {FilterColumn}={colText}";
                                 mainDBConnection.ExecuteQuery(deleteQuery);
                             }
                             catch
@@ -260,7 +251,6 @@ namespace OGRIT_Database_Custom_App.Controller
                     var InstanceName = Convert.ToString(row.Cells["InstanceName"].Value);
                     var SQLAuth = Convert.ToBoolean(row.Cells["SQLAuth"].Value);
                     var username = Convert.ToString(row.Cells["Username"].Value);
-                    var password = Convert.ToString(row.Cells["Password"].Value);
 
                     if (string.IsNullOrEmpty(serverNameIP))
                     {
@@ -273,7 +263,7 @@ namespace OGRIT_Database_Custom_App.Controller
                         return;
                     }
 
-                    var cs = new ConnectionString(serverNameIP, Port, InstanceName, SQLAuth, username, password);
+                    var cs = new ConnectionString(serverNameIP, Port, InstanceName, SQLAuth, username, null, false);
                     _connectionsScreen.SetUpUpdateForm(cs, ID);
                 }
                 catch(Exception ex) 
@@ -302,11 +292,11 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if (_executeProceduresScreen == null) return;
 
-            _executeProceduresScreen.setGoToMenuOption((SubScreens currentSubScreen) => {
+            _executeProceduresScreen.SetGoToMenuOption((SubScreens currentSubScreen) => {
                 ChangeScreen(currentSubScreen, Screens.MenuScreen);
             });
 
-            _executeProceduresScreen.setFillSignal(() =>
+            _executeProceduresScreen.SetFillSignal(() =>
             {
                 string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
                 DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
@@ -317,6 +307,14 @@ namespace OGRIT_Database_Custom_App.Controller
                 dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
                 if (dataTable == null) { return; }
                 _executeProceduresScreen.SetSPsSource(dataTable);
+            });
+
+            _executeProceduresScreen.SetExecuteSignal(() =>
+            {
+                var SPList = _executeProceduresScreen.GetSelectedProcedures();
+                var CSList = _executeProceduresScreen.GetSelectedConnectionsID();
+
+                mainDBConnection.ExecuteSPsRemote(SPList, CSList);
             });
         }
     }

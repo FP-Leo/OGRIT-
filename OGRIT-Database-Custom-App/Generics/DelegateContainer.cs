@@ -12,5 +12,6 @@ namespace OGRIT_Database_Custom_App.Generics
         public delegate void FillSignal();
         public delegate void Refresher();
         public delegate void UpdateSetter();
+        public delegate void ExecuteSignal();
     }
 }

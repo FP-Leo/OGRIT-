@@ -139,6 +139,7 @@
             executeButton.Text = "Execute";
             executeButton.TextColor = Color.White;
             executeButton.UseVisualStyleBackColor = false;
+            executeButton.Click += ExecuteButton_Click;
             // 
             // epMenuTableLayout
             // 
@@ -174,7 +175,7 @@
             epMenuButton.Text = "Menu";
             epMenuButton.TextColor = Color.White;
             epMenuButton.UseVisualStyleBackColor = false;
-            epMenuButton.Click += epMenuButton_Click;
+            epMenuButton.Click += EpMenuButton_Click;
             // 
             // logoPanel
             // 
