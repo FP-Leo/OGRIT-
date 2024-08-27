@@ -8,38 +8,99 @@ using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
 namespace OGRIT_Database_Custom_App.Controller
 {
+    /// <summary>
+    /// MainController class is responsible for handling the main logic of the application, including 
+    /// initializing screens, managing screen transitions, and interacting with the database.
+    /// </summary>
     public class MainController
     {
         // Views
+        /// <summary>
+        /// The main window of the application.
+        /// </summary>
         private readonly MainWindow mainWindow;
+
+        /// <summary>
+        /// The starting screen of the application.
+        /// </summary>
         private StartingScreen? _startingScreen;
+
+        /// <summary>
+        /// The login screen of the application.
+        /// </summary>
         private LogInScreen? _logInScreen;
+
+        /// <summary>
+        /// The menu screen of the application.
+        /// </summary>
         private MenuScreen? _menuScreen;
+
         //// SubScreens
+        /// <summary>
+        /// The manage connections screen, used for handling database connections.
+        /// </summary>
         private ManageConnectionsScreen? _connectionsScreen;
+
+        /// <summary>
+        /// The procedure list screen, used for viewing stored procedures.
+        /// </summary>
         private ProcedureListScreen? _showProceduresScreen;
+
+        /// <summary>
+        /// The execute procedures screen, used for executing stored procedures.
+        /// </summary>
         private ExecuteProceduresScreen? _executeProceduresScreen;
 
         // Models
+        /// <summary>
+        /// The main database connection instance.
+        /// </summary>
         private readonly MainDatabaseConnetion mainDBConnection;
 
         // Configuration 
+        /// <summary>
+        /// The name of the table containing connection information.
+        /// </summary>
         private string? ConnectionTable;
+
+        /// <summary>
+        /// The schema of the connection table.
+        /// </summary>
         private string? ConnectionTableSchema;
+
+        /// <summary>
+        /// The name of the table containing stored procedures.
+        /// </summary>
         private string? ProcedureTable;
+
+        /// <summary>
+        /// The schema of the procedure table.
+        /// </summary>
         private string? ProcedureTableSchema;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainController"/> class.
+        /// Validates configuration settings and sets up the main database connection.
+        /// </summary>
         public MainController()
         {
             ValidateConfig();
             mainDBConnection = new MainDatabaseConnetion();
             mainWindow = new MainWindow();
         }
+
+        /// <summary>
+        /// Starts the application by displaying the starting screen and running the main window.
+        /// </summary>
         public void Run()
         {
             ChangeScreen(null, Screens.StartingScreen);
             Application.Run(mainWindow);
         }
 
+        /// <summary>
+        /// Validates the configuration settings by loading necessary table and schema names.
+        /// </summary>
         private void ValidateConfig()
         {
             ConnectionTable = StaticMethodHolder.GetConfigKey("ConnectionTable");
@@ -47,7 +108,13 @@ namespace OGRIT_Database_Custom_App.Controller
             ProcedureTable = StaticMethodHolder.GetConfigKey("ProcedureTable");
             ProcedureTableSchema = StaticMethodHolder.GetConfigKey("ProcedureTableSchema");
         }
+
         // Screen Switcher
+        /// <summary>
+        /// Changes the current screen to a new screen.
+        /// </summary>
+        /// <param name="toBeDestroyed">The screen to be destroyed before switching.</param>
+        /// <param name="toBeSet">The screen to be set after destruction.</param>
         private void ChangeScreen(Screens? toBeDestroyed, Screens toBeSet)
         {
             if (toBeDestroyed != null) {
@@ -55,11 +122,22 @@ namespace OGRIT_Database_Custom_App.Controller
             }
             SetScreen(toBeSet);
         }
+
+        /// <summary>
+        /// Changes the current sub-screen to a new screen.
+        /// </summary>
+        /// <param name="toBeDestroyed">The sub-screen to be destroyed before switching.</param>
+        /// <param name="toBeSet">The screen to be set after destruction.</param>
         private void ChangeScreen(SubScreens toBeDestroyed, Screens toBeSet)
         {
             DestroyScreen(toBeDestroyed);
             SetScreen(toBeSet);
         }
+
+        /// <summary>
+        /// Sets the specified screen as the active screen.
+        /// </summary>
+        /// <param name="toBeSet">The screen to be set.</param>
         private void SetScreen(Screens toBeSet) {
             switch (toBeSet) {
                 case Screens.StartingScreen:
@@ -82,6 +160,11 @@ namespace OGRIT_Database_Custom_App.Controller
                     break;
             }
         }
+
+        /// <summary>
+        /// Sets the specified sub-screen as the active sub-screen.
+        /// </summary>
+        /// <param name="screen">The sub-screen to be set.</param>
         private void SetScreen(SubScreens screen) {
             switch (screen) {
                 case SubScreens.ManageConnectionsScreen:
@@ -101,6 +184,11 @@ namespace OGRIT_Database_Custom_App.Controller
                     break;
             }
         }
+
+        /// <summary>
+        /// Destroys the specified screen.
+        /// </summary>
+        /// <param name="toBeDestroyed">The screen to be destroyed.</param>
         public void DestroyScreen(Screens toBeDestroyed)
         {
             switch (toBeDestroyed)
@@ -116,6 +204,11 @@ namespace OGRIT_Database_Custom_App.Controller
                     break;
             }
         }
+
+        /// <summary>
+        /// Destroys the specified sub-screen.
+        /// </summary>
+        /// <param name="toBeSet">The sub-screen to be destroyed.</param>
         public void DestroyScreen(SubScreens toBeSet)
         {
             switch (toBeSet)
@@ -131,7 +224,11 @@ namespace OGRIT_Database_Custom_App.Controller
                     break;
             }
         }
+
         // User Control Delegate Screen Changers.
+        /// <summary>
+        /// Sets the screen changer for the starting screen.
+        /// </summary>
         private void SetStartingScreenChanger()
         {
             if (_startingScreen == null)
@@ -147,6 +244,10 @@ namespace OGRIT_Database_Custom_App.Controller
                 ChangeScreen(Screens.StartingScreen, Screens.LogInScreen);
             });
         }
+
+        /// <summary>
+        /// Sets the screen changer for the login screen.
+        /// </summary>
         private void SetLogInScreenChanger()
         {
             if (_logInScreen == null)
@@ -160,6 +261,10 @@ namespace OGRIT_Database_Custom_App.Controller
                     ChangeScreen(Screens.LogInScreen, Screens.MenuScreen);
             });
         }
+
+        /// <summary>
+        /// Sets the screen changer for the menu screen.
+        /// </summary>
         private void SetMenuScreenChanger()
         {
             if (_menuScreen == null)
@@ -169,6 +274,10 @@ namespace OGRIT_Database_Custom_App.Controller
                 SetScreen(selected);
             });
         }
+
+        /// <summary>
+        /// Sets the screen changer for the manage connections screen.
+        /// </summary>
         private void SetConnectionsScreenChanger()
         {
             if(_connectionsScreen == null) return;
@@ -282,6 +391,10 @@ namespace OGRIT_Database_Custom_App.Controller
                 }
             });
         }
+
+        /// <summary>
+        /// Sets the screen changer for the procedure list screen.
+        /// </summary>
         private void SetProcedureListScreenChanger()
         {
             if (_showProceduresScreen == null) return;
@@ -298,6 +411,10 @@ namespace OGRIT_Database_Custom_App.Controller
                 _showProceduresScreen.FillDataGrid(dataTable);
             });
         }
+
+        /// <summary>
+        /// Sets the screen changer for the execution screen.
+        /// </summary>
         private void SetExecutionScreenChanger()
         {
             if (_executeProceduresScreen == null) return;
