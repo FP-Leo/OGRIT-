@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace OGRIT_Database_Custom_App
 {
+    /// <summary>
+    /// Represents a customizable textbox control with rounded corners.
+    /// </summary>
     public partial class RoundTextbox : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoundTextbox"/> class.
+        /// </summary>
         public RoundTextbox()
         {
             InitializeComponent();

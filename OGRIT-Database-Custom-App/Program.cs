@@ -2,10 +2,13 @@ using OGRIT_Database_Custom_App.Controller;
 
 namespace OGRIT_Database_Custom_App
 {
+    /// <summary>
+    /// The main entry point for the application.
+    /// </summary>
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// The main method that initializes and runs the application.
         /// </summary>
         [STAThread]
         static void Main()
