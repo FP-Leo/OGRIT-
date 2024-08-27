@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "omGiWdbjzYg=",
+  "dgSpecHash": "4tyujVNPWNo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj",
+  "projectFilePath": "C:\\Users\\Leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Leo\\.nuget\\packages\\datajuggler.core.cryptography\\1.0.11\\datajuggler.core.cryptography.1.0.11.nupkg.sha512",
     "C:\\Users\\Leo\\.nuget\\packages\\datajuggler.ultimatehelper.core\\1.1.7\\datajuggler.ultimatehelper.core.1.1.7.nupkg.sha512",

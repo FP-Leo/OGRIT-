@@ -1,9 +1,9 @@
 1. Integration on Azure DevOps for easier management ( waiting on Selman Hoca )
 Status: Waiting.
 2. Refactor code in a way that you don't constantly add new RowStyles in LogIn Screen ( takes memory to create them )
-Status: On queue.
+Status: On hold.
 3. Refactor code in a way that you can change between Starting Screen and Login Screen without passing MainWindow as parent to them ( not good practice, to solve probably need to use interfaces )
-Status: Completed.
+Status: Done.
 4. Decide on the design of the menu after login. 
 Status: Done.
 5. Implement the said design.
@@ -15,11 +15,11 @@ Status: Waiting.
 8. Add a remember me checkbox, with it a config file ( ? - must ask if needed ).
 Status: Waiting.
 9. Make screens layout more dynamic.
-Status: Waiting.
+Status: Done.
 10. Fix documentation.
 Status: Waiting.
 11. Add Manage Connection Screen. 
-Status: Ongoing.
+Status: Done.
 12. Separate Input Form from login screen for reusability.
 Status: Done.
 13. Refactor Code so that it uses MVC architecture.
@@ -27,14 +27,16 @@ Status: Done.
 14. Implement Insert Connection function.
 Status: Done.
 15. Implement Update Connection function.
-Status: Waiting.
+Status: Done.
 16. Implement Delete Connection function.
-Status: Waiting.
+Status: Done.
 17. Implement Show Procedures List screen.
-Status: Ongoing.
+Status: Done.
 18. Implement Execute Procedures screen.
 Status: Ongoing.
 19. Add Password Encryption ( + app.config file, normally it shouldn't get uploaded to GitHub since it contains the encryption key but this is a test environment ).
-Status: Completed.
+Status: Done.
+20. Add Establish Connection Button at Manage Connections.
+Status: on queue.
 
-My To Do List order ( Leo ) - 15, 11, 17, 18.
+My To Do List order ( Leo ) -  20, 18.

@@ -11,6 +11,7 @@ namespace OGRIT_Database_Custom_App
         private bool validState = true;
         private string errorMessageList = string.Empty;
         private int err = 0;
+
         public DbDataInput()
         {
             InitializeComponent();
@@ -157,8 +158,6 @@ namespace OGRIT_Database_Custom_App
             dbIFTableLayoutPanel.Controls.Add(passwordLabel, 0, 10);
             dbIFTableLayoutPanel.Controls.Add(passwordTB, 0, 11);
 
-            SetDefaultInput();
-
             // 
             // authCB
             // 
@@ -172,17 +171,18 @@ namespace OGRIT_Database_Custom_App
             authCB.BindingContext = this.BindingContext;
             authCB.Visible = true;
 
-            var cbOptions = new List<string> { "Windows Authentication", "SQL Server Authentication" };
+            string[] cbOptions = ["Windows Authentication", "SQL Server Authentication"];
             authCB.DataSource = cbOptions;
-
-            authCB.SelectedIndex = SQLAuth? 1:0;
             authCB.SelectedIndexChanged += AuthCB_SelectedIndexChanged;
+
+            SetDefaultInput();
 
             Controls.Add(dbIFTableLayoutPanel);
         }
         // To dynamically change it based on auth type.
         private void ChangeTableLayout()
         {
+            authCB.SelectedIndex = SQLAuth ? 1 : 0;
             dbIFTableLayoutPanel.RowStyles.Clear();
 
             float rowHeight = 100F / 8;
@@ -209,6 +209,8 @@ namespace OGRIT_Database_Custom_App
             usernameTB.Visible = SQLAuth;
             passwordLabel.Visible = SQLAuth;
             passwordTB.Visible = SQLAuth;
+
+            authCB.SelectedIndex = SQLAuth ? 1 : 0;
         }
         public void ResetInput()
         {
@@ -219,6 +221,7 @@ namespace OGRIT_Database_Custom_App
             passwordTB.Text = string.Empty;
 
             SQLAuth = false;
+            authCB.SelectedIndex = 0;
 
             ChangeTableLayout();
         }
@@ -240,7 +243,7 @@ namespace OGRIT_Database_Custom_App
 
             SQLAuth = false;
             usernameTB.Text = usernameTBText;
-            if (usernameTBText != null)
+            if (!string.IsNullOrEmpty(usernameTBText))
             {
                 SQLAuth = true;
             }
