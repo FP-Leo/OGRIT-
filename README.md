@@ -1,6 +1,6 @@
 ## OGRIT-Database-Project
 
-![logo](https://raw.githubusercontent.com/FP-Leo/OGRIT-Uygulama-Projesi/main/OGRIT-Database-Custom-App/Resources/OGRIT%20Logo.png?token=GHSAT0AAAAAACVEJQXBRS5MSLDP2VMWOAGKZWO4BMQ)
+![logo](https://www.ogrit.net/sites/default/files/2024-03/logo%20%281%29.png)
 
 #### This app created to perform basic database transactions
 
