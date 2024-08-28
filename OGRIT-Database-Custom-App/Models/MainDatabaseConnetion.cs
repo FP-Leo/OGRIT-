@@ -9,20 +9,7 @@ namespace OGRIT_Database_Custom_App.Models
     {
         private readonly List<RemoteDatabaseConnection> establishedConnections = [];
         // Configuration 
-        private readonly string _ConnectionTable;
-        private readonly string _ConnectionTableSchema;
-        //private readonly string _ProcedureTable;
-        //private readonly string _ProcedureTableSchema;
-        private readonly string _FilterColumn;
 
-        public MainDatabaseConnetion(string ConnectionTable, string ConnectionTableSchema, string FilterColumn)
-        {
-            _ConnectionTable = ConnectionTable;
-            _ConnectionTableSchema = ConnectionTableSchema;
-            // _ProcedureTable = ProcedureTable;
-            // _ProcedureTableSchema = ProcedureTableSchema;
-            _FilterColumn = FilterColumn;
-        }
         public DataTable? ExecuteSelectQueryAndGetResult(string query)
         {
             if (Connection == null)

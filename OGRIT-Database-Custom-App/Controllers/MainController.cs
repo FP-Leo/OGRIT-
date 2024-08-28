@@ -38,7 +38,7 @@ namespace OGRIT_Database_Custom_App.Controller
             ProcedureTableSchema = StaticMethodHolder.GetConfigKey("ProcedureTableSchema");
             FilterColumn = StaticMethodHolder.GetConfigKey("FilterColumn");
 
-            mainDBConnection = new MainDatabaseConnetion(ConnectionTable, ConnectionTableSchema, FilterColumn);
+            mainDBConnection = new MainDatabaseConnetion();
             mainWindow = new MainWindow();
         }
         public void Run()

@@ -91,29 +91,8 @@ namespace OGRIT_Database_Custom_App.Model
             string connectionString = $"Data Source={cs.GetServerNameIP()},{cs.GetPort()};Initial Catalog={cs.GetInstanceName()};";
             if (cs.IsSQLAuth())
             {
-                /*
-                var encryptionKey = ConfigurationManager.AppSettings["encryptionKey"];
-                if (string.IsNullOrEmpty(encryptionKey))
-                {
-                    MessageBox.Show("Encryption key is missing or empty.");
-                    return null;
-                }
-
-                MessageBox.Show(encryptionKey);
-
-                var encryptedPassword = cs.GetPassword();
-                if (string.IsNullOrEmpty(encryptedPassword))
-                {
-                    MessageBox.Show("Encrypted password is missing or empty.");
-                    return null;
-                }
-
-                MessageBox.Show(encryptedPassword);
-                */
-
                 var decryptedPassword = CryptographyHelper.DecryptString(cs.GetPassword(), ConfigurationManager.AppSettings["encryptionKey"]);
                 connectionString += $"User ID={cs.GetUsername()};Password={decryptedPassword};";
-                //MessageBox.Show("Connection String: " + connectionString);
             }
             else
             {
