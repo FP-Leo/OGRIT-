@@ -63,9 +63,9 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         {
             _executeSignal?.Invoke();
         }
-        public List<string> GetSelectedProcedures()
+        public List<DataRowView> GetSelectedProcedures()
         {
-            List<string> selectedProcedures = [];
+            List<DataRowView> selectedProcedures = [];
 
             foreach(int i in epSPsListBox.SelectedIndices)
             {
@@ -74,32 +74,25 @@ namespace OGRIT_Database_Custom_App.Views.Screens
                 if (dataRow == null)
                     continue;
 
-                string? procedureName = dataRow["ProcedureName"] as string;
-                if (procedureName == null)
-                    continue;
-                selectedProcedures.Add(procedureName);
+                selectedProcedures.Add(dataRow);
             }
 
             return selectedProcedures;
         }
-        public List<int> GetSelectedConnectionsID()
+        public List<DataRowView> GetSelectedConnectionsID()
         {
-            List<int> selectedConnectionsId= [];
+            List<DataRowView> selectedConnections= [];
 
             foreach (int i in epCSsListBox.SelectedIndices)
             {
                 var dataRow = epCSsListBox.Items[i] as DataRowView;
                 if (dataRow == null)
                     continue;
-
-                int? connectionID = dataRow["ID"] as int?;
-
-                if (connectionID == null) continue;
                     
-                selectedConnectionsId.Add((int)connectionID);
+                selectedConnections.Add(dataRow);
             }
 
-            return selectedConnectionsId;
+            return selectedConnections;
         }
     }
 }

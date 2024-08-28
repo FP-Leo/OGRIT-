@@ -7,7 +7,8 @@ CREATE TABLE [dbo].[ServerProcedures](
 	[StoredAtDatabase] [nvarchar](128) NOT NULL DEFAULT 'OGRIT-DB',
 	[UsesSchema] [nvarchar](128) DEFAULT 'dbo',
 	[NumberOfParameters] [int] NOT NULL DEFAULT 0,
-	[ParameterDescription] [nvarchar](256) NULL DEFAULT NULL
+	[ParameterDescription] [nvarchar](256) NULL DEFAULT NULL,
+	[OnReturnExecute] [nvarchar](128) NULL DEFAULT NULL,
 )
 
 

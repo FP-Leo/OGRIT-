@@ -46,8 +46,12 @@ namespace OGRIT_Database_Custom_App.Model
                 Connection.Close();
             }
         }
-
-        public static void ExecuteCommand(SqlCommand command)
+        public void ExecuteQuery(string query)
+        {
+            var command = new SqlCommand(query, Connection);
+            ExecuteCommandNonQuery(command);
+        }
+        public static void ExecuteCommandNonQuery(SqlCommand command)
         {
             try
             { 
@@ -58,11 +62,27 @@ namespace OGRIT_Database_Custom_App.Model
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
-
-        public void ExecuteQuery(string query)
+        public SqlDataReader? ExecuteQueryDbDataReader(string query)
         {
             var command = new SqlCommand(query, Connection);
-            ExecuteCommand(command);
+            return ExecuteDbDataReaderCommand(command);
+        }
+
+        public static SqlDataReader? ExecuteDbDataReaderCommand(SqlCommand command)
+        {
+            try
+            {
+                SqlDataReader? result = command.ExecuteReader();
+
+                return result;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+
+            return null;
         }
         private string? FormatConnectionString()
         {
