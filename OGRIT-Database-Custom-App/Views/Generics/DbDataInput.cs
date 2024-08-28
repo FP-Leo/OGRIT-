@@ -43,6 +43,7 @@ namespace OGRIT_Database_Custom_App
             InitializeInputComponent();
         }
 
+        // Event to change Log In Screen Layout.
         /// <summary>
         /// Handles the event when the selected authentication type is changed.
         /// Updates the UI to reflect the selected authentication type.
@@ -57,9 +58,13 @@ namespace OGRIT_Database_Custom_App
                 return;
 
             SQLAuth = !SQLAuth;
+            // Remove Username Password Label/TB by making row height% = 0 if SQLAuth == false else show
             ChangeTableLayout();
         }
 
+        // 
+        // To show errors properly
+        //
         /// <summary>
         /// Adds an error message to the error list and updates the validity state.
         /// </summary>
@@ -70,6 +75,9 @@ namespace OGRIT_Database_Custom_App
             validState = false;
         }
 
+        //
+        // To validate connection string input, it doesnt use logic just stops empty fields.s
+        //
         /// <summary>
         /// Validates the user input and creates a <see cref="ConnectionString"/> object if the input is valid.
         /// </summary>
@@ -117,6 +125,7 @@ namespace OGRIT_Database_Custom_App
             return connectionString;
         }
 
+        // To avoid code repetitions.
         /// <summary>
         /// Creates a customized label with the specified properties.
         /// </summary>
@@ -158,6 +167,7 @@ namespace OGRIT_Database_Custom_App
             };
         }
 
+        // To draw the user control
         /// <summary>
         /// Initializes the input components of the user control.
         /// </summary>
@@ -254,6 +264,7 @@ namespace OGRIT_Database_Custom_App
                 dbIFTableLayoutPanel.RowStyles.Add(new RowStyle(st, specialRowHeight));
             }
 
+            // If SQLAuth == true these need to be shown.
             usernameLabel.Visible = SQLAuth;
             usernameTB.Visible = SQLAuth;
             passwordLabel.Visible = SQLAuth;

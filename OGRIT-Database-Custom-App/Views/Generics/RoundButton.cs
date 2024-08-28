@@ -13,6 +13,7 @@ namespace OGRIT_Database_Custom_App.Views.Generics
         private int borderRadius = 7;
         private Color borderColor = Color.PaleVioletRed;
 
+        //Constructor
         /// <summary>
         /// Initializes a new instance of the <see cref="RoundButton"/> class.
         /// </summary>
@@ -35,6 +36,7 @@ namespace OGRIT_Database_Custom_App.Views.Generics
                 borderRadius = Height;
         }
 
+        //Properties
         /// <summary>
         /// Gets or sets the size of the border.
         /// </summary>
@@ -97,6 +99,7 @@ namespace OGRIT_Database_Custom_App.Views.Generics
             set { ForeColor = value; }
         }
 
+        //Methods
         /// <summary>
         /// Creates a rounded rectangle path based on the specified rectangle and radius.
         /// </summary>

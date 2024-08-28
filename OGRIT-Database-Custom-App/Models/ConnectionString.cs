@@ -35,9 +35,11 @@ namespace OGRIT_Database_Custom_App.Models
             if (SQLAuth)
             {
                 _username = username;
+                // The way the code is written it should never be null nor empty (we do the validation on the input form), but you never know.
                 // The password is encrypted if provided and SQL authentication is used.
                 if (String.IsNullOrEmpty(password))
                     return;
+                // Upon getting the password, encrypt it.
                 // Encrypt the password using the encryption key from configuration.
                 _password = CryptographyHelper.EncryptString(password, ConfigurationManager.AppSettings["encryptionKey"]);
                 encrypted = true;
