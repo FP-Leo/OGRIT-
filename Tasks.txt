@@ -17,7 +17,7 @@ Status: Waiting.
 9. Make screens layout more dynamic.
 Status: Done.
 10. Fix documentation.
-Status: Waiting.
+Status: Done.
 11. Add Manage Connection Screen. 
 Status: Done.
 12. Separate Input Form from login screen for reusability.
@@ -39,4 +39,4 @@ Status: Done.
 20. Add Establish Connection Button at Manage Connections.
 Status: Canceled. Reason - connection is established once when a SP gets executed to a server's database and it remains open for the rest of that session. Note: should discuss if a Establish Connection & Disconnect Option is needed.
 
-My To Do List order ( Leo ) -  20, 18.
+My To Do List order ( Leo ) - 7, 8.
