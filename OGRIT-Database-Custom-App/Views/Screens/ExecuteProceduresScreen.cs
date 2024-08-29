@@ -18,7 +18,10 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         /// Delegate to signal filling the screen with data.
         /// </summary>
         private FillSignal? _fillSignal;
-        
+
+        /// <summary>
+        /// Delegate to signal selected queries execution on the selected databases.
+        /// </summary>
         private ExecuteSignal? _executeSignal;
         
         /// <summary>
@@ -46,7 +49,10 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         {
             _fillSignal = fillSignal;
         }
-
+        /// <summary>
+        /// Sets the delegate to signal selected query execution
+        /// </summary>
+        /// <param name="executeSignal">The delegate that signals the selected query execution.</param>
         public void SetExecuteSignal(ExecuteSignal executeSignal)
         {
             _executeSignal = executeSignal;
@@ -80,6 +86,7 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         {
             if (!source.Columns.Contains("DisplayColumn"))
             {
+                // Create new Computed Column for better understanding of which Connection represents which Database.
                 source.Columns.Add("DisplayColumn", typeof(string));
                 foreach(DataRow row in source.Rows)
                 {
@@ -104,6 +111,13 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         {
             _executeSignal?.Invoke();
         }
+        /// <summary>
+        /// Retrieves the selected stored procedures from the `epSPsListBox`.
+        /// This method iterates over the selected indices of the `epSPsListBox` and returns a list of the corresponding `DataRowView` objects,
+        /// which represent the stored procedures selected by the user.
+        /// Used when the Execution Signal is fired.
+        /// </summary>
+        /// <returns>A <see cref="List{T}"/> of <see cref="DataRowView"/> objects representing the selected stored procedures.</returns>
         public List<DataRowView> GetSelectedProcedures()
         {
             List<DataRowView> selectedProcedures = [];
@@ -120,6 +134,13 @@ namespace OGRIT_Database_Custom_App.Views.Screens
 
             return selectedProcedures;
         }
+        /// <summary>
+        /// Retrieves the selected connections from the `epCSsListBox`.
+        /// This method iterates over the selected indices of the `epCSsListBox` and returns a list of the corresponding `DataRowView` objects,
+        /// which represent the connections selected by the user.
+        /// Used when the Execution Signal is fired.
+        /// </summary>
+        /// <returns>A <see cref="List{T}"/> of <see cref="DataRowView"/> objects representing the selected connections.</returns>
         public List<DataRowView> GetSelectedConnectionsID()
         {
             List<DataRowView> selectedConnections= [];

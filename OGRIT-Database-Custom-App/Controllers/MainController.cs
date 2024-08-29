@@ -79,7 +79,21 @@ namespace OGRIT_Database_Custom_App.Controller
         /// </summary>
         private readonly string ProcedureTableSchema;
 
-        private readonly string FilterColumn;
+        /// <summary>
+        /// Name of the column that's used to retrieve data from Connection Table.
+        /// </summary>
+        private readonly string ConnectionFilterColumn;
+
+        /// <summary>
+        /// Name of the column that's used to retrieve data from Procedure Table.
+        /// </summary>
+        private readonly string ProcedureFilterColumn;
+
+        /// <summary>
+        /// Name of the column that's holds the stored procedure to retrieve data from already executed queries.
+        /// </summary>
+        private readonly string DataRetrivealColumn;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainController"/> class.
         /// Validates configuration settings and sets up the main database connection.
@@ -91,9 +105,11 @@ namespace OGRIT_Database_Custom_App.Controller
             ConnectionTableSchema = StaticMethodHolder.GetConfigKey("ConnectionTableSchema");
             ProcedureTable = StaticMethodHolder.GetConfigKey("ProcedureTable");
             ProcedureTableSchema = StaticMethodHolder.GetConfigKey("ProcedureTableSchema");
-            FilterColumn = StaticMethodHolder.GetConfigKey("FilterColumn");
+            ConnectionFilterColumn = StaticMethodHolder.GetConfigKey("ConnectionFilterColumn");
+            ProcedureFilterColumn = StaticMethodHolder.GetConfigKey("ProcedureFilterColumn");
+            DataRetrivealColumn = StaticMethodHolder.GetConfigKey("DataRetrivealColumn");
 
-            mainDBConnection = new MainDatabaseConnection();
+            mainDBConnection = new MainDatabaseConnection(ConnectionFilterColumn, ProcedureFilterColumn, DataRetrivealColumn);
             mainWindow = new MainWindow();
         }
 
@@ -121,14 +137,13 @@ namespace OGRIT_Database_Custom_App.Controller
         }
 
         /// <summary>
-        /// Changes the current sub-screen to a new screen.
+        /// Changes the current sub-screen to a new screen. It will always change back to the Menu Screen.
         /// </summary>
         /// <param name="toBeDestroyed">The sub-screen to be destroyed before switching.</param>
-        /// <param name="toBeSet">The screen to be set after destruction.</param>
-        private void ChangeScreen(SubScreens toBeDestroyed, Screens toBeSet)
+        private void ChangeScreen(SubScreens toBeDestroyed)
         {
             DestroyScreen(toBeDestroyed);
-            SetScreen(toBeSet);
+            SetScreen(Screens.MenuScreen);
         }
 
         /// <summary>
@@ -279,56 +294,69 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if(_connectionsScreen == null) return;
 
+            // On Execution perform the necessary action based on options.
             _connectionsScreen.SetChanger((ConnectionMenuOptions option) =>
             {
                 switch (option)
                 {
                     case ConnectionMenuOptions.ShowConnections:
-                        // Get all the Available Connections on Load.
+                        // Get all the Available Connections on Load/Refresh.
                         string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
                         DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
                         if(dataTable == null) { return; }
+                        // Pass the fetched data to the screen.
                         _connectionsScreen.FillDataGrid(dataTable);
                         break;
                     case ConnectionMenuOptions.Insert:
-                        var submittedCS = _connectionsScreen.GetInputedConnectionString();
+                        // Get submited data from the Insert Form.
+                        ConnectionString? submittedCS = _connectionsScreen.GetInputedConnectionString();
                         
                         if(submittedCS == null) { return; }
 
+                        // Set the query
                         string insertQuery = $"INSERT INTO [{ConnectionTableSchema}].[{ConnectionTable}] VALUES ( @var1, @var2, @var3, @var4, @var5, @var6 )";
 
+                        // Perform the insert
                         mainDBConnection.AddParamAndExecuteCommand(insertQuery, submittedCS);
 
+                        // Refresh the data.
                         _connectionsScreen.RefreshTable();
                         break;
                     case ConnectionMenuOptions.Update:
+                        // Get the ID of the connection that's going to get updated
                         int? id = _connectionsScreen.GetUpdateIndex();
                         if (id == null) return;
 
+                        // Get the new data
                         var updatedCS = _connectionsScreen.GetInputedConnectionString();
 
                         if (updatedCS == null) { return; }
 
+                        // Set up the update query
                         string updateQuery = $"UPDATE [{ConnectionTableSchema}].[{ConnectionTable}]  SET ServerIPorName=@var1, Port=@var2, InstanceName=@var3, SQLAuth=@var4, UserName=@var5, Password=@var6 WHERE ID={id}";
 
+                        // Execute the update query
                         mainDBConnection.AddParamAndExecuteCommand(updateQuery, updatedCS);
 
+                        // Refresh Data Grid.
                         _connectionsScreen.ResetUpdateIndex();
                         _connectionsScreen.RefreshTable();
                         break;
                     case ConnectionMenuOptions.Delete:
+                        // Allow multiple deletions at the same time, loop through the selected.
                         foreach (DataGridViewRow row in _connectionsScreen.GetSelectedRows())
                         {
                             try
                             {
-                                var colValue = row.Cells[FilterColumn].Value;
+                                // Get the value that uniquely identifies the row.
+                                var colValue = row.Cells[ConnectionFilterColumn].Value;
                                 string? colText = Convert.ToString(colValue);
                                 if (string.IsNullOrEmpty(colText)) {
                                     MessageBox.Show("Failed to convert Filter Column's value to string");
                                     return;
                                 }
-
-                                string deleteQuery = $"DELETE FROM [{ConnectionTableSchema}].[{ConnectionTable}] WHERE {FilterColumn}={colText}";
+                                // Set the delete query and execute it.
+                                string deleteQuery = $"DELETE FROM [{ConnectionTableSchema}].[{ConnectionTable}] WHERE {ConnectionFilterColumn}={colText}";
                                 mainDBConnection.ExecuteQuery(deleteQuery);
                             }
                             catch
@@ -337,18 +365,19 @@ namespace OGRIT_Database_Custom_App.Controller
                                 return;
                             }
                         }
+                        // Refresh the Data Grid
                         _connectionsScreen.RefreshTable();
                         break;
                 }
             });
 
-            _connectionsScreen.SetGoToMenuOption((SubScreens currentSubScreen) => {
-                ChangeScreen(currentSubScreen, Screens.MenuScreen);
-            });
+            // On execution destroy the ManageConnectionScreen, switch to Menu Screen.
+            _connectionsScreen.SetGoToMenuOption(ChangeScreen);
 
+            // Executed when Update Button is clicked. Get data of selected row to put it on the Update Form.
             _connectionsScreen.SetUpdater(() => {
                 // Already forced it to only be one row in ManageConnectionsScreen.
-                var row = _connectionsScreen.GetSelectedRows()[0];
+                DataGridViewRow row = _connectionsScreen.GetSelectedRows()[0];
 
                 try
                 {
@@ -371,6 +400,8 @@ namespace OGRIT_Database_Custom_App.Controller
                     }
 
                     var cs = new ConnectionString(serverNameIP, Port, InstanceName, SQLAuth, username, null, false);
+
+                    // Pass the data to the Update Form
                     _connectionsScreen.SetUpUpdateForm(cs, ID);
                 }
                 catch(Exception ex) 
@@ -387,10 +418,10 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if (_showProceduresScreen == null) return;
 
-            _showProceduresScreen.SetGoToMenuOption((SubScreens currentSubScreen) => {
-                ChangeScreen(currentSubScreen, Screens.MenuScreen);
-            });
+            // On execution destroy the ProcedureListScreen, switch to Menu Screen.
+            _showProceduresScreen.SetGoToMenuOption(ChangeScreen);
 
+            // On execution fill the Data Grid with Procedure List.
             _showProceduresScreen.SetRefresher(() =>
             {
                 string selectQuery = $"SELECT * FROM [{ProcedureTableSchema}].[{ProcedureTable}]";
@@ -407,9 +438,7 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if (_executeProceduresScreen == null) return;
 
-            _executeProceduresScreen.SetGoToMenuOption((SubScreens currentSubScreen) => {
-                ChangeScreen(currentSubScreen, Screens.MenuScreen);
-            });
+            _executeProceduresScreen.SetGoToMenuOption(ChangeScreen);
 
             _executeProceduresScreen.SetFillSignal(() =>
             {
