@@ -21,11 +21,6 @@ namespace OGRIT_Database_Custom_App
             InitializeComponent();
         }
 
-        //
-        // Events
-        //
-
-        // Event to validate DB connection.
         /// <summary>
         /// Handles the click event for the login button, validating the database connection.
         /// </summary>
@@ -42,10 +37,6 @@ namespace OGRIT_Database_Custom_App
 
             _changer?.Invoke(connectionString);
         }
-
-        //
-        // Set Screen Changer
-        //
 
         /// <summary>
         /// Sets the delegate to change the screen after successful login.

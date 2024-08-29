@@ -13,22 +13,27 @@ namespace OGRIT_Database_Custom_App
         /// <summary>
         /// Delegate to change the screen based on user actions.
         /// </summary>
-        private ConnectionScreenChanger? _changer;
+        private ConnectionScreenMenuSignal? _connectionScreenMenuSignal;
 
         /// <summary>
         /// Delegate to change to a different menu screen.
         /// </summary>
-        private MenuScreenChanger? _goToMenu;
+        private MenuScreenChanger? _goToMenuSignal;
 
         /// <summary>
         /// Delegate for updating connection information.
         /// </summary>
-        private UpdateSetter? _updater;
+        private UpdateFormSignal? _updateFormSignal;
 
         /// <summary>
         /// Index of the connection to be updated.
         /// </summary>
         private int? _updateIndex;
+
+        /// <summary>
+        /// Delegate to refresh the data displayed on the screen.
+        /// </summary>
+        private Refresher? _refresher;
 
         /// <summary>
         /// Form used for inserting or updating connection information.
@@ -54,7 +59,7 @@ namespace OGRIT_Database_Custom_App
         /// </summary>
         public void RefreshTable()
         {
-            _changer?.Invoke(ConnectionMenuOptions.ShowConnections);
+            _refresher?.Invoke();
         }
 
         /// <summary>
@@ -80,38 +85,47 @@ namespace OGRIT_Database_Custom_App
         /// <summary>
         /// Sets the delegate to change the connection screen.
         /// </summary>
-        /// <param name="changer">The delegate to change the screen.</param>
-        public void SetChanger(ConnectionScreenChanger changer)
+        /// <param name="connectionScreenMenuSignal">The delegate to change the screen.</param>
+        public void SetConnectionScreenMenuSignal(ConnectionScreenMenuSignal connectionScreenMenuSignal)
         {
-            _changer = changer;
+            _connectionScreenMenuSignal = connectionScreenMenuSignal;
         }
 
         /// <summary>
         /// Sets the delegate to navigate to a different menu screen.
         /// </summary>
-        /// <param name="goToMenu">The delegate to navigate to the menu screen.</param>
-        public void SetGoToMenuOption(MenuScreenChanger goToMenu)
+        /// <param name="goToMenuSignal">The delegate to navigate to the menu screen.</param>
+        public void SetGoToMenuSignal(MenuScreenChanger goToMenuSignal)
         {
-            _goToMenu = goToMenu;
+            _goToMenuSignal = goToMenuSignal;
         }
 
         /// <summary>
-        /// Sets the delegate to update connection information.
+        /// Sets the delegate to retrieve selected connection string information for update.
         /// </summary>
-        /// <param name="updater">The delegate for updating connection information.</param>
-        public void SetUpdater(UpdateSetter updater)
+        /// <param name="updateFormSignal">The delegate for updating connection information.</param>
+        public void SetUpdater(UpdateFormSignal updateFormSignal)
         {
-            _updater = updater;
+            _updateFormSignal = updateFormSignal;
         }
 
         /// <summary>
-        /// Handles the click event for the menu button, navigating to the manage connections screen.
+        /// Sets the delegate for refreshing the data on the screen.
+        /// </summary>
+        /// <param name="refresher">The delegate to refresh the data.</param>
+        public void SetRefresher(Refresher? refresher)
+        {
+            _refresher = refresher;
+        }
+
+        /// <summary>
+        /// Handles the click event for the menu button, navigating to the Menu Screen.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The event data.</param>
         private void McMenuButton_Click(object sender, EventArgs e)
         {
-            _goToMenu?.Invoke(SubScreens.ManageConnectionsScreen);
+            _goToMenuSignal?.Invoke(SubScreens.ManageConnectionsScreen);
         }
 
         /// <summary>
@@ -145,19 +159,22 @@ namespace OGRIT_Database_Custom_App
                 MessageBox.Show("Please update one at a time!");
                 return;
             }
-            _updater?.Invoke();
+            _updateFormSignal?.Invoke();
         }
 
         /// <summary>
         /// Retrieves the connection string from the input form based on the specified option.
         /// </summary>
-        /// <param name="option">The operation to perform (Insert, Update, etc.).</param>
+        /// <param name="option">The operation to perform (Insert, Update).</param>
         private void GetConnectionStringFromForm(ConnectionMenuOptions option)
         {
+            if (option != ConnectionMenuOptions.Insert && option != ConnectionMenuOptions.Update)
+                return;
+
             if (_insertUpdateForm.DialogResult == DialogResult.OK)
             {
                 inputedConnectionString = _insertUpdateForm.GetConnectionString();
-                _changer?.Invoke(option);
+                _connectionScreenMenuSignal?.Invoke(option);
             }
         }
 
@@ -183,7 +200,7 @@ namespace OGRIT_Database_Custom_App
                 return;
             }
 
-            _changer?.Invoke(ConnectionMenuOptions.Delete);
+            _connectionScreenMenuSignal?.Invoke(ConnectionMenuOptions.Delete);
         }
 
         /// <summary>
@@ -195,7 +212,6 @@ namespace OGRIT_Database_Custom_App
             return mcDataGrid.SelectedRows;
         }
 
-        // This isn't very clean, will probably change in the future. It was done to avoid using logic on a view
         /// <summary>
         /// Sets up the update form with the provided connection string and update index.
         /// </summary>

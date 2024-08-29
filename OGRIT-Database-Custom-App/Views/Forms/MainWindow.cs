@@ -14,11 +14,6 @@ namespace OGRIT_Database_Custom_App
         private UserControl? _screen;
 
         /// <summary>
-        /// A flag indicating whether a screen is currently set and displayed.
-        /// </summary>
-        private bool screenSet = false;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
         public MainWindow()
@@ -44,7 +39,6 @@ namespace OGRIT_Database_Custom_App
         {
             if (_screen != null)
             {
-                screenSet = true;
                 Controls.Add(_screen);
             }
         }
@@ -54,11 +48,10 @@ namespace OGRIT_Database_Custom_App
         /// </summary>
         private void ResetScreen()
         {
-            if (_screen != null && screenSet)
+            if (_screen != null)
             {
                 Controls.Remove(_screen);
                 _screen = null;
-                screenSet = false;
             }
         }
     }

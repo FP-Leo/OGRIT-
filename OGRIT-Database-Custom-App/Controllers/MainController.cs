@@ -281,10 +281,7 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             if (_menuScreen == null)
                 return;
-            _menuScreen.SetChanger((SubScreens selected) =>
-            {
-                SetScreen(selected);
-            });
+            _menuScreen.SetChanger(SetScreen);
         }
 
         /// <summary>
@@ -295,18 +292,10 @@ namespace OGRIT_Database_Custom_App.Controller
             if(_connectionsScreen == null) return;
 
             // On Execution perform the necessary action based on options.
-            _connectionsScreen.SetChanger((ConnectionMenuOptions option) =>
+            _connectionsScreen.SetConnectionScreenMenuSignal((ConnectionMenuOptions option) =>
             {
                 switch (option)
                 {
-                    case ConnectionMenuOptions.ShowConnections:
-                        // Get all the Available Connections on Load/Refresh.
-                        string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
-                        DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
-                        if(dataTable == null) { return; }
-                        // Pass the fetched data to the screen.
-                        _connectionsScreen.FillDataGrid(dataTable);
-                        break;
                     case ConnectionMenuOptions.Insert:
                         // Get submited data from the Insert Form.
                         ConnectionString? submittedCS = _connectionsScreen.GetInputedConnectionString();
@@ -372,7 +361,17 @@ namespace OGRIT_Database_Custom_App.Controller
             });
 
             // On execution destroy the ManageConnectionScreen, switch to Menu Screen.
-            _connectionsScreen.SetGoToMenuOption(ChangeScreen);
+            _connectionsScreen.SetGoToMenuSignal(ChangeScreen);
+
+            _connectionsScreen.SetRefresher(() =>
+            {
+                // Get all the Available Connections on Load/Refresh.
+                string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
+                DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
+                if (dataTable == null) { return; }
+                // Pass the fetched data to the screen.
+                _connectionsScreen.FillDataGrid(dataTable);
+            });
 
             // Executed when Update Button is clicked. Get data of selected row to put it on the Update Form.
             _connectionsScreen.SetUpdater(() => {
@@ -437,9 +436,10 @@ namespace OGRIT_Database_Custom_App.Controller
         private void SetExecutionScreenChanger()
         {
             if (_executeProceduresScreen == null) return;
+            // On execution destroy the ExecuteProcedureScreen, switch to Menu Screen.
+            _executeProceduresScreen.SetGoToMenuSignal(ChangeScreen);
 
-            _executeProceduresScreen.SetGoToMenuOption(ChangeScreen);
-
+            // On Load Fill the ListBoxes' With data
             _executeProceduresScreen.SetFillSignal(() =>
             {
                 string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
@@ -453,6 +453,7 @@ namespace OGRIT_Database_Custom_App.Controller
                 _executeProceduresScreen.SetSPsSource(dataTable);
             });
 
+            // On execution get the selected Procedures and Connections
             _executeProceduresScreen.SetExecuteSignal(() =>
             {
                 var SPList = _executeProceduresScreen.GetSelectedProcedures();

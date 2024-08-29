@@ -12,7 +12,7 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         /// <summary>
         /// Delegate to navigate to the menu screen.
         /// </summary>
-        private MenuScreenChanger? _goToMenu;
+        private MenuScreenChanger? _goToMenuSignal;
 
         /// <summary>
         /// Delegate to signal filling the screen with data.
@@ -35,10 +35,10 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         /// <summary>
         /// Sets the delegate to navigate to the menu screen.
         /// </summary>
-        /// <param name="goToMenu">The delegate that navigates to the menu screen.</param>
-        public void SetGoToMenuOption(MenuScreenChanger goToMenu)
+        /// <param name="goToMenuSignal">The delegate that navigates to the menu screen.</param>
+        public void SetGoToMenuSignal(MenuScreenChanger goToMenuSignal)
         {
-            _goToMenu = goToMenu;
+            _goToMenuSignal = goToMenuSignal;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         /// <param name="e">The event data.</param>
         private void EpMenuButton_Click(object sender, EventArgs e)
         {
-            _goToMenu?.Invoke(SubScreens.ViewProceduresScreen);
+            _goToMenuSignal?.Invoke(SubScreens.ViewProceduresScreen);
         }
 
         /// <summary>

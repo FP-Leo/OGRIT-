@@ -15,9 +15,9 @@ namespace OGRIT_Database_Custom_App.Generics
         public delegate void ScreenChanger();
 
         /// <summary>
-        /// Delegate for changing the menu screen to a selected sub-screen.
+        /// Delegate for changing the menu screen to a selected sub-screen and vise versa.
         /// </summary>
-        /// <param name="selected">The selected sub-screen to switch to.</param>
+        /// <param name="selected">The selected sub-screen to switch to or to switch from.</param>
         public delegate void MenuScreenChanger(SubScreens selected);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace OGRIT_Database_Custom_App.Generics
         /// Delegate for handling connection screen operations based on the selected menu option.
         /// </summary>
         /// <param name="selected">The selected connection menu option.</param>
-        public delegate void ConnectionScreenChanger(ConnectionMenuOptions selected);
+        public delegate void ConnectionScreenMenuSignal(ConnectionMenuOptions selected);
 
         /// <summary>
         /// Delegate for signaling that a data grid or similar UI element needs to be filled.
@@ -45,7 +45,10 @@ namespace OGRIT_Database_Custom_App.Generics
         /// <summary>
         /// Delegate for setting updates in a UI or model component.
         /// </summary>
-        public delegate void UpdateSetter();
+        public delegate void UpdateFormSignal();
+        /// <summary>
+        /// Delegate for sending a signal to execute an action
+        /// </summary>
         public delegate void ExecuteSignal();
     }
 }

@@ -1,11 +1,12 @@
 ﻿using OGRIT_Database_Custom_App.Model;
 using System.Data.SqlClient;
 using System.Data;
+using System.Text;
 
 namespace OGRIT_Database_Custom_App.Models
 {
     /// <summary>
-    /// Represents a database connection with additional functionalities for executing queries and commands.
+    /// Represents a database connection with additional functionalities designed for the Main Database which will hold the Connection and Procedure Table.
     /// </summary>
     public class MainDatabaseConnection(string ConnectionFilter, string ProcedureFilter, string DataRetrivealColumn) : DatabaseConnection
     {
@@ -48,6 +49,7 @@ namespace OGRIT_Database_Custom_App.Models
 
         /// <summary>
         /// Adds parameters to the SQL command and executes it using the provided connection string.
+        /// Used for inserting/updating into Connection Table. Needs refactoring becuase of all the 'hard coding'.
         /// </summary>
         /// <param name="query">The SQL query to execute with parameters.</param>
         /// <param name="connectionString">The <see cref="ConnectionString"/> object containing the parameters to add.</param>
@@ -77,6 +79,7 @@ namespace OGRIT_Database_Custom_App.Models
 
             ExecuteCommandNonQuery(command);
         }
+        
         /// <summary>
         /// Gets the query that needs to be executed on the remote server from the selected procedure.
         /// </summary>
@@ -100,6 +103,7 @@ namespace OGRIT_Database_Custom_App.Models
                 return null;
             }
         }
+        
         /// <summary>
         /// Executes the selected queries on the selected remote databases. 
         /// The method retrieves the inner query from each specified Stored Procedure (SP) 
@@ -117,9 +121,9 @@ namespace OGRIT_Database_Custom_App.Models
                 return;
 
             // For error Reporting
-            string FailedQuery = "( Note:: Please check how the format of SPs should be )\n\rFailed Retriveal of Queries from the following SPs:\n\r";
-            string FailedConnection = "Failed to establish connection to the following Databases:\n\r";
-            string FailedConversion = "Failed to convert data to a connection string:\n\r";
+            var failedQueryBuilder = new StringBuilder("( Note:: Please check how the format of SPs should be )\n\rFailed Retriveal of Queries from the following SPs:\n\r"); 
+            var FailedConnectionBuilder = new StringBuilder("Failed to establish connection to the following Databases:\n\r");
+            var FailedConversionBuilder = new StringBuilder("Failed to convert data to a connection string:\n\r");
             bool queryFailed = false;
             bool connectionFailed = false;
             bool conversionFailed = false;
@@ -133,7 +137,7 @@ namespace OGRIT_Database_Custom_App.Models
                 // Get every SPs inner query
                 string? SPsInnerQuery = GetSPQuery(procedureName);
                 if (SPsInnerQuery == null){
-                    FailedQuery += $"{procedureName}\n\r";
+                    failedQueryBuilder.Append($"{procedureName}\n\r");
                     queryFailed = true;
                     continue;
                 }
@@ -145,13 +149,13 @@ namespace OGRIT_Database_Custom_App.Models
                     if (connectionId == null) continue;
 
                     // Check if there's an established connection, if not try to establish it.
-                    int? eci = EstablishedConnectionIndex((int)connectionId);
+                    int eci = establishedConnections.FindIndex(c => c.GetDatabasesConnectionStringId() == connectionId);
 
-                    if (eci == null) {
-                        ConnectionString? tempCS = RowToConnectionStringMapper(connection);
+                    if (eci == -1) {
+                        ConnectionString? tempCS = MapRowToConnectionString(connection);
 
                         if (tempCS == null) {
-                            FailedConversion += $"Database {ConnectionFilter}: {connection}\n\r";
+                            FailedConversionBuilder.Append($"Database {ConnectionFilter}: {connection}\n\r");
                             conversionFailed = true;
                             continue;
                         }
@@ -160,7 +164,7 @@ namespace OGRIT_Database_Custom_App.Models
 
                         if (!databaseConnection.OpenConnection())
                         {
-                            FailedConnection += $"Database {ConnectionFilter}: {connection}\n\r";
+                            FailedConnectionBuilder.Append($"Database {ConnectionFilter}: {connection}\n\r");
                             connectionFailed = true;
                             continue;
                         }
@@ -190,10 +194,11 @@ namespace OGRIT_Database_Custom_App.Models
             }
 
             // Show all the errors
-            if (queryFailed) MessageBox.Show(FailedQuery);
-            if (conversionFailed) MessageBox.Show(FailedConversion);
-            if (connectionFailed) MessageBox.Show(FailedConnection);
+            if (queryFailed) MessageBox.Show(failedQueryBuilder.ToString());
+            if (conversionFailed) MessageBox.Show(FailedConversionBuilder.ToString());
+            if (connectionFailed) MessageBox.Show(FailedConnectionBuilder.ToString());
         }
+        
         /// <summary>
         /// Maps a <see cref="DataRowView"/> representing a database connection to a <see cref="ConnectionString"/> object.
         /// This method extracts connection details such as server IP, port, instance name, authentication type, 
@@ -202,8 +207,7 @@ namespace OGRIT_Database_Custom_App.Models
         /// </summary>
         /// <param name="connection">A DataRowView containing the connection details.</param>
         /// <returns>A <see cref="ConnectionString"/> object if mapping is successful; otherwise, null.</returns>
-
-        private static ConnectionString? RowToConnectionStringMapper(DataRowView? connection)
+        private static ConnectionString? MapRowToConnectionString(DataRowView? connection)
         {
             if(connection == null) return null;
 
@@ -230,6 +234,7 @@ namespace OGRIT_Database_Custom_App.Models
                     true
              );
         }
+        
         /// <summary>
         /// Inserts the results from a <see cref="SqlDataReader"/> into the database by executing a stored procedure with the retrieved data as parameters.
         /// This method loops through each row in the reader, extracts the field names and values, and adds them as parameters to the specified stored procedure. 
@@ -238,7 +243,6 @@ namespace OGRIT_Database_Custom_App.Models
         /// </summary>
         /// <param name="procedureName">The name of the stored procedure to execute.</param>
         /// <param name="reader">A <see cref="SqlDataReader"/> containing the data to be inserted.</param>
-
         private void InsertResult(string procedureName, SqlDataReader reader)
         {
 
@@ -262,22 +266,6 @@ namespace OGRIT_Database_Custom_App.Models
             MessageBox.Show("Data retrieved.");
 
             reader.Close();
-        }
-        /// <summary>
-        /// Finds the index of an established database connection based on the given connection ID.
-        /// This method iterates through the list of established connections and returns the index of the connection 
-        /// that matches the provided connection ID. If no match is found, it returns <c>null</c>.
-        /// </summary>
-        /// <param name="connectionID">The ID of the connection to find.</param>
-        /// <returns>The index of the matching connection in the <see cref="establishedConnections"/> list, or <c>null</c> if not found.</returns>
-        private int? EstablishedConnectionIndex(int connectionID)
-        {
-            for(int i = 0; i < establishedConnections.Count; i++)
-            {
-                if (establishedConnections[i].getDatabaseId() == connectionID)
-                    return i;
-            }
-            return null;
         }
     }
 }

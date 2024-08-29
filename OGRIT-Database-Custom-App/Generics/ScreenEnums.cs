@@ -28,7 +28,7 @@
         }
 
         /// <summary>
-        /// Enumerates the subscreens available under specific main screens.
+        /// Enumerates the subscreens available under the Menu screen.
         /// </summary>
         public enum SubScreens
         {
@@ -43,21 +43,16 @@
             ViewProceduresScreen,
 
             /// <summary>
-            /// The screen for executing selected stored procedures.
+            /// The screen for executing selected stored procedures onto the selected connections.
             /// </summary>
             ExecuteProceduresScreen
         }
 
         /// <summary>
-        /// Enumerates the options available in the connection management menu.
+        /// Enumerates the options available in the Connection Management Screen.
         /// </summary>
         public enum ConnectionMenuOptions
         {
-            /// <summary>
-            /// Option to display all available database connections.
-            /// </summary>
-            ShowConnections,
-
             /// <summary>
             /// Option to insert a new database connection.
             /// </summary>

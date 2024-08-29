@@ -30,7 +30,7 @@ namespace OGRIT_Database_Custom_App
         }
 
         /// <summary>
-        /// Resets the input form fields to their default values.
+        /// Resets the input form fields to empty values.
         /// </summary>
         public void ResetInputFormText()
         {

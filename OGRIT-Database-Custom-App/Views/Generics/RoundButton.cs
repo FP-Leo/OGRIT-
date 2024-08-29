@@ -5,6 +5,8 @@ namespace OGRIT_Database_Custom_App.Views.Generics
 {
     /// <summary>
     /// Represents a customizable button with rounded corners and configurable border size, radius, and color.
+    /// The code is borrowed from RJCodeAdvance. 
+    /// The link to the original code: <a href="RJCodeAdvance">https://github.com/RJCodeAdvance/Custom-Button-WinForm/blob/main/RJButton.cs</a>
     /// </summary>
     public class RoundButton : Button
     {

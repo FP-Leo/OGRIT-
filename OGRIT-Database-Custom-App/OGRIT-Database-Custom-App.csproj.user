@@ -7,7 +7,7 @@
     <Compile Update="Views\Forms\InsertUpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Views\Screens\ExecuteProceduresScreen.cs">
+    <Compile Update="Views\Screens\MenuSubScreens\ExecuteProceduresScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Screens\LogInScreen.cs">
@@ -16,7 +16,7 @@
     <Compile Update="Views\Forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Views\Screens\ManageConnectionsScreen.cs">
+    <Compile Update="Views\Screens\MenuSubScreens\ManageConnectionsScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Screens\MenuScreen.cs">
@@ -25,10 +25,7 @@
     <Compile Update="Views\Generics\RoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Views\Generics\RoundTextbox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Views\Screens\ProcedureListScreen.cs">
+    <Compile Update="Views\Screens\MenuSubScreens\ProcedureListScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Views\Screens\StartingScreen.cs">

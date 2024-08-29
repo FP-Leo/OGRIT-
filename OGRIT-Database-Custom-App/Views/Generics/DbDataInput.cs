@@ -62,9 +62,6 @@ namespace OGRIT_Database_Custom_App
             ChangeTableLayout();
         }
 
-        // 
-        // To show errors properly
-        //
         /// <summary>
         /// Adds an error message to the error list and updates the validity state.
         /// </summary>
@@ -75,11 +72,8 @@ namespace OGRIT_Database_Custom_App
             validState = false;
         }
 
-        //
-        // To validate connection string input, it doesnt use logic just stops empty fields.s
-        //
         /// <summary>
-        /// Validates the user input and creates a <see cref="ConnectionString"/> object if the input is valid.
+        /// Validates the user input and creates a <see cref="ConnectionString"/> object if the input is valid (not null).
         /// </summary>
         /// <returns>A <see cref="ConnectionString"/> object if the input is valid; otherwise, <c>null</c>.</returns>
         public ConnectionString? ValidateInput()
@@ -125,9 +119,8 @@ namespace OGRIT_Database_Custom_App
             return connectionString;
         }
 
-        // To avoid code repetitions.
         /// <summary>
-        /// Creates a customized label with the specified properties.
+        /// Creates a customized label with the specified properties. Allows avoiding code repetition when designing the custom user control.
         /// </summary>
         /// <param name="name">The name of the label.</param>
         /// <param name="tabIndex">The tab index of the label.</param>
@@ -148,7 +141,7 @@ namespace OGRIT_Database_Custom_App
         }
 
         /// <summary>
-        /// Creates a customized text box with the specified properties.
+        /// Creates a customized text box with the specified properties. Allows avoiding code repetition when designing the custom user control.
         /// </summary>
         /// <param name="Name">The name of the text box.</param>
         /// <param name="PlaceholderText">The placeholder text for the text box.</param>
@@ -167,7 +160,6 @@ namespace OGRIT_Database_Custom_App
             };
         }
 
-        // To draw the user control
         /// <summary>
         /// Initializes the input components of the user control.
         /// </summary>
@@ -235,7 +227,9 @@ namespace OGRIT_Database_Custom_App
         }
 
         /// <summary>
-        /// Dynamically changes the layout based on the selected authentication type.
+        /// Dynamically changes the layout based on the selected authentication type. 
+        /// Does so by redrawing the TableLayoutPanel with the appropriate number of rows.
+        /// Sets the visibility of components based on the selected auth type.
         /// </summary>
         private void ChangeTableLayout()
         {
@@ -274,7 +268,7 @@ namespace OGRIT_Database_Custom_App
         }
 
         /// <summary>
-        /// Resets the input fields to their default values.
+        /// Resets the input fields to their empty values.
         /// </summary>
         public void ResetInput()
         {

@@ -9,6 +9,7 @@ namespace OGRIT_Database_Custom_App.Models
     /// </summary>
     public class ConnectionString
     {
+        // Fields
         private readonly string _serverNameIP;
         private readonly int _Port;
         private readonly string _InstanceName;
@@ -26,6 +27,7 @@ namespace OGRIT_Database_Custom_App.Models
         /// <param name="SQLAuth">A flag indicating whether SQL authentication is used.</param>
         /// <param name="username">The username for SQL authentication. This parameter is ignored if <paramref name="SQLAuth"/> is <c>false</c>.</param>
         /// <param name="password">The password for SQL authentication. This parameter is ignored if <paramref name="SQLAuth"/> is <c>false</c>.</param>
+        /// <param name="AlreadyEncrypted">A flag indicating whether <paramref name="password"/> is <c>already encrypted</c>.</param>
         public ConnectionString(string serverNameIP, int Port, string InstanceName, bool SQLAuth, string? username, string? password, bool AlreadyEncrypted)
         {
             _serverNameIP = serverNameIP;
@@ -41,7 +43,7 @@ namespace OGRIT_Database_Custom_App.Models
                     return;
 
                 _password = password;
-                // Upon getting the password, encrypt it.
+                // Upon getting an unencrypted password, encrypt it.
                 if (!AlreadyEncrypted)
                 {
                     _password = CryptographyHelper.EncryptString(password, ConfigurationManager.AppSettings["encryptionKey"]);

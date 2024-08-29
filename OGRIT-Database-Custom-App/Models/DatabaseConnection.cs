@@ -39,6 +39,12 @@ namespace OGRIT_Database_Custom_App.Model
                 if (cs == null)
                     return false;
 
+
+                /*
+                 * if (Connection == null)
+                    Connection = new SqlConnection(FormatConnectionString());
+                */
+                // The compound assignment is the same as the above.
                 Connection ??= new SqlConnection(FormatConnectionString());
 
                 if (Connection.State == ConnectionState.Closed)
@@ -70,13 +76,18 @@ namespace OGRIT_Database_Custom_App.Model
         /// <summary>
         /// Executes a SQL query that does not return results (e.g., INSERT, UPDATE, DELETE).
         /// </summary>
-        /// <param name="query">The <see cref="string"/> string representing the SQL command to execute.</param>
+        /// <param name="query">The <see cref="string"/> string representing the SQL query to execute.</param>
         public void ExecuteQuery(string query)
         {
-            var command = new SqlCommand(query, Connection);
-            ExecuteCommandNonQuery(command);
+            using (var command = new SqlCommand(query, Connection))
+            {
+                ExecuteCommandNonQuery(command);
+            }
         }
-      
+        /// <summary>
+        /// Executes a SQL command that does not return results.
+        /// </summary>
+        /// <param name="command">Represents the SQL command to execute.</param>
         public static void ExecuteCommandNonQuery(SqlCommand command)
         {
             try
@@ -88,13 +99,21 @@ namespace OGRIT_Database_Custom_App.Model
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
-
+        /// <summary>
+        /// Executes a SQL query that returns results inform of SqlDataReader
+        /// </summary>
+        /// <param name="query">The <see cref="string"/> string representing the SQL query to execute.</param>
         public SqlDataReader? ExecuteQueryDbDataReader(string query)
         {
-            var command = new SqlCommand(query, Connection);
-            return ExecuteDbDataReaderCommand(command);
+            using (var command = new SqlCommand(query, Connection))
+            {
+                return ExecuteDbDataReaderCommand(command);
+            }
         }
-
+        /// <summary>
+        /// Executes a SQL command that returns results inform of SqlDataReader
+        /// </summary>
+        /// <param name="command">Represents the SQL query to execute.</param>
         public static SqlDataReader? ExecuteDbDataReaderCommand(SqlCommand command)
         {
             try
