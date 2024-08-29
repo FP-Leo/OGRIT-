@@ -1,7 +1,6 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
 using OGRIT_Database_Custom_App.Models;
-using System.Data.Common;
 using DataJuggler.Core.Cryptography;
 using System.Configuration;
 
@@ -69,10 +68,16 @@ namespace OGRIT_Database_Custom_App.Model
         }
 
         /// <summary>
-        /// Executes a SQL command that does not return results (e.g., INSERT, UPDATE, DELETE).
+        /// Executes a SQL query that does not return results (e.g., INSERT, UPDATE, DELETE).
         /// </summary>
-        /// <param name="command">The <see cref="SqlCommand"/> object representing the SQL command to execute.</param>
-        public static void ExecuteCommand(SqlCommand command)
+        /// <param name="query">The <see cref="string"/> string representing the SQL command to execute.</param>
+        public void ExecuteQuery(string query)
+        {
+            var command = new SqlCommand(query, Connection);
+            ExecuteCommandNonQuery(command);
+        }
+      
+        public static void ExecuteCommandNonQuery(SqlCommand command)
         {
             try
             {
@@ -84,14 +89,27 @@ namespace OGRIT_Database_Custom_App.Model
             }
         }
 
-        /// <summary>
-        /// Executes a SQL query that does not return results (e.g., INSERT, UPDATE, DELETE).
-        /// </summary>
-        /// <param name="query">The SQL query to execute.</param>
-        public void ExecuteQuery(string query)
+        public SqlDataReader? ExecuteQueryDbDataReader(string query)
         {
             var command = new SqlCommand(query, Connection);
-            ExecuteCommand(command);
+            return ExecuteDbDataReaderCommand(command);
+        }
+
+        public static SqlDataReader? ExecuteDbDataReaderCommand(SqlCommand command)
+        {
+            try
+            {
+                SqlDataReader? result = command.ExecuteReader();
+
+                return result;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+
+            return null;
         }
 
         /// <summary>

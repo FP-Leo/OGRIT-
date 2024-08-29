@@ -26,7 +26,7 @@ namespace OGRIT_Database_Custom_App.Models
         /// <param name="SQLAuth">A flag indicating whether SQL authentication is used.</param>
         /// <param name="username">The username for SQL authentication. This parameter is ignored if <paramref name="SQLAuth"/> is <c>false</c>.</param>
         /// <param name="password">The password for SQL authentication. This parameter is ignored if <paramref name="SQLAuth"/> is <c>false</c>.</param>
-        public ConnectionString(string serverNameIP, int Port, string InstanceName, bool SQLAuth, string? username, string? password)
+        public ConnectionString(string serverNameIP, int Port, string InstanceName, bool SQLAuth, string? username, string? password, bool AlreadyEncrypted)
         {
             _serverNameIP = serverNameIP;
             _Port = Port;
@@ -39,9 +39,13 @@ namespace OGRIT_Database_Custom_App.Models
                 // The password is encrypted if provided and SQL authentication is used.
                 if (String.IsNullOrEmpty(password))
                     return;
+
+                _password = password;
                 // Upon getting the password, encrypt it.
-                // Encrypt the password using the encryption key from configuration.
-                _password = CryptographyHelper.EncryptString(password, ConfigurationManager.AppSettings["encryptionKey"]);
+                if (!AlreadyEncrypted)
+                {
+                    _password = CryptographyHelper.EncryptString(password, ConfigurationManager.AppSettings["encryptionKey"]);
+                }
                 encrypted = true;
             }
         }

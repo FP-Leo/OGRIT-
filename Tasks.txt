@@ -33,10 +33,10 @@ Status: Done.
 17. Implement Show Procedures List screen.
 Status: Done.
 18. Implement Execute Procedures screen.
-Status: Ongoing.
+Status: Done.
 19. Add Password Encryption ( + app.config file, normally it shouldn't get uploaded to GitHub since it contains the encryption key but this is a test environment ).
 Status: Done.
 20. Add Establish Connection Button at Manage Connections.
-Status: on queue.
+Status: Canceled. Reason - connection is established once when a SP gets executed to a server's database and it remains open for the rest of that session. Note: should discuss if a Establish Connection & Disconnect Option is needed.
 
 My To Do List order ( Leo ) -  20, 18.

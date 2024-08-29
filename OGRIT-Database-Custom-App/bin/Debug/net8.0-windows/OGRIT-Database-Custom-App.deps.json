@@ -9,6 +9,7 @@
       "OGRIT-Database-Custom-App/1.0.0": {
         "dependencies": {
           "DataJuggler.Core.Cryptography": "1.0.11",
+          "Microsoft.SqlServer.Types": "10.50.1600.1",
           "System.Data.SqlClient": "4.8.6"
         },
         "runtime": {
@@ -66,6 +67,14 @@
       },
       "Microsoft.NETCore.Platforms/3.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
+      "Microsoft.SqlServer.Types/10.50.1600.1": {
+        "runtime": {
+          "lib/Net20/Microsoft.SqlServer.Types.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "2009.100.1600.1"
+          }
+        }
+      },
       "Microsoft.Win32.Primitives/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -867,6 +876,13 @@
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.SqlServer.Types/10.50.1600.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-60HSXaDkLOY3ecVC53eTav0o8+W02M3SFa0FBajkMSCYUZwvcExN5TWxzHdInaJV/Jqi06ji6EgU/15oiwQLiA==",
+      "path": "microsoft.sqlserver.types/10.50.1600.1",
+      "hashPath": "microsoft.sqlserver.types.10.50.1600.1.nupkg.sha512"
     },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",

@@ -93,3 +93,4 @@ C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debu
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\Konscious.Security.Cryptography.Blake2.dll
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.Views.Screens.ProcedureListScreen.resources
 C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\obj\Debug\net8.0-windows\OGRIT_Database_Custom_App.Views.Screens.ExecuteProceduresScreen.resources
+C:\Users\Leoni\Desktop\OGRIT-Uygulama-Projesi\OGRIT-Database-Custom-App\bin\Debug\net8.0-windows\Microsoft.SqlServer.Types.dll

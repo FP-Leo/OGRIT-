@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="DataJuggler.Core.Cryptography" Version="1.0.11" />
+    <PackageReference Include="Microsoft.SqlServer.Types" Version="10.50.1600.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 

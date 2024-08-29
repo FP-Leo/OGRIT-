@@ -1,0 +1,3 @@
+2024-08-29 00:48:19.852317 - Reading the unformatted SQL query from C:\Users\Leo\Desktop\OGRIT-Uygulama-Projesi\SPParser\unformatted_sql_query.txt
+2024-08-29 00:48:19.853812 - Saving the formatted SQL query to C:\Users\Leo\Desktop\OGRIT-Uygulama-Projesi\SPParser\formatted_sql_query.txt
+2024-08-29 00:48:19.853812 - Cleaning the unformatted file C:\Users\Leo\Desktop\OGRIT-Uygulama-Projesi\SPParser\unformatted_sql_query.txt

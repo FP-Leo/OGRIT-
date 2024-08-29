@@ -46,5 +46,6 @@ namespace OGRIT_Database_Custom_App.Generics
         /// Delegate for setting updates in a UI or model component.
         /// </summary>
         public delegate void UpdateSetter();
+        public delegate void ExecuteSignal();
     }
 }
