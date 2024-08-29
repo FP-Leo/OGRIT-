@@ -164,12 +164,16 @@ namespace OGRIT_Database_Custom_App.Models
 
                     SqlDataReader? result = establishedConnections[(int)eci].ExecuteQueryDbDataReader(SPsInnerQuery);
 
+                    MessageBox.Show("SP executed succesfully");
+
                     if (result == null)
                         continue;
 
                     string? toBeExecuted = SP["OnReturnExecute"] as string;
 
-                    if(toBeExecuted == null)
+                    MessageBox.Show("Starting retrieval Operation.");
+
+                    if (toBeExecuted == null)
                         continue;
 
                     InsertResult(toBeExecuted, result);
@@ -199,6 +203,8 @@ namespace OGRIT_Database_Custom_App.Models
 
                 ExecuteCommandNonQuery(command);
             }
+            MessageBox.Show("Data retrieved.");
+
             reader.Close();
         }
 

@@ -47,6 +47,11 @@ namespace OGRIT_Database_Custom_App.Views.Screens
             _fillSignal = fillSignal;
         }
 
+        public void SetExecuteSignal(ExecuteSignal executeSignal)
+        {
+            _executeSignal = executeSignal;
+        }
+
         /// <summary>
         /// Handles the event when the menu button is clicked, navigating back to the menu screen.
         /// </summary>

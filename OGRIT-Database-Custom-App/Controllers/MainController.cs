@@ -55,7 +55,7 @@ namespace OGRIT_Database_Custom_App.Controller
         /// <summary>
         /// The main database connection instance.
         /// </summary>
-        private readonly MainDatabaseConnetion mainDBConnection;
+        private readonly MainDatabaseConnection mainDBConnection;
 
         // Configuration 
       
@@ -93,7 +93,7 @@ namespace OGRIT_Database_Custom_App.Controller
             ProcedureTableSchema = StaticMethodHolder.GetConfigKey("ProcedureTableSchema");
             FilterColumn = StaticMethodHolder.GetConfigKey("FilterColumn");
 
-            mainDBConnection = new MainDatabaseConnetion();
+            mainDBConnection = new MainDatabaseConnection();
             mainWindow = new MainWindow();
         }
 
