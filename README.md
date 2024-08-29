@@ -42,20 +42,22 @@ Dependencies.
 
 ### OGRIT Database Custom App:
 
-- Connection Management: Manage and maintain different database connections.
-- Stored Procedures Execution: Execute stored procedures directly from the interface.
+- User Authentication: Log in to your main database.
+- Connection Management: Store remote database connection details in one database.
 - Procedure Listing: Display and manage lists of stored procedures.
-- User Authentication: Facilitate user login and access control within the application.
+- Stored Procedures Execution: Execute stored procedures directly from the interface to the selected remote databases.
+
 
 Common Features:
 
-1. User Authentication: Implement a login system to allow users to securely access the application. The login system can validate credentials using different authentication methods such as Windows Authentication or SQL Server Authentication.
+1. User Authentication: Implement a login system to allow users to login to their main database. The login system can validate credentials using different authentication methods such as Windows Authentication or SQL Server Authentication.
 
-2. Connection Management: Provide tools for managing database connections. Users can add, update, or delete database connection strings. Each connection can store details such as server IP, instance name, and authentication type.
+2. Connection Management: Connection details of remote databases are stored in the main database. Users can add, update, or delete database connection strings. 
 
-3. Stored Procedures Execution: Enable users to select and execute stored procedures from the interface. The application should allow users to choose a connection, select a stored procedure, and execute it, displaying any results returned by the procedure.
+3. Procedure Listing: Offer a screen that lists all available stored procedures within a selected database. Users can view details about each procedure before choosing which one to execute.
 
-4. Procedure Listing: Offer a screen that lists all available stored procedures within a selected database. Users can view details about each procedure and organize them based on different criteria.
+4. Stored Procedures Execution: Enable users to select and execute stored procedures from the interface. The application should allow users to choose multiple connection, select multiple stored procedure, and execute them to each chosen connection, displaying any results returned by the procedures.
+
 
 5. Menu Navigation: Include a centralized menu for navigating between different screens such as managing connections, viewing stored procedures, executing procedures, and logging out of the application.
 
