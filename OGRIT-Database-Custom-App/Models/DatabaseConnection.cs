@@ -54,6 +54,7 @@ namespace OGRIT_Database_Custom_App.Model
             }
             catch (Exception ex)
             {
+                Connection = null;
                 MessageBox.Show(ex.Message);
             }
             return false;
