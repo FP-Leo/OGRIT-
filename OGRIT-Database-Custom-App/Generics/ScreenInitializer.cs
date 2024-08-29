@@ -2,11 +2,15 @@
 
 namespace OGRIT_Database_Custom_App.Generics
 {
+    /// <summary>
+    /// A utility class for initializing various screens within the OGRIT Database Custom Application.
+    /// </summary>
     public static class ScreenInitializer
     {
-        // 
-        // LogInScreen
-        // 
+        /// <summary>
+        /// Initializes and returns a new instance of the <see cref="LogInScreen"/> class.
+        /// </summary>
+        /// <returns>A fully configured instance of <see cref="LogInScreen"/>.</returns>
         public static LogInScreen InitializeLogInScreen()
         {
             return new()
@@ -19,9 +23,11 @@ namespace OGRIT_Database_Custom_App.Generics
                 Visible = true
             };
         }
-        // 
-        // StartingScreen
-        // 
+
+        /// <summary>
+        /// Initializes and returns a new instance of the <see cref="StartingScreen"/> class.
+        /// </summary>
+        /// <returns>A fully configured instance of <see cref="StartingScreen"/>.</returns>
         public static StartingScreen InitializeStartingScreen()
         {
             return new()
@@ -35,11 +41,13 @@ namespace OGRIT_Database_Custom_App.Generics
                 Visible = true
             };
         }
-        // 
-        // MenuScreen
-        //
+
+        /// <summary>
+        /// Initializes and returns a new instance of the <see cref="MenuScreen"/> class.
+        /// </summary>
+        /// <returns>A fully configured instance of <see cref="MenuScreen"/>.</returns>
         public static MenuScreen InitializeMenuScreen()
-        { 
+        {
             return new()
             {
                 Dock = DockStyle.Fill,
@@ -50,9 +58,11 @@ namespace OGRIT_Database_Custom_App.Generics
                 Visible = true
             };
         }
-        // 
-        // ConnectionsScreen
-        // 
+
+        /// <summary>
+        /// Initializes and returns a new instance of the <see cref="ManageConnectionsScreen"/> class.
+        /// </summary>
+        /// <returns>A fully configured instance of <see cref="ManageConnectionsScreen"/>.</returns>
         public static ManageConnectionsScreen InitializeConnectionsScreen()
         {
             return new()
@@ -65,24 +75,28 @@ namespace OGRIT_Database_Custom_App.Generics
                 Visible = true
             };
         }
-        // 
-        // ProcedureListScreen
-        // 
+
+        /// <summary>
+        /// Initializes and returns a new instance of the <see cref="ProcedureListScreen"/> class.
+        /// </summary>
+        /// <returns>A fully configured instance of <see cref="ProcedureListScreen"/>.</returns>
         public static ProcedureListScreen InitializeProcedureList()
         {
             return new()
             {
                 Dock = DockStyle.Fill,
                 Location = new Point(10, 10),
-                Name = "ViewProcedureListScrenn",
+                Name = "ViewProcedureListScreen",
                 Size = new Size(800, 450),
                 TabIndex = 0,
                 Visible = true
             };
         }
-        // 
-        // ExecutionScreen
-        //
+
+        /// <summary>
+        /// Initializes and returns a new instance of the <see cref="ExecuteProceduresScreen"/> class.
+        /// </summary>
+        /// <returns>A fully configured instance of <see cref="ExecuteProceduresScreen"/>.</returns>
         public static ExecuteProceduresScreen InitializeExecutionScreen()
         {
             return new()
@@ -95,6 +109,5 @@ namespace OGRIT_Database_Custom_App.Generics
                 Visible = true
             };
         }
-
     }
 }

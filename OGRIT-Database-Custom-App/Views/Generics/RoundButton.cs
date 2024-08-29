@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace OGRIT_Database_Custom_App.Views.Generics
 {
+    /// <summary>
+    /// Represents a customizable button with rounded corners and configurable border size, radius, and color.
+    /// </summary>
     public class RoundButton : Button
     {
         //Fields
@@ -11,6 +14,9 @@ namespace OGRIT_Database_Custom_App.Views.Generics
         private Color borderColor = Color.PaleVioletRed;
 
         //Constructor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoundButton"/> class.
+        /// </summary>
         public RoundButton()
         {
             FlatStyle = FlatStyle.Flat;
@@ -21,6 +27,9 @@ namespace OGRIT_Database_Custom_App.Views.Generics
             Resize += new EventHandler(Button_Resize);
         }
 
+        /// <summary>
+        /// Handles the Resize event of the button to ensure the border radius does not exceed the button height.
+        /// </summary>
         private void Button_Resize(object sender, EventArgs e)
         {
             if (borderRadius > Height)
@@ -28,6 +37,9 @@ namespace OGRIT_Database_Custom_App.Views.Generics
         }
 
         //Properties
+        /// <summary>
+        /// Gets or sets the size of the border.
+        /// </summary>
         [Category("Custom Settings")]
         public int BorderSize
         {
@@ -39,6 +51,9 @@ namespace OGRIT_Database_Custom_App.Views.Generics
             }
         }
 
+        /// <summary>
+        /// Gets or sets the radius of the button's corners.
+        /// </summary>
         [Category("Custom Settings")]
         public int BorderRadius
         {
@@ -50,6 +65,9 @@ namespace OGRIT_Database_Custom_App.Views.Generics
             }
         }
 
+        /// <summary>
+        /// Gets or sets the color of the button's border.
+        /// </summary>
         [Category("Custom Settings")]
         public Color BorderColor
         {
@@ -60,6 +78,10 @@ namespace OGRIT_Database_Custom_App.Views.Generics
                 Invalidate();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the background color of the button.
+        /// </summary>
         [Category("Custom Settings")]
         public Color BackgroundColor
         {
@@ -67,6 +89,9 @@ namespace OGRIT_Database_Custom_App.Views.Generics
             set { BackColor = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the text color of the button.
+        /// </summary>
         [Category("Custom Settings")]
         public Color TextColor
         {
@@ -75,6 +100,12 @@ namespace OGRIT_Database_Custom_App.Views.Generics
         }
 
         //Methods
+        /// <summary>
+        /// Creates a rounded rectangle path based on the specified rectangle and radius.
+        /// </summary>
+        /// <param name="rect">The rectangle that defines the button's surface.</param>
+        /// <param name="radius">The radius of the rounded corners.</param>
+        /// <returns>A <see cref="GraphicsPath"/> representing the rounded rectangle.</returns>
         private GraphicsPath GetFigurePath(Rectangle rect, float radius)
         {
             GraphicsPath path = new();
@@ -89,6 +120,10 @@ namespace OGRIT_Database_Custom_App.Views.Generics
             return path;
         }
 
+        /// <summary>
+        /// Overrides the OnPaint method to customize the appearance of the button.
+        /// </summary>
+        /// <param name="pevent">A <see cref="PaintEventArgs"/> that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs pevent)
         {
             base.OnPaint(pevent);
@@ -134,12 +169,20 @@ namespace OGRIT_Database_Custom_App.Views.Generics
                 }
             }
         }
+
+        /// <summary>
+        /// Overrides the OnHandleCreated method to register an event handler for the parent container's BackColorChanged event.
+        /// </summary>
+        /// <param name="e">An <see cref="EventArgs"/> that contains the event data.</param>
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
             Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
         }
 
+        /// <summary>
+        /// Handles the BackColorChanged event of the parent container to refresh the button's appearance.
+        /// </summary>
         private void Container_BackColorChanged(object sender, EventArgs e)
         {
             Invalidate();

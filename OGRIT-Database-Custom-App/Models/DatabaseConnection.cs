@@ -4,23 +4,39 @@ using OGRIT_Database_Custom_App.Models;
 using DataJuggler.Core.Cryptography;
 using System.Configuration;
 
-
 namespace OGRIT_Database_Custom_App.Model
 {
+    /// <summary>
+    /// Provides methods for connecting to a SQL database and executing commands.
+    /// </summary>
     public class DatabaseConnection
     {
         private ConnectionString? cs;
         protected SqlConnection? Connection;
 
-        public DatabaseConnection(){}
-        public DatabaseConnection(ConnectionString connectionString) {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseConnection"/> class.
+        /// </summary>
+        public DatabaseConnection() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseConnection"/> class with a specified connection string.
+        /// </summary>
+        /// <param name="connectionString">The connection string to use for connecting to the database.</param>
+        public DatabaseConnection(ConnectionString connectionString)
+        {
             cs = connectionString;
         }
+
+        /// <summary>
+        /// Opens a connection to the database using the specified connection string.
+        /// </summary>
+        /// <returns><c>true</c> if the connection was successfully opened; otherwise, <c>false</c>.</returns>
         public bool OpenConnection()
         {
             try
             {
-                if( cs == null)
+                if (cs == null)
                     return false;
 
                 Connection ??= new SqlConnection(FormatConnectionString());
@@ -36,6 +52,10 @@ namespace OGRIT_Database_Custom_App.Model
             }
             return false;
         }
+
+        /// <summary>
+        /// Closes the connection to the database if it is open.
+        /// </summary>
         public void CloseConnection()
         {
             if (Connection == null)
@@ -46,15 +66,21 @@ namespace OGRIT_Database_Custom_App.Model
                 Connection.Close();
             }
         }
+
+        /// <summary>
+        /// Executes a SQL query that does not return results (e.g., INSERT, UPDATE, DELETE).
+        /// </summary>
+        /// <param name="query">The <see cref="string"/> string representing the SQL command to execute.</param>
         public void ExecuteQuery(string query)
         {
             var command = new SqlCommand(query, Connection);
             ExecuteCommandNonQuery(command);
         }
+      
         public static void ExecuteCommandNonQuery(SqlCommand command)
         {
             try
-            { 
+            {
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -62,6 +88,7 @@ namespace OGRIT_Database_Custom_App.Model
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
+
         public SqlDataReader? ExecuteQueryDbDataReader(string query)
         {
             var command = new SqlCommand(query, Connection);
@@ -84,10 +111,16 @@ namespace OGRIT_Database_Custom_App.Model
 
             return null;
         }
+
+        /// <summary>
+        /// Formats the connection string based on the stored connection settings.
+        /// </summary>
+        /// <returns>The formatted connection string, or <c>null</c> if no connection settings are provided.</returns>
         private string? FormatConnectionString()
         {
             if (cs == null)
                 return null;
+
             string connectionString = $"Data Source={cs.GetServerNameIP()},{cs.GetPort()};Initial Catalog={cs.GetInstanceName()};";
             if (cs.IsSQLAuth())
             {
@@ -100,6 +133,11 @@ namespace OGRIT_Database_Custom_App.Model
             }
             return connectionString;
         }
+
+        /// <summary>
+        /// Sets the connection string to be used for database operations.
+        /// </summary>
+        /// <param name="connectionString">The <see cref="ConnectionString"/> object representing the connection settings.</param>
         public void SetConnectionString(ConnectionString connectionString)
         {
             cs = connectionString;
