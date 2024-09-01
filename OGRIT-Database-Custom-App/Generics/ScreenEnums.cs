@@ -68,5 +68,25 @@
             /// </summary>
             Delete
         }
+        /// <summary>
+        /// Enumerates the available Log message types
+        /// </summary>
+        public enum LogType
+        {
+            /// <summary>
+            /// Option to log an information message
+            /// </summary>
+            Information,
+
+            /// <summary>
+            /// Option to log a warning message
+            /// </summary>
+            Warning,
+
+            /// <summary>
+            /// Option to log an error message
+            /// </summary>
+            Error
+        }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using OGRIT_Database_Custom_App.Generics;
 using OGRIT_Database_Custom_App.Models;
 using OGRIT_Database_Custom_App.Views.Screens;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Windows.Forms;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
 namespace OGRIT_Database_Custom_App.Controller
@@ -58,7 +58,12 @@ namespace OGRIT_Database_Custom_App.Controller
         private readonly MainDatabaseConnection mainDBConnection;
 
         // Configuration 
-      
+
+        /// <summary>
+        /// Indicates if the encryption key has been generated.
+        /// </summary>
+        private readonly string keyGenerated;
+
         /// <summary>
         /// The name of the table containing connection information.
         /// </summary>
@@ -96,11 +101,17 @@ namespace OGRIT_Database_Custom_App.Controller
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainController"/> class.
+        /// Declares the log file, configures its settings.
         /// Validates configuration settings and sets up the main database connection.
         /// </summary>
         public MainController()
         {
+            StaticMethodHolder.SetUpLogging();
+
+            StaticMethodHolder.WriteToLog(LogType.Information, "Validating configuration.");
             // Validate Config
+            keyGenerated = StaticMethodHolder.GetConfigKey("keyGenerated");
+
             ConnectionTable = StaticMethodHolder.GetConfigKey("ConnectionTable");
             ConnectionTableSchema = StaticMethodHolder.GetConfigKey("ConnectionTableSchema");
             ProcedureTable = StaticMethodHolder.GetConfigKey("ProcedureTable");
@@ -109,8 +120,52 @@ namespace OGRIT_Database_Custom_App.Controller
             ProcedureFilterColumn = StaticMethodHolder.GetConfigKey("ProcedureFilterColumn");
             DataRetrivealColumn = StaticMethodHolder.GetConfigKey("DataRetrivealColumn");
 
+            CheckEncrypitonKey();
+            StaticMethodHolder.WriteToLog(LogType.Information, "Configuration validated.");
+
+            StaticMethodHolder.WriteToLog(LogType.Information, "Initilizing Main Window.");
             mainDBConnection = new MainDatabaseConnection(ConnectionFilterColumn, ProcedureFilterColumn, DataRetrivealColumn);
             mainWindow = new MainWindow();
+            StaticMethodHolder.WriteToLog(LogType.Information, "Main Window initialized.");
+        }
+        /// <summary>
+        /// Checks if the Encryption Key has already been generated, if not it generates it.
+        /// </summary>
+        private void CheckEncrypitonKey()
+        {
+            bool success = bool.TryParse(keyGenerated, out bool result);
+
+            if (!success)
+            {
+                StaticMethodHolder.WriteToLog(LogType.Error, "Failed to convert keyGenerated value from App.config to a boolean value.");
+                MessageBox.Show("Error: Invalid value on keyGenerated.");
+                System.Environment.Exit(1);
+            }
+
+            if (!result)
+            {
+                using (Aes aes = Aes.Create())
+                {
+                    // Generate a new key and IV
+                    aes.GenerateIV();
+                    aes.GenerateKey();
+
+                    // Retrieve the generated key
+                    byte[] key = aes.Key;
+
+                    // Optionally, convert the key to a Base64 string
+                    string base64Key = Convert.ToBase64String(key);
+
+                    // Change the value in config
+                    StaticMethodHolder.UpdateAppConfig("encryptionKey", base64Key);
+
+                    // Log the change
+                    StaticMethodHolder.WriteToLog(LogType.Information, "Encryption Key Generated.");
+
+                    // Change the indicator value in config
+                    StaticMethodHolder.UpdateAppConfig("keyGenerated", "true");
+                }
+            }            
         }
 
         /// <summary>
@@ -120,6 +175,7 @@ namespace OGRIT_Database_Custom_App.Controller
         {
             ChangeScreen(null, Screens.StartingScreen);
             Application.Run(mainWindow);
+            StaticMethodHolder.WriteToLog(LogType.Information, "Program Running.");
         }
       
         // Screen Switcher
@@ -171,6 +227,7 @@ namespace OGRIT_Database_Custom_App.Controller
                     mainWindow.SetScreen(_menuScreen);
                     break;
             }
+            StaticMethodHolder.WriteToLog(LogType.Information, $"{toBeSet} loaded.");
         }
 
         /// <summary>
@@ -195,6 +252,7 @@ namespace OGRIT_Database_Custom_App.Controller
                     mainWindow.SetScreen(_executeProceduresScreen);
                     break;
             }
+            StaticMethodHolder.WriteToLog(LogType.Information, $"{screen} loaded.");
         }
 
         /// <summary>
@@ -215,15 +273,16 @@ namespace OGRIT_Database_Custom_App.Controller
                     ScreenDestroyer.DestroyScreen(ref _menuScreen);
                     break;
             }
+            StaticMethodHolder.WriteToLog(LogType.Information, $"{toBeDestroyed} destroyed.");
         }
 
         /// <summary>
         /// Destroys the specified sub-screen.
         /// </summary>
-        /// <param name="toBeSet">The sub-screen to be destroyed.</param>
-        public void DestroyScreen(SubScreens toBeSet)
+        /// <param name="toBeDestroyed">The sub-screen to be destroyed.</param>
+        public void DestroyScreen(SubScreens toBeDestroyed)
         {
-            switch (toBeSet)
+            switch (toBeDestroyed)
             {
                 case SubScreens.ManageConnectionsScreen:
                     ScreenDestroyer.DestroyScreen(ref _connectionsScreen);
@@ -232,9 +291,10 @@ namespace OGRIT_Database_Custom_App.Controller
                     ScreenDestroyer.DestroyScreen(ref _showProceduresScreen);
                     break;
                 case SubScreens.ExecuteProceduresScreen:
-                    //ScreenDestroyer.DestroyScreen(ref _executeProceduresScreen);
+                    ScreenDestroyer.DestroyScreen(ref _executeProceduresScreen);
                     break;
             }
+            StaticMethodHolder.WriteToLog(LogType.Information, $"{toBeDestroyed} destroyed.");
         }
 
         // User Control Delegate Screen Changers.
@@ -251,6 +311,7 @@ namespace OGRIT_Database_Custom_App.Controller
                 if (!StaticMethodHolder.ValidConfigKey("encryptionKey"))
                 {
                     MessageBox.Show("Error: No encryption key found in the config file.\n\rCannot proceed to the Log In screen.");
+                    StaticMethodHolder.WriteToLog(LogType.Error, "Encryption Key generated but not found.");
                     return;
                 }
                 ChangeScreen(Screens.StartingScreen, Screens.LogInScreen);
@@ -270,7 +331,10 @@ namespace OGRIT_Database_Custom_App.Controller
                 mainDBConnection.SetConnectionString(connection);
                 
                 if(mainDBConnection.OpenConnection())
+                {
+                    StaticMethodHolder.WriteToLog(LogType.Information, "Logged in to the main database");
                     ChangeScreen(Screens.LogInScreen, Screens.MenuScreen);
+                }
             });
         }
 
