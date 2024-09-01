@@ -11,7 +11,7 @@ Status: Done.
 6. Instead of MessageBoxes use something else to show messages to user.
 Status: Waiting.
 7. Add a logging system.
-Status: Waiting.
+Status: Ongoing.
 8. Add a remember me checkbox, with it a config file ( ? - must ask if needed ).
 Status: Waiting.
 9. Make screens layout more dynamic.
