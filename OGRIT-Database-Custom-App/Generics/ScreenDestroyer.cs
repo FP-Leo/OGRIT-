@@ -1,4 +1,6 @@
-﻿namespace OGRIT_Database_Custom_App.Generics
+﻿using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
+
+namespace OGRIT_Database_Custom_App.Generics
 {
     /// <summary>
     /// A utility class for safely destroying user control screens.

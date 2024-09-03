@@ -33,6 +33,7 @@ namespace OGRIT_Database_Custom_App.Generics
             if (string.IsNullOrEmpty(result))
             {
                 MessageBox.Show($"Configuration Error: {key} not set!");
+                WriteToLog(LogType.Error, $"Configuration Error: {key} not set.");
                 System.Environment.Exit(1);
             }
 

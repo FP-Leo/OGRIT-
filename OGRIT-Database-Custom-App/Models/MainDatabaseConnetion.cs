@@ -2,6 +2,8 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
+using OGRIT_Database_Custom_App.Generics;
+using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
 namespace OGRIT_Database_Custom_App.Models
 {
@@ -25,11 +27,14 @@ namespace OGRIT_Database_Custom_App.Models
         /// <returns>A <see cref="DataTable"/> containing the query results, or <c>null</c> if the query does not start with "SELECT" or an error occurs.</returns>
         public DataTable? ExecuteSelectQueryAndGetResult(string query)
         {
-            if (Connection == null)
+            if (Connection == null){
+                StaticMethodHolder.WriteToLog(LogType.Warning, "Trying to execute a Select query on a MainDatabaseConnection Object without the connection being established.");
                 return null;
+            }
 
             if (!query.StartsWith("SELECT"))
             {
+                StaticMethodHolder.WriteToLog(LogType.Warning, "Trying to execute a non select query on a MainDatabaseConnection Object using select query's function.");
                 return null;
             }
 
@@ -42,7 +47,8 @@ namespace OGRIT_Database_Custom_App.Models
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("Failed to fetch data from the Main Database. Review logs.");
+                StaticMethodHolder.WriteToLog(LogType.Error, $"Failed executing Select statement on a MainDatabaseConnection object. Full error {ex}");
                 return null;
             }
         }
@@ -56,7 +62,10 @@ namespace OGRIT_Database_Custom_App.Models
         public void AddParamAndExecuteCommand(string query, ConnectionString connectionString)
         {
             if (Connection == null)
+            {
+                StaticMethodHolder.WriteToLog(LogType.Warning, "Trying to execute an Insert query on a MainDatabaseConnection Object without the connection being established.");
                 return;
+            }
 
             SqlCommand command = new(query, Connection);
 
@@ -87,7 +96,10 @@ namespace OGRIT_Database_Custom_App.Models
         public string? GetSPQuery(string SPName)
         {
             if (Connection == null)
+            {
+                StaticMethodHolder.WriteToLog(LogType.Warning, "Trying to get query from a Stored Procedure on a MainDatabaseConnection Object without the connection being established.");
                 return null;
+            }
 
             SqlCommand command = new(SPName, Connection)
             {
@@ -98,8 +110,9 @@ namespace OGRIT_Database_Custom_App.Models
                 string? result = command.ExecuteScalar().ToString();
                 return result;
             }
-            catch
+            catch (Exception ex) 
             {
+                StaticMethodHolder.WriteToLog(LogType.Error, $"Failed to get query from SP. Details: {ex}");
                 return null;
             }
         }

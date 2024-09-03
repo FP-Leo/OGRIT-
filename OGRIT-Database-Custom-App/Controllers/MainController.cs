@@ -3,7 +3,6 @@ using OGRIT_Database_Custom_App.Models;
 using OGRIT_Database_Custom_App.Views.Screens;
 using System.Data;
 using System.Security.Cryptography;
-using System.Windows.Forms;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
 namespace OGRIT_Database_Custom_App.Controller
@@ -364,7 +363,11 @@ namespace OGRIT_Database_Custom_App.Controller
                         // Get submited data from the Insert Form.
                         ConnectionString? submittedCS = _connectionsScreen.GetInputedConnectionString();
                         
-                        if(submittedCS == null) { return; }
+                        if(submittedCS == null) {
+                            StaticMethodHolder.WriteToLog(LogType.Error, "(INSERT OPERATION) Failed conversion from user input to Connection String");
+                            MessageBox.Show("Failed to convert data to a Database Connection String");
+                            return; 
+                        }
 
                         // Set the query
                         string insertQuery = $"INSERT INTO [{ConnectionTableSchema}].[{ConnectionTable}] VALUES ( @var1, @var2, @var3, @var4, @var5, @var6 )";
@@ -378,12 +381,21 @@ namespace OGRIT_Database_Custom_App.Controller
                     case ConnectionMenuOptions.Update:
                         // Get the ID of the connection that's going to get updated
                         int? id = _connectionsScreen.GetUpdateIndex();
-                        if (id == null) return;
+
+                        if (id == null) {
+                            StaticMethodHolder.WriteToLog(LogType.Error, "Failed retrieving selected Database Id");
+                            MessageBox.Show("Failed retrieving selected Database Id");
+                            return;
+                        }
 
                         // Get the new data
                         var updatedCS = _connectionsScreen.GetInputedConnectionString();
 
-                        if (updatedCS == null) { return; }
+                        if (updatedCS == null) {
+                            StaticMethodHolder.WriteToLog(LogType.Error, "(UPDATE OPERATION) Failed conversion from table row to Connection String");
+                            MessageBox.Show("Failed to convert data to a Database Connection String");
+                            return; 
+                        }
 
                         // Set up the update query
                         string updateQuery = $"UPDATE [{ConnectionTableSchema}].[{ConnectionTable}]  SET ServerIPorName=@var1, Port=@var2, InstanceName=@var3, SQLAuth=@var4, UserName=@var5, Password=@var6 WHERE ID={id}";
@@ -405,16 +417,18 @@ namespace OGRIT_Database_Custom_App.Controller
                                 var colValue = row.Cells[ConnectionFilterColumn].Value;
                                 string? colText = Convert.ToString(colValue);
                                 if (string.IsNullOrEmpty(colText)) {
-                                    MessageBox.Show("Failed to convert Filter Column's value to string");
+                                    MessageBox.Show("Failed to convert ConnectionFilterColumn's value to string");
+                                    StaticMethodHolder.WriteToLog(LogType.Error, "(DELETE OPERATION) Failed to convert ConnectionFilterColumn's value to string");
                                     return;
                                 }
                                 // Set the delete query and execute it.
                                 string deleteQuery = $"DELETE FROM [{ConnectionTableSchema}].[{ConnectionTable}] WHERE {ConnectionFilterColumn}={colText}";
                                 mainDBConnection.ExecuteQuery(deleteQuery);
                             }
-                            catch
+                            catch(Exception ex)
                             {
                                 MessageBox.Show("Configuration Error: Invalid Filter Column. Please check the Connections Table for a valid Column.");
+                                StaticMethodHolder.WriteToLog(LogType.Error, $"(DELETE OPERATION) {ex}");
                                 return;
                             }
                         }
@@ -432,7 +446,10 @@ namespace OGRIT_Database_Custom_App.Controller
                 // Get all the Available Connections on Load/Refresh.
                 string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
                 DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
-                if (dataTable == null) { return; }
+                if (dataTable == null) {
+                    StaticMethodHolder.WriteToLog(LogType.Warning, "(FETCH OPERATION) Failed fetching Connection Table data.");
+                    return; 
+                }
                 // Pass the fetched data to the screen.
                 _connectionsScreen.FillDataGrid(dataTable);
             });
@@ -453,12 +470,14 @@ namespace OGRIT_Database_Custom_App.Controller
 
                     if (string.IsNullOrEmpty(serverNameIP))
                     {
-                        MessageBox.Show("Error: Failed to get Server Name/IP");
+                        MessageBox.Show("Error: Failed to get selected Server Name/IP");
+                        StaticMethodHolder.WriteToLog(LogType.Error, "(UPDATE OPERATION) Failed converting Server Name/IP from the selected row.");
                         return;
                     }
 
                     if (string.IsNullOrEmpty(InstanceName)) {
-                        MessageBox.Show("Error: Failed to get Instance Name");
+                        MessageBox.Show("Error: Failed to get selected Instance Name");
+                        StaticMethodHolder.WriteToLog(LogType.Error, "(UPDATE OPERATION) Failed converting Instance Name from the selected row.");
                         return;
                     }
 
@@ -470,6 +489,7 @@ namespace OGRIT_Database_Custom_App.Controller
                 catch(Exception ex) 
                 {
                     MessageBox.Show("Error: " + ex.ToString());
+                    StaticMethodHolder.WriteToLog(LogType.Error, $"(UPDATE OPERATION) Failed converting some selected fields. Details: {ex}");
                 }
             });
         }
@@ -489,7 +509,11 @@ namespace OGRIT_Database_Custom_App.Controller
             {
                 string selectQuery = $"SELECT * FROM [{ProcedureTableSchema}].[{ProcedureTable}]";
                 DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
-                if (dataTable == null) { return; }
+                if (dataTable == null)
+                {
+                    StaticMethodHolder.WriteToLog(LogType.Warning, "(FETCH OPERATION) Failed fetching Procedure Table data.");
+                    return;
+                }
                 _showProceduresScreen.FillDataGrid(dataTable);
             });
         }
@@ -508,20 +532,28 @@ namespace OGRIT_Database_Custom_App.Controller
             {
                 string selectQuery = $"SELECT * FROM [{ConnectionTableSchema}].[{ConnectionTable}]";
                 DataTable? dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
-                if (dataTable == null) { return; }
+                if (dataTable == null)
+                {
+                    StaticMethodHolder.WriteToLog(LogType.Warning, "(FETCH OPERATION - EXECUTE SCREEN) Failed fetching Connection Table data.");
+                    return;
+                }
                 _executeProceduresScreen.SetCSsSource(dataTable);
 
                 selectQuery = $"SELECT * FROM [{ProcedureTableSchema}].[{ProcedureTable}]";
                 dataTable = mainDBConnection.ExecuteSelectQueryAndGetResult(selectQuery);
-                if (dataTable == null) { return; }
+                if (dataTable == null)
+                {
+                    StaticMethodHolder.WriteToLog(LogType.Warning, "(FETCH OPERATION - EXECUTE SCREEN) Failed fetching Procedure Table data.");
+                    return;
+                }
                 _executeProceduresScreen.SetSPsSource(dataTable);
             });
 
             // On execution get the selected Procedures and Connections
             _executeProceduresScreen.SetExecuteSignal(() =>
             {
-                var SPList = _executeProceduresScreen.GetSelectedProcedures();
-                var CSList = _executeProceduresScreen.GetSelectedConnectionsID();
+                List<DataRowView> SPList = _executeProceduresScreen.GetSelectedProcedures();
+                List<DataRowView> CSList = _executeProceduresScreen.GetSelectedConnectionsID();
 
                 mainDBConnection.ExecuteSPsRemote(SPList, CSList);
             });

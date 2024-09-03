@@ -1,5 +1,7 @@
 ﻿using DataJuggler.Core.Cryptography;
+using OGRIT_Database_Custom_App.Generics;
 using System.Configuration;
+using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OGRIT_Database_Custom_App.Models
@@ -36,13 +38,17 @@ namespace OGRIT_Database_Custom_App.Models
             _SQLAuth = SQLAuth;
             if (SQLAuth)
             {
-                _username = username;
                 // The way the code is written it should never be null nor empty (we do the validation on the input form), but you never know.
-                // The password is encrypted if provided and SQL authentication is used.
-                if (String.IsNullOrEmpty(password))
+                if (String.IsNullOrEmpty == null || String.IsNullOrEmpty(password)) {
+                    StaticMethodHolder.WriteToLog(LogType.Warning, "Failed to create Connection String. SQL Auth selected but no credentials specified.");
                     return;
+                }
 
+                _username = username;
+
+                // The password is encrypted if provided and SQL authentication is used.
                 _password = password;
+
                 // Upon getting an unencrypted password, encrypt it.
                 if (!AlreadyEncrypted)
                 {

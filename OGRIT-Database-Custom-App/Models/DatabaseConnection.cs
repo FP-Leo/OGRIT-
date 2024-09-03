@@ -3,6 +3,8 @@ using System.Data;
 using OGRIT_Database_Custom_App.Models;
 using DataJuggler.Core.Cryptography;
 using System.Configuration;
+using OGRIT_Database_Custom_App.Generics;
+using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
 namespace OGRIT_Database_Custom_App.Model
 {
@@ -29,6 +31,13 @@ namespace OGRIT_Database_Custom_App.Model
         }
 
         /// <summary>
+        /// Deconstructor - upon going out of scope it terminates the database connection if it was established.
+        /// </summary>
+        ~DatabaseConnection() {
+            CloseConnection();
+        }
+
+        /// <summary>
         /// Opens a connection to the database using the specified connection string.
         /// </summary>
         /// <returns><c>true</c> if the connection was successfully opened; otherwise, <c>false</c>.</returns>
@@ -48,15 +57,23 @@ namespace OGRIT_Database_Custom_App.Model
                 Connection ??= new SqlConnection(FormatConnectionString());
 
                 if (Connection.State == ConnectionState.Closed)
-                    Connection.Open();
+                        Connection.Open();
 
                 return true;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
+                // When a wrong CS is provided the connection needs to be reset so that it can use the new one that's going to be provided.
                 Connection = null;
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Failed establishing connection to the database.");
+                StaticMethodHolder.WriteToLog(LogType.Error, $"Failed establishing connection to the database. Full error {ex}");
+            }// Connection.Open() throws 3 different exceptions, since I'm not familiar with each of them, I'll handle them in a single catch statement. Subjected to change in newer releases.
+            catch (Exception generalEx)
+            {
+                MessageBox.Show("Failed establishing connection to the database.");
+                StaticMethodHolder.WriteToLog(LogType.Error, $"Failed establishing connection to the database [ .Open() issue]. Full error {generalEx}");
             }
+        
             return false;
         }
 
@@ -70,7 +87,14 @@ namespace OGRIT_Database_Custom_App.Model
 
             if (Connection.State == ConnectionState.Open)
             {
-                Connection.Close();
+                try
+                {
+                    Connection.Close();
+                }
+                catch (SqlException ex) {
+                    MessageBox.Show($"Failed closing connection of {cs?.GetServerNameIP()}");
+                    StaticMethodHolder.WriteToLog(LogType.Error, $"Failed closing a connection of the database. Full error {ex}");
+                }
             }
         }
 
@@ -97,7 +121,8 @@ namespace OGRIT_Database_Custom_App.Model
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("Error executing non query command, most likely caused by an Insert command. Check logs for full error. ");
+                StaticMethodHolder.WriteToLog(LogType.Error, $"Error executing non query command. Full error: {ex}");
             }
         }
         /// <summary>
@@ -125,9 +150,9 @@ namespace OGRIT_Database_Custom_App.Model
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error executing data reader command, most likely caused by an OnReturnExecute stored procedure. Check logs for full error. ");
+                StaticMethodHolder.WriteToLog(LogType.Error, $"Error executing data reader command. Full error: {ex}");
             }
-
 
             return null;
         }
@@ -139,19 +164,30 @@ namespace OGRIT_Database_Custom_App.Model
         private string? FormatConnectionString()
         {
             if (cs == null)
+            {
+                StaticMethodHolder.WriteToLog(LogType.Warning, "Failed converting Connection String object to string. Object not provided (null)");
                 return null;
-
-            string connectionString = $"Data Source={cs.GetServerNameIP()},{cs.GetPort()};Initial Catalog={cs.GetInstanceName()};";
+            }
+            var builder = new SqlConnectionStringBuilder();
+            builder.DataSource = $"{cs.GetServerNameIP()},{cs.GetPort()}";
+            builder.InitialCatalog = cs.GetInstanceName();
             if (cs.IsSQLAuth())
             {
+                builder.UserID = cs.GetUsername();
+                if (!StaticMethodHolder.ValidConfigKey("encryptionKey"))
+                {
+                    MessageBox.Show("Error: No encryption key found in the config file.");
+                    StaticMethodHolder.WriteToLog(LogType.Error, "Failed converting ConnectionString object to string. Encryption Key most likely deleted after loging in.");
+                    return null;
+                }
                 var decryptedPassword = CryptographyHelper.DecryptString(cs.GetPassword(), ConfigurationManager.AppSettings["encryptionKey"]);
-                connectionString += $"User ID={cs.GetUsername()};Password={decryptedPassword};";
+                builder.Password = decryptedPassword;
             }
             else
             {
-                connectionString += "Integrated Security=True;";
+                builder.IntegratedSecurity = true;
             }
-            return connectionString;
+            return builder.ConnectionString;
         }
 
         /// <summary>
