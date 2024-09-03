@@ -143,27 +143,25 @@ namespace OGRIT_Database_Custom_App.Controller
 
             if (!result)
             {
-                using (Aes aes = Aes.Create())
-                {
-                    // Generate a new key and IV
-                    aes.GenerateIV();
-                    aes.GenerateKey();
+                using Aes aes = Aes.Create();
+                // Generate a new key and IV
+                aes.GenerateIV();
+                aes.GenerateKey();
 
-                    // Retrieve the generated key
-                    byte[] key = aes.Key;
+                // Retrieve the generated key
+                byte[] key = aes.Key;
 
-                    // Optionally, convert the key to a Base64 string
-                    string base64Key = Convert.ToBase64String(key);
+                // Optionally, convert the key to a Base64 string
+                string base64Key = Convert.ToBase64String(key);
 
-                    // Change the value in config
-                    StaticMethodHolder.UpdateAppConfig("encryptionKey", base64Key);
+                // Change the value in config
+                StaticMethodHolder.UpdateAppConfig("encryptionKey", base64Key);
 
-                    // Log the change
-                    StaticMethodHolder.WriteToLog(LogType.Information, "Encryption Key Generated.");
+                // Log the change
+                StaticMethodHolder.WriteToLog(LogType.Information, "Encryption Key Generated.");
 
-                    // Change the indicator value in config
-                    StaticMethodHolder.UpdateAppConfig("keyGenerated", "true");
-                }
+                // Change the indicator value in config
+                StaticMethodHolder.UpdateAppConfig("keyGenerated", "true");
             }            
         }
 
@@ -369,6 +367,8 @@ namespace OGRIT_Database_Custom_App.Controller
                             return; 
                         }
 
+                        StaticMethodHolder.WriteToLog(LogType.Information, "Input gotten from Insert Connection Form.");
+
                         // Set the query
                         string insertQuery = $"INSERT INTO [{ConnectionTableSchema}].[{ConnectionTable}] VALUES ( @var1, @var2, @var3, @var4, @var5, @var6 )";
 
@@ -388,6 +388,8 @@ namespace OGRIT_Database_Custom_App.Controller
                             return;
                         }
 
+                        StaticMethodHolder.WriteToLog(LogType.Information, "Update index gotten from Update Connection Form.");
+
                         // Get the new data
                         var updatedCS = _connectionsScreen.GetInputedConnectionString();
 
@@ -396,6 +398,8 @@ namespace OGRIT_Database_Custom_App.Controller
                             MessageBox.Show("Failed to convert data to a Database Connection String");
                             return; 
                         }
+
+                        StaticMethodHolder.WriteToLog(LogType.Information, "Input gotten from Update Connection Form.");
 
                         // Set up the update query
                         string updateQuery = $"UPDATE [{ConnectionTableSchema}].[{ConnectionTable}]  SET ServerIPorName=@var1, Port=@var2, InstanceName=@var3, SQLAuth=@var4, UserName=@var5, Password=@var6 WHERE ID={id}";
@@ -423,7 +427,10 @@ namespace OGRIT_Database_Custom_App.Controller
                                 }
                                 // Set the delete query and execute it.
                                 string deleteQuery = $"DELETE FROM [{ConnectionTableSchema}].[{ConnectionTable}] WHERE {ConnectionFilterColumn}={colText}";
+
                                 mainDBConnection.ExecuteQuery(deleteQuery);
+
+                                StaticMethodHolder.WriteToLog(LogType.Information, "Connection deleted on the main database.");
                             }
                             catch(Exception ex)
                             {
@@ -467,6 +474,7 @@ namespace OGRIT_Database_Custom_App.Controller
                     var InstanceName = Convert.ToString(row.Cells["InstanceName"].Value);
                     var SQLAuth = Convert.ToBoolean(row.Cells["SQLAuth"].Value);
                     var username = Convert.ToString(row.Cells["Username"].Value);
+                    var password = Convert.ToString(row.Cells["Password"].Value);
 
                     if (string.IsNullOrEmpty(serverNameIP))
                     {
@@ -481,8 +489,8 @@ namespace OGRIT_Database_Custom_App.Controller
                         return;
                     }
 
-                    var cs = new ConnectionString(serverNameIP, Port, InstanceName, SQLAuth, username, null, false);
-
+                    var cs = new ConnectionString(serverNameIP, Port, InstanceName, SQLAuth, username, password, true);
+                    StaticMethodHolder.WriteToLog(LogType.Information, "Update Connection Form shown. Passing data.");
                     // Pass the data to the Update Form
                     _connectionsScreen.SetUpUpdateForm(cs, ID);
                 }
@@ -537,6 +545,7 @@ namespace OGRIT_Database_Custom_App.Controller
                     StaticMethodHolder.WriteToLog(LogType.Warning, "(FETCH OPERATION - EXECUTE SCREEN) Failed fetching Connection Table data.");
                     return;
                 }
+                StaticMethodHolder.WriteToLog(LogType.Information, "(FETCH OPERATION - EXECUTE SCREEN) Fetched Connection Table data.");
                 _executeProceduresScreen.SetCSsSource(dataTable);
 
                 selectQuery = $"SELECT * FROM [{ProcedureTableSchema}].[{ProcedureTable}]";
@@ -546,6 +555,7 @@ namespace OGRIT_Database_Custom_App.Controller
                     StaticMethodHolder.WriteToLog(LogType.Warning, "(FETCH OPERATION - EXECUTE SCREEN) Failed fetching Procedure Table data.");
                     return;
                 }
+                StaticMethodHolder.WriteToLog(LogType.Information, "(FETCH OPERATION - EXECUTE SCREEN) Fetched Procedure Table data.");
                 _executeProceduresScreen.SetSPsSource(dataTable);
             });
 
@@ -553,7 +563,10 @@ namespace OGRIT_Database_Custom_App.Controller
             _executeProceduresScreen.SetExecuteSignal(() =>
             {
                 List<DataRowView> SPList = _executeProceduresScreen.GetSelectedProcedures();
+                StaticMethodHolder.WriteToLog(LogType.Information, "Fetched selected Procedures");
+
                 List<DataRowView> CSList = _executeProceduresScreen.GetSelectedConnectionsID();
+                StaticMethodHolder.WriteToLog(LogType.Information, "Fetched selected Connections");
 
                 mainDBConnection.ExecuteSPsRemote(SPList, CSList);
             });

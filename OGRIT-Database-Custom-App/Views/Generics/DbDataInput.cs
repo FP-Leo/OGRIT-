@@ -217,7 +217,7 @@ namespace OGRIT_Database_Custom_App
             authCB.BindingContext = this.BindingContext;
             authCB.Visible = true;
 
-            string[] cbOptions = { "Windows Authentication", "SQL Server Authentication" };
+            string[] cbOptions = ["Windows Authentication", "SQL Server Authentication"];
             authCB.DataSource = cbOptions;
             authCB.SelectedIndexChanged += AuthCB_SelectedIndexChanged;
 

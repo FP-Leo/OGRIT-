@@ -39,7 +39,7 @@ namespace OGRIT_Database_Custom_App.Models
             if (SQLAuth)
             {
                 // The way the code is written it should never be null nor empty (we do the validation on the input form), but you never know.
-                if (String.IsNullOrEmpty == null || String.IsNullOrEmpty(password)) {
+                if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password)) {
                     StaticMethodHolder.WriteToLog(LogType.Warning, "Failed to create Connection String. SQL Auth selected but no credentials specified.");
                     return;
                 }

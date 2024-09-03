@@ -5,14 +5,10 @@
 /// </summary>
 namespace OGRIT_Database_Custom_App.Models
 {
-    public class RemoteDatabaseConnection : DatabaseConnection
+    public class RemoteDatabaseConnection(ConnectionString cs, int connectionStringsId) : DatabaseConnection(cs)
     {
-        private readonly int _connectionStringsId;
+        private readonly int _connectionStringsId = connectionStringsId;
 
-        public RemoteDatabaseConnection(ConnectionString cs, int connectionStringsId) : base(cs)
-        {
-            _connectionStringsId = connectionStringsId;
-        }
         /// <summary>
         /// Gets the Database's Connection String Id.
         /// </summary>

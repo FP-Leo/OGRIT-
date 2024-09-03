@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using OGRIT_Database_Custom_App.Generics;
+using System.Data;
 using static OGRIT_Database_Custom_App.Generics.DelegateContainer;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
@@ -124,10 +125,11 @@ namespace OGRIT_Database_Custom_App.Views.Screens
 
             foreach(int i in epSPsListBox.SelectedIndices)
             {
-                DataRowView? dataRow = epSPsListBox.Items[i] as DataRowView;
-
-                if (dataRow == null)
+                if (epSPsListBox.Items[i] is not DataRowView dataRow)
+                {
+                    StaticMethodHolder.WriteToLog(LogType.Warning, $"Failed to convert {i+1}th selected Procedure to DataRowView");
                     continue;
+                }
 
                 selectedProcedures.Add(dataRow);
             }
@@ -147,10 +149,12 @@ namespace OGRIT_Database_Custom_App.Views.Screens
 
             foreach (int i in epCSsListBox.SelectedIndices)
             {
-                var dataRow = epCSsListBox.Items[i] as DataRowView;
-                if (dataRow == null)
+                if (epCSsListBox.Items[i] is not DataRowView dataRow)
+                {
+                    StaticMethodHolder.WriteToLog(LogType.Warning, $"Failed to convert {i + 1}th selected Connection to DataRowView");
                     continue;
-                    
+                }
+
                 selectedConnections.Add(dataRow);
             }
 

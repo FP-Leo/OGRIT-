@@ -58,6 +58,7 @@ namespace OGRIT_Database_Custom_App.Model
 
                 if (Connection.State == ConnectionState.Closed)
                         Connection.Open();
+                StaticMethodHolder.WriteToLog(LogType.Information, "Connection established with a database.");
 
                 return true;
             }
@@ -90,6 +91,7 @@ namespace OGRIT_Database_Custom_App.Model
                 try
                 {
                     Connection.Close();
+                    StaticMethodHolder.WriteToLog(LogType.Information, $"Closed connection to a database.");
                 }
                 catch (SqlException ex) {
                     MessageBox.Show($"Failed closing connection of {cs?.GetServerNameIP()}");
@@ -104,25 +106,26 @@ namespace OGRIT_Database_Custom_App.Model
         /// <param name="query">The <see cref="string"/> string representing the SQL query to execute.</param>
         public void ExecuteQuery(string query)
         {
-            using (var command = new SqlCommand(query, Connection))
-            {
-                ExecuteCommandNonQuery(command);
-            }
+            using var command = new SqlCommand(query, Connection);
+            ExecuteCommandNonQuery(command);
         }
         /// <summary>
         /// Executes a SQL command that does not return results.
         /// </summary>
         /// <param name="command">Represents the SQL command to execute.</param>
-        public static void ExecuteCommandNonQuery(SqlCommand command)
+        public static bool ExecuteCommandNonQuery(SqlCommand command)
         {
             try
             {
                 command.ExecuteNonQuery();
+                StaticMethodHolder.WriteToLog(LogType.Information, $"Non query command executed successfully.");
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error executing non query command, most likely caused by an Insert command. Check logs for full error. ");
                 StaticMethodHolder.WriteToLog(LogType.Error, $"Error executing non query command. Full error: {ex}");
+                return false;
             }
         }
         /// <summary>
@@ -131,10 +134,8 @@ namespace OGRIT_Database_Custom_App.Model
         /// <param name="query">The <see cref="string"/> string representing the SQL query to execute.</param>
         public SqlDataReader? ExecuteQueryDbDataReader(string query)
         {
-            using (var command = new SqlCommand(query, Connection))
-            {
-                return ExecuteDbDataReaderCommand(command);
-            }
+            using var command = new SqlCommand(query, Connection);
+            return ExecuteDbDataReaderCommand(command);
         }
         /// <summary>
         /// Executes a SQL command that returns results inform of SqlDataReader
@@ -145,7 +146,7 @@ namespace OGRIT_Database_Custom_App.Model
             try
             {
                 SqlDataReader? result = command.ExecuteReader();
-
+                StaticMethodHolder.WriteToLog(LogType.Information, $"Data reader command executed successfully.");
                 return result;
             }
             catch(Exception ex)
@@ -168,9 +169,11 @@ namespace OGRIT_Database_Custom_App.Model
                 StaticMethodHolder.WriteToLog(LogType.Warning, "Failed converting Connection String object to string. Object not provided (null)");
                 return null;
             }
-            var builder = new SqlConnectionStringBuilder();
-            builder.DataSource = $"{cs.GetServerNameIP()},{cs.GetPort()}";
-            builder.InitialCatalog = cs.GetInstanceName();
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = $"{cs.GetServerNameIP()},{cs.GetPort()}",
+                InitialCatalog = cs.GetInstanceName()
+            };
             if (cs.IsSQLAuth())
             {
                 builder.UserID = cs.GetUsername();

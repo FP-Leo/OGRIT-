@@ -2,6 +2,7 @@
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 using static OGRIT_Database_Custom_App.Generics.DelegateContainer;
 using OGRIT_Database_Custom_App.Models;
+using OGRIT_Database_Custom_App.Generics;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -135,6 +136,7 @@ namespace OGRIT_Database_Custom_App
         /// <param name="e">The event data.</param>
         private void McInsertButton_Click(object sender, EventArgs e)
         {
+            StaticMethodHolder.WriteToLog(LogType.Information, "Insert Connection Form shown.");
             _insertUpdateForm.ResetInputFormText();
             InitializeInputForm("Insert Form", "Submit");
             GetConnectionStringFromForm(ConnectionMenuOptions.Insert);

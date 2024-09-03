@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OGRIT-Database-Custom-App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+478b9c9c9ae2da427086575eddc7ea08cc0409bf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+395aec3ef2959d476ee1bbd0bce68d14f745bdfc")]
 [assembly: System.Reflection.AssemblyProductAttribute("OGRIT-Database-Custom-App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OGRIT-Database-Custom-App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

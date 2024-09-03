@@ -43,6 +43,7 @@ namespace OGRIT_Database_Custom_App.Models
                 SqlDataAdapter dataAdapter = new(query, Connection);
                 DataTable dataTable = new();
                 dataAdapter.Fill(dataTable);
+                StaticMethodHolder.WriteToLog(LogType.Information, $"Select query executed successfully on the main database.");
                 return dataTable;
             }
             catch (Exception ex)
@@ -108,6 +109,7 @@ namespace OGRIT_Database_Custom_App.Models
             try
             {
                 string? result = command.ExecuteScalar().ToString();
+                StaticMethodHolder.WriteToLog(LogType.Information, $"Got query from SP  on the main database successfully.");
                 return result;
             }
             catch (Exception ex) 
@@ -143,9 +145,11 @@ namespace OGRIT_Database_Custom_App.Models
 
             // Get every selected Store Procedure
             foreach (var SP in SPList) {
-                string? procedureName = SP[ProcedureFilter] as string;
-
-                if(procedureName == null) continue;
+                if (SP[ProcedureFilter] is not string procedureName)
+                {
+                    StaticMethodHolder.WriteToLog(LogType.Error, $"(EXECUTION OPERATION) Failed getting Procedure name using {ProcedureFilter} as column for it.");
+                    continue;
+                }
 
                 // Get every SPs inner query
                 string? SPsInnerQuery = GetSPQuery(procedureName);
@@ -159,7 +163,11 @@ namespace OGRIT_Database_Custom_App.Models
                     // Get every selected connection
                     int? connectionId = connection[ConnectionFilter] as int?;
 
-                    if (connectionId == null) continue;
+                    if (connectionId == null)
+                    {
+                        StaticMethodHolder.WriteToLog(LogType.Error, $"(EXECUTION OPERATION) Failed getting Connection Id using {ConnectionFilter} as column for it.");
+                        continue;
+                    }
 
                     // Check if there's an established connection, if not try to establish it.
                     int eci = establishedConnections.FindIndex(c => c.GetDatabasesConnectionStringId() == connectionId);
@@ -184,24 +192,25 @@ namespace OGRIT_Database_Custom_App.Models
 
                         // Add the newly established connection to the list
                         establishedConnections.Add(databaseConnection);
+                        StaticMethodHolder.WriteToLog(LogType.Error, $"(EXECUTION OPERATION) Established and added Connection (w ID={connectionId}) to Connection List ");
+
 
                         eci = establishedConnections.Count - 1;
                     }
                     // Store the results in a reader so that you can pass them to the main database if needed.
                     SqlDataReader? result = establishedConnections[(int)eci].ExecuteQueryDbDataReader(SPsInnerQuery);
-
                     MessageBox.Show("SP executed succesfully");
 
                     if (result == null)
                         continue;
 
                     // Check to see if data retrieval is necessary
-                    string? toBeExecuted = SP[DataRetrivealColumn] as string;
 
-                    if (toBeExecuted == null)
+                    if (SP[DataRetrivealColumn] is not string toBeExecuted)
                         continue;
 
                     MessageBox.Show("Starting data retrieval Operation.");
+                    StaticMethodHolder.WriteToLog(LogType.Information, "Starting Execution of OnReturnExecute SP.");
                     InsertResult(toBeExecuted, result);
                 }
             }
@@ -222,20 +231,23 @@ namespace OGRIT_Database_Custom_App.Models
         /// <returns>A <see cref="ConnectionString"/> object if mapping is successful; otherwise, null.</returns>
         private static ConnectionString? MapRowToConnectionString(DataRowView? connection)
         {
-            if(connection == null) return null;
+            if (connection == null) {
+                StaticMethodHolder.WriteToLog(LogType.Warning, "Trying to map a null row to a Connection String.");
+                return null; 
+            }
 
-            string? serverIP = connection["ServerIPorName"] as string;
             int? port = connection["Port"] as int?;
-            string? instanceName = connection["InstanceName"] as string;
             bool? SQLAuth = connection["SQLAuth"] as Boolean?;
             string? username = connection["UserName"] as string;
             string? password = connection["Password"] as string;
 
-            if (serverIP == null || port == null || instanceName == null || SQLAuth == null)
+            if (connection["ServerIPorName"] is not string serverIP || connection["InstanceName"] is not string instanceName || port == null || SQLAuth == null || (SQLAuth == true && (username == null || password == null)))
+            {
+                StaticMethodHolder.WriteToLog(LogType.Error, "Mapping a row to a Connection String failed. Possible null values given.");
                 return null;
+            }
 
-            if (SQLAuth == true && (username == null || password == null))
-                return null;
+            StaticMethodHolder.WriteToLog(LogType.Information, "Succesfully mapped a row to a Connection String.");
 
             return new(
                     serverIP,
@@ -274,9 +286,16 @@ namespace OGRIT_Database_Custom_App.Models
                     command.Parameters.AddWithValue(parameterName, fieldValue);
                 }
 
-                ExecuteCommandNonQuery(command);
+                bool result = ExecuteCommandNonQuery(command);
+
+                if (!result)
+                {
+                    StaticMethodHolder.WriteToLog(LogType.Error, "Retrieving data failed for one row. Aborting operation.");
+                    break;
+                }
             }
             MessageBox.Show("Data retrieved.");
+            StaticMethodHolder.WriteToLog(LogType.Information, "OnReturnExecute SP executed successfully. Data retrieved.");
 
             reader.Close();
         }
