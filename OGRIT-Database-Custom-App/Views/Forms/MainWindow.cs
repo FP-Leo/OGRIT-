@@ -1,4 +1,5 @@
 using System.Data.SqlClient;
+using static OGRIT_Database_Custom_App.Generics.DelegateContainer;
 
 namespace OGRIT_Database_Custom_App
 {
@@ -12,6 +13,11 @@ namespace OGRIT_Database_Custom_App
         /// The currently active user control (screen) displayed in the main window.
         /// </summary>
         private UserControl? _screen;
+
+        /// <summary>
+        /// Signal that will get invoked on Main Window closing.
+        /// </summary>
+        private FormClosingSignal? _mainWindowClosingSignal;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -53,6 +59,21 @@ namespace OGRIT_Database_Custom_App
                 Controls.Remove(_screen);
                 _screen = null;
             }
+        }
+
+        /// <summary>
+        /// Sets the closing signal that will be used just before the main window will be destroyed.
+        /// </summary>
+        public void setMainWindowClosingSignal(FormClosingSignal mainWindowClosingSignal) { 
+            _mainWindowClosingSignal = mainWindowClosingSignal;
+        }
+
+        /// <summary>
+        /// Sends the signal that the main window is about to be destroyed.
+        /// </summary>
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _mainWindowClosingSignal?.Invoke();
         }
     }
 }

@@ -210,6 +210,7 @@ namespace OGRIT_Database_Custom_App
 
             // authCB settings
             authCB.Dock = DockStyle.Fill;
+            authCB.Margin = new Padding(5, 3, 5, 3);
             authCB.DropDownStyle = ComboBoxStyle.DropDownList;
             authCB.FormattingEnabled = true;
             authCB.Name = "authCB";
@@ -248,7 +249,7 @@ namespace OGRIT_Database_Custom_App
             }
 
             int i = 0;
-            for (; i < 9; i++)
+            for (; i < 8; i++)
             {
                 dbIFTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, rowHeight));
             }
@@ -260,6 +261,7 @@ namespace OGRIT_Database_Custom_App
 
             // If SQLAuth == true these need to be shown.
             usernameLabel.Visible = SQLAuth;
+
             usernameTB.Visible = SQLAuth;
             passwordLabel.Visible = SQLAuth;
             passwordTB.Visible = SQLAuth;

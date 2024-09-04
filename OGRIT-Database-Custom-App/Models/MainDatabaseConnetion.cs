@@ -299,5 +299,18 @@ namespace OGRIT_Database_Custom_App.Models
 
             reader.Close();
         }
+
+        public void ResetConnections()
+        {
+            for (int i = 0; i < establishedConnections.Count; i++)
+            {
+                establishedConnections[i].CloseConnection();
+            }
+            establishedConnections.Clear();
+
+            CloseConnection();
+
+            Connection = null;
+        }
     }
 }

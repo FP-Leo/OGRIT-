@@ -31,13 +31,6 @@ namespace OGRIT_Database_Custom_App.Model
         }
 
         /// <summary>
-        /// Deconstructor - upon going out of scope it terminates the database connection if it was established.
-        /// </summary>
-        ~DatabaseConnection() {
-            CloseConnection();
-        }
-
-        /// <summary>
         /// Opens a connection to the database using the specified connection string.
         /// </summary>
         /// <returns><c>true</c> if the connection was successfully opened; otherwise, <c>false</c>.</returns>
@@ -109,6 +102,7 @@ namespace OGRIT_Database_Custom_App.Model
             using var command = new SqlCommand(query, Connection);
             ExecuteCommandNonQuery(command);
         }
+        
         /// <summary>
         /// Executes a SQL command that does not return results.
         /// </summary>
@@ -128,6 +122,7 @@ namespace OGRIT_Database_Custom_App.Model
                 return false;
             }
         }
+        
         /// <summary>
         /// Executes a SQL query that returns results inform of SqlDataReader
         /// </summary>
@@ -137,6 +132,7 @@ namespace OGRIT_Database_Custom_App.Model
             using var command = new SqlCommand(query, Connection);
             return ExecuteDbDataReaderCommand(command);
         }
+        
         /// <summary>
         /// Executes a SQL command that returns results inform of SqlDataReader
         /// </summary>
@@ -145,7 +141,7 @@ namespace OGRIT_Database_Custom_App.Model
         {
             try
             {
-                SqlDataReader? result = command.ExecuteReader();
+                using SqlDataReader? result = command.ExecuteReader();
                 StaticMethodHolder.WriteToLog(LogType.Information, $"Data reader command executed successfully.");
                 return result;
             }

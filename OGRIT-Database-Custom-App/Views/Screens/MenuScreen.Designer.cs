@@ -37,7 +37,7 @@ namespace OGRIT_Database_Custom_App
             executeProcedureButton = new RoundButton();
             viewProcedureButton = new RoundButton();
             connectButton = new RoundButton();
-            quitButton = new RoundButton();
+            logOutButton = new RoundButton();
             menuLabel = new Label();
             linePanel = new Panel();
             menuPanel.SuspendLayout();
@@ -94,7 +94,7 @@ namespace OGRIT_Database_Custom_App
             menuButtonTablePanel.Controls.Add(executeProcedureButton, 0, 2);
             menuButtonTablePanel.Controls.Add(viewProcedureButton, 0, 1);
             menuButtonTablePanel.Controls.Add(connectButton, 0, 0);
-            menuButtonTablePanel.Controls.Add(quitButton, 0, 3);
+            menuButtonTablePanel.Controls.Add(logOutButton, 0, 3);
             menuButtonTablePanel.Dock = DockStyle.Fill;
             menuButtonTablePanel.Location = new Point(3, 163);
             menuButtonTablePanel.Name = "menuButtonTablePanel";
@@ -172,27 +172,27 @@ namespace OGRIT_Database_Custom_App
             connectButton.UseVisualStyleBackColor = false;
             connectButton.Click += ManageConnectionButton_Click;
             // 
-            // quitButton
+            // logOutButton
             // 
-            quitButton.BackColor = Color.FromArgb(40, 40, 40);
-            quitButton.BackgroundColor = Color.FromArgb(40, 40, 40);
-            quitButton.BorderColor = Color.PaleVioletRed;
-            quitButton.BorderRadius = 8;
-            quitButton.BorderSize = 0;
-            quitButton.Dock = DockStyle.Fill;
-            quitButton.FlatAppearance.BorderSize = 0;
-            quitButton.FlatStyle = FlatStyle.Flat;
-            quitButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            quitButton.ForeColor = Color.LightGray;
-            quitButton.Location = new Point(75, 184);
-            quitButton.Margin = new Padding(75, 10, 75, 10);
-            quitButton.Name = "quitButton";
-            quitButton.Size = new Size(244, 40);
-            quitButton.TabIndex = 7;
-            quitButton.Text = "Quit";
-            quitButton.TextColor = Color.LightGray;
-            quitButton.UseVisualStyleBackColor = false;
-            quitButton.Click += QuitButton_Click;
+            logOutButton.BackColor = Color.FromArgb(40, 40, 40);
+            logOutButton.BackgroundColor = Color.FromArgb(40, 40, 40);
+            logOutButton.BorderColor = Color.FromArgb(40, 40, 40);
+            logOutButton.BorderRadius = 8;
+            logOutButton.BorderSize = 0;
+            logOutButton.Dock = DockStyle.Fill;
+            logOutButton.FlatAppearance.BorderSize = 0;
+            logOutButton.FlatStyle = FlatStyle.Flat;
+            logOutButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            logOutButton.ForeColor = Color.LightGray;
+            logOutButton.Location = new Point(75, 185);
+            logOutButton.Margin = new Padding(75, 11, 75, 11);
+            logOutButton.Name = "logOutButton";
+            logOutButton.Size = new Size(244, 38);
+            logOutButton.TabIndex = 7;
+            logOutButton.Text = "Log Out";
+            logOutButton.TextColor = Color.LightGray;
+            logOutButton.UseVisualStyleBackColor = false;
+            logOutButton.Click += QuitButton_Click;
             // 
             // menuLabel
             // 
@@ -242,6 +242,6 @@ namespace OGRIT_Database_Custom_App
         private RoundButton viewProcedureButton;
         private RoundButton connectButton;
         private Panel linePanel;
-        private RoundButton quitButton;
+        private RoundButton logOutButton;
     }
 }

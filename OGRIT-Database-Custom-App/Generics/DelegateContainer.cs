@@ -46,9 +46,20 @@ namespace OGRIT_Database_Custom_App.Generics
         /// Delegate for setting updates in a UI or model component.
         /// </summary>
         public delegate void UpdateFormSignal();
+        
         /// <summary>
-        /// Delegate for sending a signal to execute an action
+        /// Delegate for sending a signal to execute an action.
         /// </summary>
         public delegate void ExecuteSignal();
+        
+        /// <summary>
+        /// Delegate for sending a signal to log out of the main database.
+        /// </summary>
+        public delegate void LogOutSignal();
+
+        /// <summary>
+        /// Delegate for sending a signal that the form is closing.
+        /// </summary>
+        public delegate void FormClosingSignal();
     }
 }

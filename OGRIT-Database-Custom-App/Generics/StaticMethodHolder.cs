@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using OGRIT_Database_Custom_App.Models;
+using System.Configuration;
 using System.Diagnostics;
 using static OGRIT_Database_Custom_App.Generics.ScreenEnums;
 
@@ -44,7 +45,7 @@ namespace OGRIT_Database_Custom_App.Generics
         /// </summary>
         /// <param name="key">The key that is going to be changed</param>
         /// <param name="newValue">The new value that is going to be assigned to the key</param>
-        public static void UpdateAppConfig(string key, string newValue)
+        public static void UpdateAppConfig(string key, string? newValue)
         {
             // Open the configuration file for the current application
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -55,6 +56,8 @@ namespace OGRIT_Database_Custom_App.Generics
                 WriteToLog(LogType.Error, $"Key '{key}' doesn't exist in app.config.");
                 return;
             }
+
+            newValue ??= string.Empty;
 
             // Update the value
             config.AppSettings.Settings[key].Value = newValue;
@@ -67,6 +70,7 @@ namespace OGRIT_Database_Custom_App.Generics
 
             WriteToLog(LogType.Information, $"Updated '{key}' in app.config.");
         }
+        
         /// <summary>
         /// Function to create the log file and the listener of it.
         /// </summary>
@@ -76,6 +80,7 @@ namespace OGRIT_Database_Custom_App.Generics
             Trace.Listeners.Add(fileListener);
             Trace.AutoFlush = true;
         }
+        
         /// <summary>
         /// Function to log operations to the log file initialized in MainController's constructor.
         /// </summary>
@@ -84,6 +89,33 @@ namespace OGRIT_Database_Custom_App.Generics
         public static void WriteToLog(LogType logType, string message)
         {
             Trace.WriteLine($"{DateTime.Now} - {logType} - {message}");
+        }
+        
+        /// <summary>
+        /// Function to change default login to main database when the login is successfull and remember me is set. Password is not saved.
+        /// </summary>
+        /// <param name="cs">The connection string that holds the data </param>
+        public static void SetDefaultConfig(ConnectionString cs)
+        {
+            UpdateAppConfig("defaultServer", cs.GetServerNameIP());
+            UpdateAppConfig("defaultPort", Convert.ToString(cs.GetPort()));
+            UpdateAppConfig("defaultInstance", cs.GetInstanceName());
+            UpdateAppConfig("SQLAuth", Convert.ToString(cs.IsSQLAuth()));
+            UpdateAppConfig("defaultUsername", cs.GetUsername());
+            UpdateAppConfig("rememberMe", "True");
+        }
+        
+        /// <summary>
+        /// Function to reset default login to main database when the login is successfull and remember me is not set.
+        /// </summary>
+        public static void ResetDefaultLogin()
+        {
+            UpdateAppConfig("defaultServer", null);
+            UpdateAppConfig("defaultPort", null);
+            UpdateAppConfig("defaultInstance", null);
+            UpdateAppConfig("SQLAuth", null);
+            UpdateAppConfig("defaultUsername", null);
+            UpdateAppConfig("rememberMe", "False");
         }
     }
 }

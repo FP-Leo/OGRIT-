@@ -124,7 +124,15 @@ namespace OGRIT_Database_Custom_App.Controller
 
             StaticMethodHolder.WriteToLog(LogType.Information, "Initilizing Main Window.");
             mainDBConnection = new MainDatabaseConnection(ConnectionFilterColumn, ProcedureFilterColumn, DataRetrivealColumn);
+
             mainWindow = new MainWindow();
+
+            // On Exit close all connections.
+            mainWindow.setMainWindowClosingSignal(() =>
+            {
+                mainDBConnection.ResetConnections();
+            });
+
             StaticMethodHolder.WriteToLog(LogType.Information, "Main Window initialized.");
         }
         /// <summary>
@@ -330,9 +338,17 @@ namespace OGRIT_Database_Custom_App.Controller
                 if(mainDBConnection.OpenConnection())
                 {
                     StaticMethodHolder.WriteToLog(LogType.Information, "Logged in to the main database");
+
+                    if (_logInScreen.RememberMeIsChecked())
+                        StaticMethodHolder.SetDefaultConfig(connection);
+                    else
+                        StaticMethodHolder.ResetDefaultLogin();
+
                     ChangeScreen(Screens.LogInScreen, Screens.MenuScreen);
                 }
             });
+
+            _logInScreen?.SetRememberMe(Convert.ToBoolean(StaticMethodHolder.GetConfigKey("rememberMe")));
         }
 
         /// <summary>
@@ -343,6 +359,12 @@ namespace OGRIT_Database_Custom_App.Controller
             if (_menuScreen == null)
                 return;
             _menuScreen.SetChanger(SetScreen);
+
+            _menuScreen.SetLogOutSignal(() =>
+            {
+                mainDBConnection.ResetConnections();
+                ChangeScreen(Screens.MenuScreen, Screens.LogInScreen);
+            });
         }
 
         /// <summary>

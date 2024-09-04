@@ -13,6 +13,8 @@ namespace OGRIT_Database_Custom_App
         /// </summary>
         private MenuScreenChanger? _changer;
 
+        private LogOutSignal? _logOutSignal;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuScreen"/> class.
         /// </summary>
@@ -27,7 +29,16 @@ namespace OGRIT_Database_Custom_App
         /// <param name="changer">The delegate to change the screen.</param>
         public void SetChanger(MenuScreenChanger changer)
         {
-            this._changer = changer;
+            _changer = changer;
+        }
+
+        /// <summary>
+        /// Sets the delegate for logging out.
+        /// </summary>
+        /// <param name="logOutSignal">The delegate to log out.</param>
+        public void SetLogOutSignal(LogOutSignal logOutSignal)
+        {
+            _logOutSignal = logOutSignal;
         }
 
         /// <summary>
@@ -84,7 +95,7 @@ namespace OGRIT_Database_Custom_App
         /// <param name="e">The event data.</param>
         private void QuitButton_Click(object sender, EventArgs e)
         {
-            System.Environment.Exit(0);
+            _logOutSignal?.Invoke();
         }
     }
 }

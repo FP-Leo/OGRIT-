@@ -24,6 +24,7 @@ namespace OGRIT_Database_Custom_App
             lsTablePanel = new TableLayoutPanel();
             connectButton = new RoundButton();
             LISinputForm = new DbDataInput();
+            rememberMeCheckBox = new CheckBox();
             lsOuterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             lsTablePanel.SuspendLayout();
@@ -55,13 +56,15 @@ namespace OGRIT_Database_Custom_App
             lsTablePanel.Anchor = AnchorStyles.None;
             lsTablePanel.ColumnCount = 1;
             lsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            lsTablePanel.Controls.Add(connectButton, 0, 1);
+            lsTablePanel.Controls.Add(connectButton, 0, 2);
             lsTablePanel.Controls.Add(LISinputForm, 0, 0);
+            lsTablePanel.Controls.Add(rememberMeCheckBox, 0, 1);
             lsTablePanel.Location = new Point(355, 118);
             lsTablePanel.MinimumSize = new Size(350, 350);
             lsTablePanel.Name = "lsTablePanel";
-            lsTablePanel.RowCount = 2;
-            lsTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
+            lsTablePanel.RowCount = 3;
+            lsTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+            lsTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             lsTablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             lsTablePanel.Size = new Size(350, 350);
             lsTablePanel.TabIndex = 1;
@@ -78,11 +81,11 @@ namespace OGRIT_Database_Custom_App
             connectButton.FlatStyle = FlatStyle.Flat;
             connectButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             connectButton.ForeColor = Color.LightGray;
-            connectButton.Location = new Point(3, 320);
-            connectButton.Margin = new Padding(3, 5, 3, 5);
+            connectButton.Location = new Point(5, 320);
+            connectButton.Margin = new Padding(5);
             connectButton.Name = "connectButton";
-            connectButton.Size = new Size(344, 25);
-            connectButton.TabIndex = 3;
+            connectButton.Size = new Size(340, 25);
+            connectButton.TabIndex = 6;
             connectButton.Text = "Connect";
             connectButton.TextColor = Color.LightGray;
             connectButton.UseVisualStyleBackColor = false;
@@ -93,8 +96,20 @@ namespace OGRIT_Database_Custom_App
             LISinputForm.Dock = DockStyle.Fill;
             LISinputForm.Location = new Point(3, 3);
             LISinputForm.Name = "LISinputForm";
-            LISinputForm.Size = new Size(344, 309);
+            LISinputForm.Size = new Size(344, 274);
             LISinputForm.TabIndex = 4;
+            // 
+            // rememberMeCheckBox
+            // 
+            rememberMeCheckBox.Anchor = AnchorStyles.Left;
+            rememberMeCheckBox.AutoSize = true;
+            rememberMeCheckBox.Location = new Point(8, 285);
+            rememberMeCheckBox.Margin = new Padding(8, 3, 3, 3);
+            rememberMeCheckBox.Name = "rememberMeCheckBox";
+            rememberMeCheckBox.Size = new Size(129, 24);
+            rememberMeCheckBox.TabIndex = 5;
+            rememberMeCheckBox.Text = "Remember Me";
+            rememberMeCheckBox.UseVisualStyleBackColor = true;
             // 
             // LogInScreen
             // 
@@ -107,6 +122,7 @@ namespace OGRIT_Database_Custom_App
             lsOuterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
             lsTablePanel.ResumeLayout(false);
+            lsTablePanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -115,7 +131,8 @@ namespace OGRIT_Database_Custom_App
         private Panel lsOuterPanel;
         private PictureBox logoBox;
         private TableLayoutPanel lsTablePanel;
-        private RoundButton connectButton;
         private DbDataInput LISinputForm;
+        private RoundButton connectButton;
+        private CheckBox rememberMeCheckBox;
     }
 }

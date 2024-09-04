@@ -62,5 +62,20 @@ namespace OGRIT_Database_Custom_App
                 (lsOuterPanel.Width - lsTablePanel.Width) / 2,
                 (lsOuterPanel.Height - lsTablePanel.Height) / 2);
         }
+
+        /// <summary>
+        /// Gets the current value of the rememberMeCheckBox.
+        /// </summary>
+        public bool RememberMeIsChecked() { 
+            return rememberMeCheckBox.Checked;
+        }
+
+        /// <summary>
+        /// Sets the last used value of the rememberMeCheckBox.
+        /// </summary>
+        /// <param name="rememberMe">The new value of rememberMeCheckBox.</param>
+        public void SetRememberMe(bool rememberMe) { 
+            rememberMeCheckBox.Checked = rememberMe;
+        }
     }
 }
