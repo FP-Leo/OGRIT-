@@ -25,6 +25,7 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         public ProcedureListScreen()
         {
             InitializeComponent();
+            DesignTable();
         }
 
         /// <summary>
@@ -66,12 +67,65 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         }
 
         /// <summary>
+        /// Specifies the column height of the Data Grid of the Show Procedure Screen.
+        /// </summary>
+        private void DesignTable()
+        {
+            // Ensure the DataGridView has at least one column
+            if (spProcedureGrid.Columns.Count == 0)
+            {
+                return;
+            }
+
+            // Get the total width of the DataGridView container
+            int totalWidth = spProcedureGrid.Width;
+
+            // Set the width of the first column to 25% of the container's width
+            spProcedureGrid.Columns[0].Width = (int)(totalWidth * 0.25);
+
+            // Calculate the remaining width for the other columns
+            int remainingWidth = totalWidth - spProcedureGrid.Columns[0].Width;
+
+            // Get the number of remaining columns
+            int remainingColumns = spProcedureGrid.Columns.Count - 1;
+
+            // Set the width of the remaining columns equally
+            for (int i = 1; i < spProcedureGrid.Columns.Count; i++)
+            {
+                spProcedureGrid.Columns[i].Width = remainingWidth / remainingColumns;
+            }
+        }
+
+        /// <summary>
         /// Fills the data grid with the provided data.
         /// </summary>
         /// <param name="dataTable">The data to be displayed in the data grid.</param>
         public void FillDataGrid(DataTable dataTable)
         {
             spProcedureGrid.DataSource = dataTable;
+        }
+
+        /// <summary>
+        /// Handles the resize event for the Show Procedures Screen, changes the size of the columns inside the DataGrid.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
+        private void ProcedureListScreen_Resize(object sender, EventArgs e)
+        {
+            // initial width 1082
+            int newWidth = Math.Min(250, this.Width - 882);
+            // initial height 653
+            int newHeight = Math.Min(57, this.Height - 623);
+
+            int newX = (menuButtonPanel.Width - newWidth) / 2;  // Center horizontally
+            int newY = (menuButtonPanel.Height - newHeight) / 2; // Center vertically
+
+            // Apply the new size and location to the menu button
+            spMenuButton.Size = new Size(newWidth, newHeight);
+            spMenuButton.Location = new Point(newX, newY);
+            spMenuButton.BorderRadius = 8;
+
+            DesignTable();
         }
     }
 }

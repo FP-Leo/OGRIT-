@@ -176,7 +176,7 @@ namespace OGRIT_Database_Custom_App.Models
                         ConnectionString? tempCS = MapRowToConnectionString(connection);
 
                         if (tempCS == null) {
-                            FailedConversionBuilder.Append($"Database {ConnectionFilter}: {connection}\n\r");
+                            FailedConversionBuilder.Append($"Database {ConnectionFilter}: {connectionId}\n\r");
                             conversionFailed = true;
                             continue;
                         }
@@ -185,7 +185,7 @@ namespace OGRIT_Database_Custom_App.Models
 
                         if (!databaseConnection.OpenConnection())
                         {
-                            FailedConnectionBuilder.Append($"Database {ConnectionFilter}: {connection}\n\r");
+                            FailedConnectionBuilder.Append($"Database {ConnectionFilter}: {connectionId}\n\r");
                             connectionFailed = true;
                             continue;
                         }

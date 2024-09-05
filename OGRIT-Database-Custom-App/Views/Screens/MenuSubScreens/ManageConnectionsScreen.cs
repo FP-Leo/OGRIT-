@@ -53,6 +53,7 @@ namespace OGRIT_Database_Custom_App
         {
             _insertUpdateForm = new InsertUpdateForm();
             InitializeComponent();
+            DesignTable();
         }
 
         /// <summary>
@@ -202,8 +203,22 @@ namespace OGRIT_Database_Custom_App
                 return;
             }
 
-            _connectionScreenMenuSignal?.Invoke(ConnectionMenuOptions.Delete);
+            // Show a confirmation dialog
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to delete the selected rows?",
+                "Confirm Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
+            );
+
+            // Proceed only if the user clicked "Yes"
+            if (result == DialogResult.Yes)
+            {
+                _connectionScreenMenuSignal?.Invoke(ConnectionMenuOptions.Delete);
+            }
         }
+
 
         /// <summary>
         /// Gets the currently selected rows from the data grid.
@@ -254,6 +269,48 @@ namespace OGRIT_Database_Custom_App
             _insertUpdateForm.Text = Title;
             _insertUpdateForm.SetButtonText(ButtonText);
             _insertUpdateForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Handles the resize event for the Manage Connection Screen, changes the size of the columns inside the DataGrid.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
+        private void ManageConnectionsScreen_Resize(object sender, EventArgs e)
+        {
+            DesignTable();
+        }
+
+        /// <summary>
+        /// Specifies the column height of the Data Grid of the Manage Connection Screen.
+        /// </summary>
+        private void DesignTable()
+        {
+            // Ensure the DataGridView has at least one column
+            if (mcDataGrid.Columns.Count == 0)
+            {
+                return;
+            }
+
+            // Get the total width of the DataGridView container
+            int totalWidth = mcDataGrid.Width;
+
+            mcDataGrid.Columns[0].Width = 35;
+
+            // Set the width of the second column to 25% of the container's width
+            mcDataGrid.Columns[1].Width = (int)((totalWidth - 35) * 0.25);
+
+            // Calculate the remaining width for the other columns
+            int remainingWidth = totalWidth - mcDataGrid.Columns[1].Width - 36;
+
+            // Get the number of remaining columns
+            int remainingColumns = mcDataGrid.Columns.Count - 2;
+
+            // Set the width of the remaining columns equally
+            for (int i = 2; i < mcDataGrid.Columns.Count; i++)
+            {
+                mcDataGrid.Columns[i].Width = remainingWidth / remainingColumns;
+            }
         }
     }
 }

@@ -61,12 +61,14 @@ namespace OGRIT_Database_Custom_App
             mcDataGrid.AllowUserToDeleteRows = false;
             mcDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             mcDataGrid.Dock = DockStyle.Fill;
-            mcDataGrid.Location = new Point(161, 3);
+            mcDataGrid.Location = new Point(171, 3);
+            mcDataGrid.Margin = new Padding(3, 3, 40, 3);
             mcDataGrid.Name = "mcDataGrid";
             mcDataGrid.ReadOnly = true;
+            mcDataGrid.RowHeadersVisible = false;
             mcDataGrid.RowHeadersWidth = 51;
             mcDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            mcDataGrid.Size = new Size(890, 428);
+            mcDataGrid.Size = new Size(843, 428);
             mcDataGrid.TabIndex = 1;
             // 
             // mcOuterTableLayout
@@ -89,8 +91,8 @@ namespace OGRIT_Database_Custom_App
             // mcBodyTableLayoutPanel
             // 
             mcBodyTableLayoutPanel.ColumnCount = 2;
-            mcBodyTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
-            mcBodyTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85F));
+            mcBodyTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16F));
+            mcBodyTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84F));
             mcBodyTableLayoutPanel.Controls.Add(mcControlPanel, 0, 0);
             mcBodyTableLayoutPanel.Controls.Add(mcDataGrid, 1, 0);
             mcBodyTableLayoutPanel.Dock = DockStyle.Fill;
@@ -107,7 +109,7 @@ namespace OGRIT_Database_Custom_App
             mcControlPanel.Dock = DockStyle.Fill;
             mcControlPanel.Location = new Point(3, 3);
             mcControlPanel.Name = "mcControlPanel";
-            mcControlPanel.Size = new Size(152, 428);
+            mcControlPanel.Size = new Size(162, 428);
             mcControlPanel.TabIndex = 0;
             // 
             // buttonTablePannel
@@ -122,12 +124,12 @@ namespace OGRIT_Database_Custom_App
             buttonTablePannel.Location = new Point(0, 0);
             buttonTablePannel.Name = "buttonTablePannel";
             buttonTablePannel.RowCount = 5;
-            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            buttonTablePannel.Size = new Size(152, 428);
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.5F));
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.5F));
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.5F));
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
+            buttonTablePannel.RowStyles.Add(new RowStyle(SizeType.Percent, 7.5F));
+            buttonTablePannel.Size = new Size(162, 428);
             buttonTablePannel.TabIndex = 4;
             // 
             // mcInsertButton
@@ -141,9 +143,10 @@ namespace OGRIT_Database_Custom_App
             mcInsertButton.FlatAppearance.BorderSize = 0;
             mcInsertButton.FlatStyle = FlatStyle.Flat;
             mcInsertButton.ForeColor = Color.White;
-            mcInsertButton.Location = new Point(3, 3);
+            mcInsertButton.Location = new Point(40, 3);
+            mcInsertButton.Margin = new Padding(40, 3, 3, 3);
             mcInsertButton.Name = "mcInsertButton";
-            mcInsertButton.Size = new Size(146, 44);
+            mcInsertButton.Size = new Size(119, 26);
             mcInsertButton.TabIndex = 0;
             mcInsertButton.Text = "Insert";
             mcInsertButton.TextColor = Color.White;
@@ -161,9 +164,10 @@ namespace OGRIT_Database_Custom_App
             mcUpdateButton.FlatAppearance.BorderSize = 0;
             mcUpdateButton.FlatStyle = FlatStyle.Flat;
             mcUpdateButton.ForeColor = Color.White;
-            mcUpdateButton.Location = new Point(3, 53);
+            mcUpdateButton.Location = new Point(40, 35);
+            mcUpdateButton.Margin = new Padding(40, 3, 3, 3);
             mcUpdateButton.Name = "mcUpdateButton";
-            mcUpdateButton.Size = new Size(146, 44);
+            mcUpdateButton.Size = new Size(119, 26);
             mcUpdateButton.TabIndex = 1;
             mcUpdateButton.Text = "Update";
             mcUpdateButton.TextColor = Color.White;
@@ -181,9 +185,10 @@ namespace OGRIT_Database_Custom_App
             mcDeleteButton.FlatAppearance.BorderSize = 0;
             mcDeleteButton.FlatStyle = FlatStyle.Flat;
             mcDeleteButton.ForeColor = Color.White;
-            mcDeleteButton.Location = new Point(3, 103);
+            mcDeleteButton.Location = new Point(40, 67);
+            mcDeleteButton.Margin = new Padding(40, 3, 3, 3);
             mcDeleteButton.Name = "mcDeleteButton";
-            mcDeleteButton.Size = new Size(146, 44);
+            mcDeleteButton.Size = new Size(119, 26);
             mcDeleteButton.TabIndex = 2;
             mcDeleteButton.Text = "Delete";
             mcDeleteButton.TextColor = Color.White;
@@ -201,9 +206,10 @@ namespace OGRIT_Database_Custom_App
             mcMenuButton.FlatAppearance.BorderSize = 0;
             mcMenuButton.FlatStyle = FlatStyle.Flat;
             mcMenuButton.ForeColor = Color.White;
-            mcMenuButton.Location = new Point(3, 381);
+            mcMenuButton.Location = new Point(40, 398);
+            mcMenuButton.Margin = new Padding(40, 3, 3, 3);
             mcMenuButton.Name = "mcMenuButton";
-            mcMenuButton.Size = new Size(146, 44);
+            mcMenuButton.Size = new Size(119, 27);
             mcMenuButton.TabIndex = 3;
             mcMenuButton.Text = "Menu";
             mcMenuButton.TextColor = Color.White;
@@ -213,8 +219,8 @@ namespace OGRIT_Database_Custom_App
             // mcHeaderLayoutPanel
             // 
             mcHeaderLayoutPanel.ColumnCount = 2;
-            mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
-            mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85F));
+            mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 16F));
+            mcHeaderLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84F));
             mcHeaderLayoutPanel.Controls.Add(connectionsLabel, 1, 0);
             mcHeaderLayoutPanel.Dock = DockStyle.Fill;
             mcHeaderLayoutPanel.Location = new Point(3, 3);
@@ -230,7 +236,8 @@ namespace OGRIT_Database_Custom_App
             connectionsLabel.AutoSize = true;
             connectionsLabel.Font = new Font("Century Schoolbook", 18F);
             connectionsLabel.ForeColor = Color.FromArgb(145, 162, 255);
-            connectionsLabel.Location = new Point(514, 17);
+            connectionsLabel.Location = new Point(500, 17);
+            connectionsLabel.Margin = new Padding(3, 0, 40, 0);
             connectionsLabel.Name = "connectionsLabel";
             connectionsLabel.Size = new Size(184, 35);
             connectionsLabel.TabIndex = 0;
@@ -273,6 +280,7 @@ namespace OGRIT_Database_Custom_App
             Name = "ManageConnectionsScreen";
             Size = new Size(1060, 587);
             Load += ManageConnections_Load;
+            Resize += ManageConnectionsScreen_Resize;
             ((System.ComponentModel.ISupportInitialize)mcDataGrid).EndInit();
             mcOuterTableLayout.ResumeLayout(false);
             mcBodyTableLayoutPanel.ResumeLayout(false);

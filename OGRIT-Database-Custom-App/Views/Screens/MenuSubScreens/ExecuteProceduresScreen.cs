@@ -24,7 +24,7 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         /// Delegate to signal selected queries execution on the selected databases.
         /// </summary>
         private ExecuteSignal? _executeSignal;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ExecuteProceduresScreen"/> class.
         /// </summary>
@@ -89,7 +89,7 @@ namespace OGRIT_Database_Custom_App.Views.Screens
             {
                 // Create new Computed Column for better understanding of which Connection represents which Database.
                 source.Columns.Add("DisplayColumn", typeof(string));
-                foreach(DataRow row in source.Rows)
+                foreach (DataRow row in source.Rows)
                 {
                     row["DisplayColumn"] = row["ServerIPorName"] + ":" + row["Port"] + "/" + row["InstanceName"];
                 }
@@ -123,11 +123,11 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         {
             List<DataRowView> selectedProcedures = [];
 
-            foreach(int i in epSPsListBox.SelectedIndices)
+            foreach (int i in epSPsListBox.SelectedIndices)
             {
                 if (epSPsListBox.Items[i] is not DataRowView dataRow)
                 {
-                    StaticMethodHolder.WriteToLog(LogType.Warning, $"Failed to convert {i+1}th selected Procedure to DataRowView");
+                    StaticMethodHolder.WriteToLog(LogType.Warning, $"Failed to convert {i + 1}th selected Procedure to DataRowView");
                     continue;
                 }
 
@@ -145,7 +145,7 @@ namespace OGRIT_Database_Custom_App.Views.Screens
         /// <returns>A <see cref="List{T}"/> of <see cref="DataRowView"/> objects representing the selected connections.</returns>
         public List<DataRowView> GetSelectedConnectionsID()
         {
-            List<DataRowView> selectedConnections= [];
+            List<DataRowView> selectedConnections = [];
 
             foreach (int i in epCSsListBox.SelectedIndices)
             {
@@ -159,6 +159,39 @@ namespace OGRIT_Database_Custom_App.Views.Screens
             }
 
             return selectedConnections;
+        }
+        /// <summary>
+        /// Handles the resize event for the Execute Procedures Screen, changes the size of the buttons.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
+        private void ExecuteProceduresScreen_Resize(object sender, EventArgs e)
+        {
+            // initial width 1082
+            int newWidth = Math.Min(250, this.Width - 882);
+            // initial height 653
+            int newHeight = Math.Min(57, this.Height - 613);
+
+            int newX = (epExecutePanel.Width - newWidth) / 2;  // Center horizontally
+            int newY = (epExecutePanel.Height - newHeight) / 2; // Center vertically
+
+            // Apply the new size and location to the menu button
+            epExecuteButton.Size = new Size(newWidth, newHeight);
+            epExecuteButton.Location = new Point(newX, newY);
+            epExecuteButton.BorderRadius = 8;
+
+            // initial width 1082
+            newWidth = Math.Min(100, this.Width - 1012);
+            // initial height 653
+            newHeight = Math.Min(50, this.Height - 620);
+
+            newX = (epMenuPanel.Width - newWidth) / 2;  // Center horizontally
+            newY = (epMenuPanel.Height - newHeight) / 2; // Center vertically
+
+            // Apply the new size and location to the menu button
+            epMenuButton.Size = new Size(newWidth, newHeight);
+            epMenuButton.Location = new Point(newX, newY);
+            epMenuButton.BorderRadius = 8;
         }
     }
 }
