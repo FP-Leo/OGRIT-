@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|c:\\users\\leoni\\desktop\\ogrit-uygulama-projesi\\ogrit-database-custom-app\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{F35D2BF1-E5E8-49EA-8E48-FD11F64AA0DF}|OGRIT-Database-Custom-App\\OGRIT-Database-Custom-App.csproj|solutionrelative:ogrit-database-custom-app\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 309,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\App.config",
+              "RelativeDocumentMoniker": "OGRIT-Database-Custom-App\\App.config",
+              "ToolTip": "C:\\Users\\leoni\\Desktop\\OGRIT-Uygulama-Projesi\\OGRIT-Database-Custom-App\\App.config",
+              "RelativeToolTip": "OGRIT-Database-Custom-App\\App.config",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-09-05T13:33:07.049Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
