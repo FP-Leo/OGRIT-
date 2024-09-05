@@ -12,6 +12,8 @@
 
 [All releases](https://github.com/FP-Leo/OGRIT-Uygulama-Projesi/releases) and [Latest Release](https://github.com/FP-Leo/OGRIT-Uygulama-Projesi/releases/latest)
 
+[Compiled Release](https://drive.google.com/file/d/1KpOsMCZEY51_f2eemTFOBd_defXJQdCi/view?usp=sharing)
+
 ### Usage
 
 To use the OGRIT Database Custom App, follow these steps:
