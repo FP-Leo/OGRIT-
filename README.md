@@ -80,8 +80,6 @@ SOFTWARE.
 
 ### Dependencies
 
-Certainly! Here is a detailed list of dependencies required for the OGRIT Database Project:
-
 1. **.NET Framework/Core**
    - Ensure you have the appropriate version of .NET installed. You can download it from the [official .NET website](https://dotnet.microsoft.com/download).
 
