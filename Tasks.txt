@@ -39,8 +39,12 @@ Status: Done.
 20. Add Establish Connection Button at Manage Connections.
 Status: Canceled. Reason - connection is established once when a SP gets executed to a server's database and it remains open for the rest of that session. Note: should discuss if a Establish Connection & Disconnect Option is needed.
 21. Redesign Show and Execute Procedures Screen.
-Status: Ongoing.
+Status: Done.
 22. Finish ReadMe.
-Status: Waiting.
+Status: Done.
 
-My To Do List order ( Leo ) - 21.
+============================================================================================================================================================================================
+Version 1.0 released
+============================================================================================================================================================================================
+
+My To Do List order ( Leo ) - .
