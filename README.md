@@ -1,5 +1,3 @@
-Here’s the updated documentation with a detailed license section and usage instructions:
-
 ---
 
 ## OGRIT-Database-Project
